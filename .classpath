@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/client-combined-3.14.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/client-combined-3.14.0-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/commons-collections4-4.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/java-client-6.1.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/java-client-6.1.0-javadoc.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/poi-3.16.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/poi-examples-3.16.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/poi-excelant-3.16.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/poi-ooxml-3.16.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/poi-ooxml-schemas-3.16.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/poi-scratchpad-3.16.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/selenium-server-standalone-3.14.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/xmlbeans-2.6.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/lib/byte-buddy-1.8.15.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/lib/commons-codec-1.10.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/lib/commons-exec-1.3.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/lib/commons-logging-1.2.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/lib/guava-25.0-jre.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/lib/httpclient-4.5.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/lib/httpcore-4.4.9.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/lib/okhttp-3.10.0.jar"/>
+	<classpathentry exported="true" kind="lib" path="C:/Users/jhih_chen/Desktop/test/Appium_Auto_Testing_Ver6_2(Aippium 6.1.0 lib+Selenium 3.1.4 lib)/lib/okio-1.14.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
