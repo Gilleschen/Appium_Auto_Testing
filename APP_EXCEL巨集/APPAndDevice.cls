@@ -8,12 +8,14 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
 
+
+
 Private Sub importScriptAndCase_Click()
 
-    Sheets("APP&Device").Cells(2, "E").Clear
+    Sheets("APP&Device").Cells(2, "E").clear
     For i = 0 To ListBox1.ListCount - 1
         
-        If ListBox1.Selected(i) = True Then
+        If ListBox1.selected(i) = True Then
             
             Sheets("APP&Device").Cells(2, "E").Value = ListBox1.List(i)
         
@@ -21,11 +23,11 @@ Private Sub importScriptAndCase_Click()
     
     Next
     
-    Sheets("APP&Device").Cells(2, "F").Clear
+    Sheets("APP&Device").Cells(2, "F").clear
     Count = 0
     For i = 0 To ListBox2.ListCount - 1
         
-        If ListBox2.Selected(i) = True Then
+        If ListBox2.selected(i) = True Then
             Count = Count + 1
             
             If Count = 1 Then
@@ -40,11 +42,11 @@ Private Sub importScriptAndCase_Click()
 End Sub
 
 Private Sub ListBox1_Click()
-    ListBox2.Clear
+    ListBox2.clear
     
     For i = 0 To ListBox1.ListCount - 1
         
-        If ListBox1.Selected(i) = True Then
+        If ListBox1.selected(i) = True Then
             j = 1
             Do
                 If Sheets(ListBox1.List(i)).Cells(j, "A") = "CaseName" Then
@@ -61,12 +63,11 @@ Private Sub ListBox1_Click()
     
     Next
     
-    
-    
-    Sheets("APP&Device").Cells(2, "E").Clear
+    Sheets("APP&Device").Cells(2, "E").clear
+    Sheets("APP&Device").Cells(2, "F").clear
     For i = 0 To ListBox1.ListCount - 1
         
-        If ListBox1.Selected(i) = True Then
+        If ListBox1.selected(i) = True Then
             
             Sheets("APP&Device").Cells(2, "E").Value = ListBox1.List(i)
         
@@ -78,11 +79,11 @@ Private Sub ListBox1_Click()
 End Sub
 
 Private Sub ListBox2_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
-Sheets("APP&Device").Cells(2, "F").Clear
+Sheets("APP&Device").Cells(2, "F").clear
     Count = 0
     For i = 0 To ListBox2.ListCount - 1
         
-        If ListBox2.Selected(i) = True Then
+        If ListBox2.selected(i) = True Then
             Count = Count + 1
             
             If Count = 1 Then
@@ -97,11 +98,11 @@ Sheets("APP&Device").Cells(2, "F").Clear
 End Sub
 
 Private Sub loadingTestCase_Click()
-   ListBox2.Clear
+   ListBox2.clear
     
     For i = 0 To ListBox1.ListCount - 1
         
-        If ListBox1.Selected(i) = True Then
+        If ListBox1.selected(i) = True Then
             j = 1
             Do
                 If Sheets(ListBox1.List(i)).Cells(j, "A") = "CaseName" Then
@@ -121,7 +122,7 @@ End Sub
 
 Private Sub loadingTestScript_Click()
 
-    ListBox1.Clear
+    ListBox1.clear
     i = 0
     Do
         If ThisWorkbook.Sheets(i + 1).Visible = True And Right(ThisWorkbook.Sheets(i + 1).Name, 11) = "_TestScript" Then
@@ -134,7 +135,7 @@ Private Sub loadingTestScript_Click()
 End Sub
 Sub loadingTestScript()
 
-    ListBox1.Clear
+    ListBox1.clear
     i = 0
     Do
         If ThisWorkbook.Sheets(i + 1).Visible = True And Right(ThisWorkbook.Sheets(i + 1).Name, 11) = "_TestScript" Then
@@ -154,13 +155,15 @@ Private Sub DeviceUDID_Change()
     Sheets("APP&Device").Cells(2, "C") = DeviceUDID.Text
     Sheets("APP&Device").Cells(2, "D") = Sheets("APP&Device_Data").Cells(DeviceUDID.ListIndex + 2, "D")
 End Sub
-
+Private Sub ResetAPP_Change()
+    Sheets("APP&Device").Cells(2, "H") = ResetAPP.Text
+End Sub
 Sub loadingPackage()
 
     Dim PackageCurrent_index As Integer
     
     PackageCurrent_index = Package.ListIndex
-    Package.Clear
+    Package.clear
     i = 2
     Do
 
@@ -176,7 +179,7 @@ Sub loadingDeviceUDID()
 
     Dim DeviceUDIDCurrent_index As Integer
     DeviceUDIDCurrent_index = DeviceUDID.ListIndex
-    DeviceUDID.Clear
+    DeviceUDID.clear
     i = 2
     Do
 
@@ -187,12 +190,26 @@ Sub loadingDeviceUDID()
     DeviceUDID.Text = Sheets("APP&Device_Data").Cells(DeviceUDIDCurrent_index + 2, "C")
     
 End Sub
+Sub loadingResetAPP()
+
+     If Sheets("APP&Device").Cells(2, "H") = "" Then
+        ResetAPP.clear
+        ResetAPP.AddItem ("TRUE")
+        ResetAPP.AddItem ("FALSE")
+        ResetAPP.Text = Sheets("APP&Device").Cells(2, "H")
+    End If
+
+End Sub
+
+
+
 Private Sub Worksheet_Activate()
     'Sheets("APP&Device").Cells(2, "B").Clear
     'Sheets("APP&Device").Cells(2, "D").Clear
     Call loadingPackage
     Call loadingDeviceUDID
     Call loadingTestScript
+    Call loadingResetAPP
     
 End Sub
 
@@ -202,7 +219,7 @@ Private Sub Worksheet_Change(ByVal Target As Range)
         
         For w = 1 To 10
             Sheets("APP&Device").Cells(2, "F").Select
-            Selection.Delete Shift:=xlUp
+            Selection.delete Shift:=xlUp
         Next w
         
     End If

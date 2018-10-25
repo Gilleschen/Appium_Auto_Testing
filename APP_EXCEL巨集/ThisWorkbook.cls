@@ -19,7 +19,7 @@ End Sub
 
 Private Sub Workbook_Open()
     Dim myNewBar As CommandBar           '宣告工具列物件
-    Dim ScriptCreator, RunScript, CheckAPPandDevice, CheckCommand, CheckValue, CheckExpectResult As CommandBarButton '宣告工具列按鈕物件
+    Dim ScriptCreator, ScriptEditor, RunScript, CheckAPPandDevice, CheckCommand, CheckValue, CheckExpectResult As CommandBarButton '宣告工具列按鈕物件
 
     Set myNewBar = Application.CommandBars.add      '新增一個工具列
     On Error GoTo skipp
@@ -35,18 +35,27 @@ Private Sub Workbook_Open()
         Set CheckValue = .Controls.add(msoControlButton)
         Set CheckExpectResult = .Controls.add(msoControlButton)
         Set ScriptCreator = .Controls.add(msoControlButton)
+        Set ScriptEditor = .Controls.add(msoControlButton)
         
         
         With ScriptCreator
             .Style = msoButtonIconAndCaption
             .BeginGroup = True
             .Caption = "腳本產生器"
-            .TooltipText = "啟動腳本產生器"
+            .TooltipText = "建立新腳本"
             .FaceId = 592
             .Tag = "Jhih Chen"
-            .OnAction = "opening"
-            
-            
+            .OnAction = "LaunchScriptCreator"
+        End With
+        
+        With ScriptEditor
+            .Style = msoButtonIconAndCaption
+            .BeginGroup = True
+            .Caption = "腳本編輯器"
+            .TooltipText = "編輯現有腳本"
+            .FaceId = 593
+            .Tag = "Jhih Chen"
+            .OnAction = "LaunchScriptEditor"
         End With
         
         
