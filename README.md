@@ -23,7 +23,7 @@
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPAndDevice_3.PNG)
 
-6. 建立腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (e.g. Login_TestScript)，請參考[腳本產生器](#scriptCreater)，目前支援指令如下: (大小寫有分，使用方式請參考TestScript.xlsm內說明工作表) 
+6. 建立腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (e.g. Login_TestScript)，請參考[腳本產生器](#scriptcreater)，目前支援指令如下: (大小寫有分，使用方式請參考TestScript.xlsm內說明工作表) 
 
           CaseName=>測試案列名稱(各案列開始時第一個填寫項目，必填!!!)
 
@@ -131,7 +131,7 @@
 
 2. 存放於C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
 
-<a name="scriptCreater"/>
+<a name="scriptcreater"/>
 
 #### 腳本產生器說明 
 
