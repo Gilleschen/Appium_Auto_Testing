@@ -130,7 +130,9 @@
 1. 針對Error之測試案例，進行log的紀錄
 
 2. 存放於C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
+
 <a name="headers"/>
+
 #### 腳本產生器說明 
 
 點擊增益集中腳本產生器，如下圖：
