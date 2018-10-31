@@ -52,52 +52,52 @@ public class method {
 	int command_timeout = 30;// 30sec
 	LoadExpectResult ExpectResult = new LoadExpectResult();
 	static LoadTestCase TestCase = new LoadTestCase();
-	static ArrayList<AndroidDriver> driver = new ArrayList<AndroidDriver>();// å„²å­˜
+	static ArrayList<AndroidDriver> driver = new ArrayList<AndroidDriver>();// Àx¦s
 																			// AndroidDriver
-																			// çš„ArrayList
-	// driverBKå‚™ä»½driver çš„ArrayListï¼Œç›®çš„ç‚ºå›å¾©åŸæœ¬driver
-	// listä¸­çš„driverè³‡è¨Šï¼Œå› ç‚ºCommandå‡ºéŒ¯å¾Œæœƒè¨­å®šåŸdriver listç‚ºnullï¼Œæ•…ç•¶åŸ·è¡Œä¸‹å€‹æ¡ˆä¾‹å‰éœ€è¨­å®šå›åŸdriver è³‡è¨Š
+																			// ªºArrayList
+	// driverBK³Æ¥÷driver ªºArrayList¡A¥Øªº¬°¦^´_­ì¥»driver
+	// list¤¤ªºdriver¸ê°T¡A¦]¬°Command¥X¿ù«á·|³]©w­ìdriver list¬°null¡A¬G·í°õ¦æ¤U­Ó®×¨Ò«e»İ³]©w¦^­ìdriver ¸ê°T
 	static ArrayList<AndroidDriver> driverBK = new ArrayList<AndroidDriver>();
 	static String CaseErrorList[][] = new String[TestCase.CaseList.size()][TestCase.DeviceInformation.deviceName
-			.size()];// ç´€éŒ„å„æ¡ˆä¾‹æ–¼å„è£ç½®ä¹‹æŒ‡ä»¤çµæœ (2ç¶­é™£åˆ—)CaseErrorList[CaseList][Devices]
+			.size()];// ¬ö¿ı¦U®×¨Ò©ó¦U¸Ë¸m¤§«ü¥Oµ²ªG (2ºû°}¦C)CaseErrorList[CaseList][Devices]
 	static AndroidDriver Androiddriver = null;
-	static String ErrorList[] = new String[TestCase.DeviceInformation.deviceName.size()];// ç´€éŒ„å„è£ç½®ä¹‹æŒ‡ä»¤çµæœ
+	static String ErrorList[] = new String[TestCase.DeviceInformation.deviceName.size()];// ¬ö¿ı¦U¸Ë¸m¤§«ü¥Oµ²ªG
 	WebDriverWait[] wait = new WebDriverWait[TestCase.DeviceInformation.deviceName.size()];
 	static XSSFWorkbook workBook;
-	static String appElemnt;// APPå…ƒä»¶åç¨±
-	static String appInput;// è¼¸å…¥å€¼
-	static String appInputXpath;// è¼¸å…¥å€¼çš„Xpathæ ¼å¼
-	static String toElemnt;// APPå…ƒä»¶åç¨±
-	static int startx, starty, endx, endy;// Swipeç§»å‹•åº§æ¨™
-	static int iterative;// ç•«é¢æ»‘å‹•æ¬¡æ•¸
-	static String scroll;// ç•«é¢æ²å‹•æ–¹å‘
-	static String appElemntarray;// æœå°‹çš„å¤šç­†é¡ä¼¼å…ƒä»¶
-	static String checkVerifyText;// ç¢ºèªåŸ·è¡ŒQuitAPPå‰æ˜¯å¦åŸ·è¡ŒéVerifyText
-	static String switchWiFi;// å•Ÿå‹•wifiæˆ–é—œé–‰wifi
+	static String appElemnt;// APP¤¸¥ó¦WºÙ
+	static String appInput;// ¿é¤J­È
+	static String appInputXpath;// ¿é¤J­ÈªºXpath®æ¦¡
+	static String toElemnt;// APP¤¸¥ó¦WºÙ
+	static int startx, starty, endx, endy;// Swipe²¾°Ê®y¼Ğ
+	static int iterative;// µe­±·Æ°Ê¦¸¼Æ
+	static String scroll;// µe­±±²°Ê¤è¦V
+	static String appElemntarray;// ·j´Mªº¦hµ§Ãş¦ü¤¸¥ó
+	static String checkVerifyText;// ½T»{°õ¦æQuitAPP«e¬O§_°õ¦æ¹LVerifyText
+	static String switchWiFi;// ±Ò°Êwifi©ÎÃö³¬wifi
 	String element[] = new String[driver.size()];
-	static int CurrentCaseNumber = -1;// ç›®å‰åŸ·è¡Œåˆ°ç¬¬å¹¾å€‹æ¸¬è©¦æ¡ˆåˆ—
-	static Boolean CommandError = true;// åˆ¤å®šåŸ·è¡Œçš„æŒ‡ä»¤æ˜¯å¦å‡ºç¾éŒ¯èª¤ï¼›tureç‚ºæ­£ç¢ºï¼›falseç‚ºéŒ¯èª¤
-	static int CurrentErrorDevice = 0;// çµ±è¨ˆç›®å‰å‡ºéŒ¯çš„è¨­å‚™æ•¸é‡
+	static int CurrentCaseNumber = -1;// ¥Ø«e°õ¦æ¨ì²Ä´X­Ó´ú¸Õ®×¦C
+	static Boolean CommandError = true;// §P©w°õ¦æªº«ü¥O¬O§_¥X²{¿ù»~¡Fture¬°¥¿½T¡Ffalse¬°¿ù»~
+	static int CurrentErrorDevice = 0;// ²Î­p¥Ø«e¥X¿ùªº³]³Æ¼Æ¶q
 	XSSFSheet Sheet;
-	static long totaltime;// çµ±è¨ˆæ‰€æœ‰æ¡ˆä¾‹æ¸¬è©¦æ™‚é–“
-	static int location;// ç´€éŒ„driver arraylistä¸­nullçš„index
+	static long totaltime;// ²Î­p©Ò¦³®×¨Ò´ú¸Õ®É¶¡
+	static int location;// ¬ö¿ıdriver arraylist¤¤nullªºindex
 	static int CurrentCase;
 
 	public static void main(String[] args) throws IOException, NoSuchMethodException, SecurityException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
 		initial();
-		CeateAppiumSession();// å»ºç«‹ Appium é€šé“
+		CreateAppiumSession();// «Ø¥ß Appium ³q¹D
 		invokeFunction();
-		EndAppiumSession();// ä¸­æ–· Appium é€šé“
-		System.out.println("æ¸¬è©¦çµæŸ!!!" + "(" + totaltime + " s)");
-		Process proc = Runtime.getRuntime().exec("explorer C:\\TUTK_QA_TestTool\\TestReport");// é–‹å•ŸTestReportè³‡æ–™å¤¾
+		EndAppiumSession();// ¤¤Â_ Appium ³q¹D
+		System.out.println("´ú¸Õµ²§ô!!!" + "(" + totaltime + " s)");
+		Process proc = Runtime.getRuntime().exec("explorer C:\\TUTK_QA_TestTool\\TestReport");// ¶}±ÒTestReport¸ê®Æ§¨
 
 	}
 
-	public static void initial() {// åˆå§‹åŒ–CaseErrorListçŸ©é™£
+	public static void initial() {// ªì©l¤ÆCaseErrorList¯x°}
 		for (int i = 0; i < CaseErrorList.length; i++) {
 			for (int j = 0; j < CaseErrorList[i].length; j++) {
-				CaseErrorList[i][j] = "";// å¡«å…¥ç©ºå­—ä¸²ï¼Œé¿å…å–å€¼æ™‚ï¼Œå‡ºç¾éŒ¯èª¤
+				CaseErrorList[i][j] = "";// ¶ñ¤JªÅ¦r¦ê¡AÁ×§K¨ú­È®É¡A¥X²{¿ù»~
 			}
 		}
 		for (int i = 0; i < TestCase.DeviceInformation.deviceName.size(); i++) {
@@ -112,14 +112,14 @@ public class method {
 		String methodName = null;
 
 		for (CurrentCase = 0; CurrentCase < TestCase.StepList.size(); CurrentCase++) {
-			Stopwatch timer = Stopwatch.createStarted();// é–‹å§‹è¨ˆæ™‚
+			Stopwatch timer = Stopwatch.createStarted();// ¶}©l­p®É
 			System.out.println("[info] CaseName:|" + TestCase.CaseList.get(CurrentCase).toString() + "|");
-			CommandError = true;// é è¨­CommandErrorç‚ºTrue
-			CurrentErrorDevice = 0;// é è¨­å‡ºéŒ¯çš„è¨­å‚™æ•¸ç‚º0å°
+			CommandError = true;// ¹w³]CommandError¬°True
+			CurrentErrorDevice = 0;// ¹w³]¥X¿ùªº³]³Æ¼Æ¬°0¥x
 			for (int CurrentCaseStep = 0; CurrentCaseStep < TestCase.StepList.get(CurrentCase)
 					.size(); CurrentCaseStep++) {
 				if (!CommandError & CurrentErrorDevice == TestCase.DeviceInformation.deviceName.size()) {
-					break;// è‹¥ç›®å‰æ¸¬è©¦æ¡ˆä¾‹å‡ºç¾CommandError=falseï¼Œå‰‡è·³å‡ºç›®å‰æ¡ˆä¾‹ä¸¦åŸ·è¡Œä¸‹ä¸€å€‹æ¡ˆä¾‹
+					break;// ­Y¥Ø«e´ú¸Õ®×¨Ò¥X²{CommandError=false¡A«h¸õ¥X¥Ø«e®×¨Ò¨Ã°õ¦æ¤U¤@­Ó®×¨Ò
 				}
 				switch (TestCase.StepList.get(CurrentCase).get(CurrentCaseStep).toString()) {
 
@@ -326,7 +326,7 @@ public class method {
 			System.out.println("");
 			ResetDriverArrayList();// reset driver arraylist
 		}
-		// System.out.println("æ¸¬è©¦çµæŸ!!!" + "(" + totaltime + " s)");
+		// System.out.println("´ú¸Õµ²§ô!!!" + "(" + totaltime + " s)");
 	}
 
 	public static void ErrorCheck(Object... elements) throws IOException {
@@ -334,17 +334,17 @@ public class method {
 		Date today = Calendar.getInstance().getTime();
 		String reportDate = df.format(today);
 
-		// APPç•«é¢ä¸Šæ‰¾ä¸åˆ°æŒ‡å®šå…ƒä»¶
+		// APPµe­±¤W§ä¤£¨ì«ü©w¤¸¥ó
 		if ((elements.length - 1) > 1) {
 			String APPElement = "";
 			int i = 0;
 			for (Object element : elements) {
 				APPElement = APPElement + element;
-				if (i != (elements.length - 2)) {// åˆ¤æ–·æ˜¯å¦è™•ç†åˆ°å€’æ•¸ç¬¬äºŒå€‹element
-					APPElement = APPElement + " or ";// çµ„æˆ" Aå…ƒä»¶ or Bå…ƒä»¶ or
-														// Cå…ƒä»¶"å­—ä¸²
+				if (i != (elements.length - 2)) {// §PÂ_¬O§_³B²z¨ì­Ë¼Æ²Ä¤G­Óelement
+					APPElement = APPElement + " or ";// ²Õ¦¨" A¤¸¥ó or B¤¸¥ó or
+														// C¤¸¥ó"¦r¦ê
 				} else {
-					break;// æ˜¯å€’æ•¸ç¬¬äºŒå€‹break for
+					break;// ¬O­Ë¼Æ²Ä¤G­Óbreak for
 				}
 				i++;
 			}
@@ -352,7 +352,7 @@ public class method {
 		} else {
 			int j = 0;
 			for (Object element : elements) {
-				if (j != (elements.length - 1)) {// åˆ¤æ–·æ˜¯å¦è™•ç†åˆ°æœ€å¾Œä¸€å€‹element
+				if (j != (elements.length - 1)) {// §PÂ_¬O§_³B²z¨ì³Ì«á¤@­Óelement
 
 					if (element.equals("On")) {// ok
 						System.err.print("[Error] Can't turn on WiFi. (port:"
@@ -427,19 +427,19 @@ public class method {
 			}
 		}
 		System.err.println(" " + reportDate);
-		String FilePath = MakeErrorFolder(Integer.parseInt(String.valueOf(elements[elements.length - 1])));// å»ºç«‹å„æ¡ˆä¾‹ä¹‹è¡Œå‹•è£ç½®è³‡æ–™å¤¾å­˜æ”¾logè³‡è¨ŠåŠScreenshotè³‡è¨Š
-		logcat(FilePath, Integer.parseInt(String.valueOf(elements[elements.length - 1])));// æ”¶é›†log
+		String FilePath = MakeErrorFolder(Integer.parseInt(String.valueOf(elements[elements.length - 1])));// «Ø¥ß¦U®×¨Ò¤§¦æ°Ê¸Ë¸m¸ê®Æ§¨¦s©ñlog¸ê°T¤ÎScreenshot¸ê°T
+		logcat(FilePath, Integer.parseInt(String.valueOf(elements[elements.length - 1])));// ¦¬¶°log
 		ErrorScreenShot(FilePath, Integer.parseInt(String.valueOf(elements[elements.length - 1])));// Screenshot
-																									// Errorç•«é¢
-		ErrorList[Integer.parseInt(String.valueOf(elements[elements.length - 1]))] = "Error";// å„²å­˜ç¬¬iå°è¨­å‚™commandå¤±æ•—çµæœ
-		CaseErrorList[CurrentCaseNumber] = ErrorList;// å„²å­˜ç¬¬iå°è¨­å‚™åŸ·è¡Œç¬¬CurrentCaseNumberå€‹æ¡ˆä¾‹ä¹‹commandå¤±æ•—çµæœ
-		CommandError = false;// è‹¥æ‰¾ä¸åˆ°æŒ‡å®šå…ƒä»¶ï¼Œå‰‡è¨­å®šCommandError=false
-		driver.set(Integer.parseInt(String.valueOf(elements[elements.length - 1])), null);// å°‡å‡ºéŒ¯çš„driverè¨­å®šç‚ºnull
-		CurrentErrorDevice++;// çµ±è¨ˆå‡ºéŒ¯çš„è¨­å‚™æ•¸
+																									// Errorµe­±
+		ErrorList[Integer.parseInt(String.valueOf(elements[elements.length - 1]))] = "Error";// Àx¦s²Äi¥x³]³Æcommand¥¢±Ñµ²ªG
+		CaseErrorList[CurrentCaseNumber] = ErrorList;// Àx¦s²Äi¥x³]³Æ°õ¦æ²ÄCurrentCaseNumber­Ó®×¨Ò¤§command¥¢±Ñµ²ªG
+		CommandError = false;// ­Y§ä¤£¨ì«ü©w¤¸¥ó¡A«h³]©wCommandError=false
+		driver.set(Integer.parseInt(String.valueOf(elements[elements.length - 1])), null);// ±N¥X¿ùªºdriver³]©w¬°null
+		CurrentErrorDevice++;// ²Î­p¥X¿ùªº³]³Æ¼Æ
 	}
 
 	public static void logcat(String FilePath, int DeviceNum) throws IOException {
-		// æ”¶é›†log
+		// ¦¬¶°log
 		// System.out.println(
 		// "[info] Executing:|Saving device log...|" +
 		// TestCase.DeviceInformation.deviceName.get(DeviceNum) + "|");
@@ -478,7 +478,7 @@ public class method {
 	}
 
 	public static String MakeErrorFolder(int i) {
-		// è³‡æ–™å¤¾çµæ§‹
+		// ¸ê®Æ§¨µ²ºc
 		// C:\TUTK_QA_TestTool\TestReport\appPackage\CaseName\DeviceUdid\log\
 		String filePath = "C:\\TUTK_QA_TestTool\\TestReport\\" + TestCase.DeviceInformation.appPackage.toString() + "\\"
 				+ TestCase.CaseList.get(CurrentCase).toString() + "\\" + TestCase.DeviceInformation.deviceName.get(i)
@@ -491,16 +491,16 @@ public class method {
 	}
 
 	public static void ResetDriverArrayList() {
-		// å–®ä¸€CaseçµæŸå¾Œï¼Œå°‡driver arraylistä¸­nullçš„éƒ¨åˆ†å›å¾©ç‚ºåŸæœ¬driverè³‡æ–™(ç”±driverBK
-		// arrayliståŒ¯å…¥driver arraylist)
+		// ³æ¤@Caseµ²§ô«á¡A±Ndriver arraylist¤¤nullªº³¡¤À¦^´_¬°­ì¥»driver¸ê®Æ(¥ÑdriverBK
+		// arraylist¶×¤Jdriver arraylist)
 		boolean arraycheck;
 		for (int i = 0; i < driver.size(); i++) {
 			if (driver.get(i) == null) {
-				location = i;// ç´€éŒ„driver arraylistä¸­null indexä½å€
+				location = i;// ¬ö¿ıdriver arraylist¤¤null index¦ì§}
 				for (int k = 0; k < driverBK.size(); k++) {
 					arraycheck = false;
 					for (int l = 0; l < driver.size(); l++) {
-						// ç¢ºèªdriverBK arraylistè³‡æ–™æ˜¯å¦å­˜åœ¨æ–¼driver arraylistä¸­
+						// ½T»{driverBK arraylist¸ê®Æ¬O§_¦s¦b©ódriver arraylist¤¤
 						if (driverBK.get(k).equals(driver.get(l))) {
 							arraycheck = false;
 							break;
@@ -509,8 +509,8 @@ public class method {
 						}
 					}
 					if (arraycheck) {
-						driver.set(location, driverBK.get(k));// è¦†è“‹driver
-																// arraylistä¸­çš„null
+						driver.set(location, driverBK.get(k));// ÂĞ»\driver
+																// arraylist¤¤ªºnull
 					}
 				}
 			}
@@ -519,7 +519,7 @@ public class method {
 	}
 
 	public void Byid_VerifyText() throws IOException {
-		boolean result[] = new boolean[driver.size()];// æœªçµ¦å®šBooleanå€¼ï¼Œé è¨­ç‚ºFalse
+		boolean result[] = new boolean[driver.size()];// ¥¼µ¹©wBoolean­È¡A¹w³]¬°False
 		boolean ErrorResult[] = new boolean[driver.size()];
 
 		for (int i = 0; i < driver.size(); i++) {
@@ -538,7 +538,7 @@ public class method {
 					ErrorResult[i] = true;
 
 				} else {
-					// å›å‚³æ¸¬è©¦æ¡ˆä¾‹æ¸…å–®çš„åç¨±çµ¦ExpectResult.LoadExpectResultï¼Œä¸¦å­˜æ”¾æœŸæœ›çµæœè‡³ResultListæ¸…å–®
+					// ¦^¶Ç´ú¸Õ®×¨Ò²M³æªº¦WºÙµ¹ExpectResult.LoadExpectResult¡A¨Ã¦s©ñ´Á±æµ²ªG¦ÜResultList²M³æ
 					ExpectResult.LoadExpectResult(TestCase.CaseList.get(CurrentCaseNumber).toString());
 					for (int j = 0; j < ExpectResult.ResultList.size(); j++) {
 						if (element[i].equals(ExpectResult.ResultList.get(j)) == true) {
@@ -551,12 +551,12 @@ public class method {
 				}
 			}
 		}
-		SubMethod_Result(ErrorResult, result);// å‘¼å«submethod_resultå„²å­˜æ¸¬è©¦çµæœæ–¼Excel
+		SubMethod_Result(ErrorResult, result);// ©I¥ssubmethod_resultÀx¦s´ú¸Õµ²ªG©óExcel
 
 	}
 
 	public void ByXpath_VerifyText() throws IOException {
-		boolean result[] = new boolean[driver.size()];// æœªçµ¦å®šBooleanå€¼ï¼Œé è¨­ç‚ºFalse
+		boolean result[] = new boolean[driver.size()];// ¥¼µ¹©wBoolean­È¡A¹w³]¬°False
 		boolean ErrorResult[] = new boolean[driver.size()];
 
 		for (int i = 0; i < driver.size(); i++) {
@@ -570,16 +570,16 @@ public class method {
 				} catch (Exception e) {
 					ErrorCheck(appElemnt, i);
 					// System.err.println("[Error] Can't find " + appElemnt);
-					// element[i] = "ERROR";// æ‰¾ä¸åˆ°è©²ç‰©ä»¶ï¼Œå›å‚³Error
+					// element[i] = "ERROR";// §ä¤£¨ì¸Óª«¥ó¡A¦^¶ÇError
 					// driver.set(i, null);
-					// CurrentErrorDevice++;// çµ±è¨ˆè¨­å‡ºéŒ¯çš„è¨­å‚™æ•¸
+					// CurrentErrorDevice++;// ²Î­p³]¥X¿ùªº³]³Æ¼Æ
 				}
 
 				if (element[i].equals("ERROR")) {
 					ErrorResult[i] = true;
 
 				} else {
-					// å›å‚³æ¸¬è©¦æ¡ˆä¾‹æ¸…å–®çš„åç¨±çµ¦ExpectResult.LoadExpectResultï¼Œä¸¦å­˜æ”¾æœŸæœ›çµæœè‡³ResultListæ¸…å–®
+					// ¦^¶Ç´ú¸Õ®×¨Ò²M³æªº¦WºÙµ¹ExpectResult.LoadExpectResult¡A¨Ã¦s©ñ´Á±æµ²ªG¦ÜResultList²M³æ
 					ExpectResult.LoadExpectResult(TestCase.CaseList.get(CurrentCaseNumber).toString());
 					for (int j = 0; j < ExpectResult.ResultList.size(); j++) {
 						if (element[i].equals(ExpectResult.ResultList.get(j)) == true) {
@@ -685,10 +685,10 @@ public class method {
 					wait[i] = new WebDriverWait(driver.get(i), command_timeout);
 					wait[i].until(ExpectedConditions.visibilityOfElementLocated(
 							By.id(TestCase.DeviceInformation.appPackage + ":id/" + appElemnt))).click();
-					ErrorList[i] = "Pass";// å„²å­˜ç¬¬iå°è¨­å‚™commandçµæœï¼ŒæˆåŠŸåŸ·è¡ŒClickå‰‡ï¼Œå­˜å…¥Pass||èˆ‰ä¾‹
-											// è¿­ä»£1ï¼šErrorList=[Pass];è¿­ä»£2ï¼šErrorList=[Pass,Pass]
-					CaseErrorList[CurrentCaseNumber] = ErrorList;// å„²å­˜ç¬¬iå°è¨­å‚™åŸ·è¡Œç¬¬CurrentCaseNumberå€‹æ¡ˆä¾‹ä¹‹commandçµæœ||èˆ‰ä¾‹
-																	// è¿­ä»£1ï¼šCaseErrorList=[[Pass]];è¿­ä»£2ï¼šCaseErrorList=[[Pass,Pass]]
+					ErrorList[i] = "Pass";// Àx¦s²Äi¥x³]³Æcommandµ²ªG¡A¦¨¥\°õ¦æClick«h¡A¦s¤JPass||Á|¨Ò
+											// ­¡¥N1¡GErrorList=[Pass];­¡¥N2¡GErrorList=[Pass,Pass]
+					CaseErrorList[CurrentCaseNumber] = ErrorList;// Àx¦s²Äi¥x³]³Æ°õ¦æ²ÄCurrentCaseNumber­Ó®×¨Ò¤§commandµ²ªG||Á|¨Ò
+																	// ­¡¥N1¡GCaseErrorList=[[Pass]];­¡¥N2¡GCaseErrorList=[[Pass,Pass]]
 				} catch (Exception e) {
 					ErrorCheck(appElemnt, i);
 				}
@@ -772,14 +772,14 @@ public class method {
 	}
 
 	public void Sleep() throws IOException {
-		// String NewString = "";// æ–°å­—ä¸²
-		// char[] r = { '.' };// å°æ•¸é»å­—å…ƒ
-		// char[] c = appInput.toCharArray();// å°‡å­—ä¸²è½‰æˆå­—å…ƒé™£åˆ—
+		// String NewString = "";// ·s¦r¦ê
+		// char[] r = { '.' };// ¤p¼ÆÂI¦r¤¸
+		// char[] c = appInput.toCharArray();// ±N¦r¦êÂà¦¨¦r¤¸°}¦C
 		// for (int i = 0; i < c.length; i++) {
-		// if (c[i] != r[0]) {// åˆ¤æ–·å­—å…ƒæ˜¯å¦ç‚ºå°æ•¸é»
-		// NewString = NewString + c[i];// å¦ï¼Œå°‡å­—å…ƒçµ„åˆæˆæ–°å­—ä¸²
+		// if (c[i] != r[0]) {// §PÂ_¦r¤¸¬O§_¬°¤p¼ÆÂI
+		// NewString = NewString + c[i];// §_¡A±N¦r¤¸²Õ¦X¦¨·s¦r¦ê
 		// } else {
-		// break;// æ˜¯ï¼Œè·³å‡ºè¿´åœˆ
+		// break;// ¬O¡A¸õ¥X°j°é
 		// }
 		// }
 		for (int i = 0; i < driver.size(); i++) {
@@ -790,7 +790,7 @@ public class method {
 							+ TestCase.DeviceInformation.deviceName.get(i) + "|");
 					Thread.sleep((long) (Float.valueOf(appInput) * 1000));
 					// Thread.sleep(Integer.valueOf(NewString) * 1000);//
-					// å°‡å­—ä¸²è½‰æˆæ•´æ•¸
+					// ±N¦r¦êÂà¦¨¾ã¼Æ
 
 				} catch (Exception e) {
 					ErrorCheck("Sleep", i);
@@ -865,19 +865,19 @@ public class method {
 							.println("[info] Executing:|QuitAPP|" + TestCase.DeviceInformation.deviceName.get(j) + "|");
 					driver.get(j).closeApp();
 
-					// åŸ·è¡Œå®ŒQuitAPPå¾Œï¼Œä»£è¡¨è©²Caseæµç¨‹æ“ä½œæ­£å¸¸çµæŸï¼Œå› æ­¤æœƒå†TestReportå¡«å…¥Pass
-					// ;ä½†è‹¥å…ˆå‰åŸ·è¡ŒéVerifyTextå‹•ä½œå¾Œï¼Œä¹Ÿæœƒåœ¨TestReportå¡«å…¥è©²CaseçµæœPass/Fail/Errorï¼Œå› æ­¤æ­¤è™•éœ€åˆ¤æ–·æ˜¯å¦åŸ·è¡ŒéVerifyï¼Œé¿å…Verifyçµæœè¢«åˆ·æ‰ï¼Œå¦‚ä¸‹åˆ¤æ–·å¼
+					// °õ¦æ§¹QuitAPP«á¡A¥Nªí¸ÓCase¬yµ{¾Ş§@¥¿±`µ²§ô¡A¦]¦¹·|¦ATestReport¶ñ¤JPass
+					// ;¦ı­Y¥ı«e°õ¦æ¹LVerifyText°Ê§@«á¡A¤]·|¦bTestReport¶ñ¤J¸ÓCaseµ²ªGPass/Fail/Error¡A¦]¦¹¦¹³B»İ§PÂ_¬O§_°õ¦æ¹LVerify¡AÁ×§KVerifyµ²ªG³Q¨ê±¼¡A¦p¤U§PÂ_¦¡
 					for (int i = 0; i < TestCase.StepList.get(CurrentCaseNumber).size(); i++) {
 						if (TestCase.StepList.get(CurrentCaseNumber).get(i).equals("Byid_VerifyText")
 								|| TestCase.StepList.get(CurrentCaseNumber).get(i).equals("ByXpath_VerifyText")
 								|| TestCase.StepList.get(CurrentCaseNumber).get(i).equals("Byid_VerifyRadioButton")
 								|| TestCase.StepList.get(CurrentCaseNumber).get(i)
 										.equals("ByXpath_VerifyRadioButton")) {
-							state[j] = true;// trueä»£è¡¨æ‰¾åˆ°Verify
+							state[j] = true;// true¥Nªí§ä¨ìVerify
 							break;
 						}
 					}
-					if (!state[j]) {// è‹¥state[j]=falseè¡¨è©²caseæœªåŸ·è¡ŒVerifyæŒ‡ä»¤ï¼Œæ•…åŸ·è¡Œä»¥ä¸‹æµç¨‹
+					if (!state[j]) {// ­Ystate[j]=falseªí¸Ócase¥¼°õ¦æVerify«ü¥O¡A¬G°õ¦æ¥H¤U¬yµ{
 
 						try {
 							workBook = new XSSFWorkbook(
@@ -886,20 +886,20 @@ public class method {
 							System.err.println("[Error] Can't find C:\\TUTK_QA_TestTool\\TestReport\\TestReport.xlsm");
 						}
 
-						if (TestCase.DeviceInformation.deviceName.get(j).toString().length() > 20) {// Excelå·¥ä½œè¡¨åç¨±æœ€å¸¸31å­—å…ƒå› ï¼Œæ•…éœ€åˆ¤æ–·UDIDé•·åº¦æ˜¯å¦å¤§æ–¼31
-							char[] NewUdid = new char[20];// å› éœ€åŒ…å«_TestReportå­—ä¸²(å…±11å­—å…ƒ)ï¼Œæ•…è¨­å®š20ä½å­—å…ƒé™£åˆ—(31-11)
-							TestCase.DeviceInformation.deviceName.get(j).toString().getChars(0, 20, NewUdid, 0);// å–å‡ºUDIDå‰20å­—å…ƒçµ¦NewUdid
-							Sheet = workBook.getSheet(String.valueOf(NewUdid) + "_TestReport");// æ ¹æ“šNewUdidï¼ŒæŒ‡å®šæŸå°è£ç½®çš„TestReport
+						if (TestCase.DeviceInformation.deviceName.get(j).toString().length() > 20) {// Excel¤u§@ªí¦WºÙ³Ì±`31¦r¤¸¦]¡A¬G»İ§PÂ_UDIDªø«×¬O§_¤j©ó31
+							char[] NewUdid = new char[20];// ¦]»İ¥]§t_TestReport¦r¦ê(¦@11¦r¤¸)¡A¬G³]©w20¦ì¦r¤¸°}¦C(31-11)
+							TestCase.DeviceInformation.deviceName.get(j).toString().getChars(0, 20, NewUdid, 0);// ¨ú¥XUDID«e20¦r¤¸µ¹NewUdid
+							Sheet = workBook.getSheet(String.valueOf(NewUdid) + "_TestReport");// ®Ú¾ÚNewUdid¡A«ü©w¬Y¥x¸Ë¸mªºTestReport
 																								// sheet
 						} else {
 							Sheet = workBook
-									.getSheet(TestCase.DeviceInformation.deviceName.get(j).toString() + "_TestReport");// æŒ‡å®šæŸå°è£ç½®çš„TestReport
+									.getSheet(TestCase.DeviceInformation.deviceName.get(j).toString() + "_TestReport");// «ü©w¬Y¥x¸Ë¸mªºTestReport
 																														// sheet
 						}
-						if (CaseErrorList[CurrentCaseNumber][j].equals("Pass")) {// å–å‡ºCaseErrorListä¹‹ç¬¬CurrentCaseNumberå€‹æ¸¬é …ä¸­çš„ç¬¬iå°è¡Œå‹•è£ç½®ä¹‹çµæœ
-							Sheet.getRow(CurrentCaseNumber + 1).getCell(1).setCellValue("Pass");// å¡«å…¥ç¬¬iå°è¡Œå‹•è£ç½®ä¹‹ç¬¬CurrentCaseNumberå€‹æ¸¬é …çµæœPass
+						if (CaseErrorList[CurrentCaseNumber][j].equals("Pass")) {// ¨ú¥XCaseErrorList¤§²ÄCurrentCaseNumber­Ó´ú¶µ¤¤ªº²Äi¥x¦æ°Ê¸Ë¸m¤§µ²ªG
+							Sheet.getRow(CurrentCaseNumber + 1).getCell(1).setCellValue("Pass");// ¶ñ¤J²Äi¥x¦æ°Ê¸Ë¸m¤§²ÄCurrentCaseNumber­Ó´ú¶µµ²ªGPass
 						}
-						// åŸ·è¡Œå¯«å…¥Excelå¾Œçš„å­˜æª”å‹•ä½œ
+						// °õ¦æ¼g¤JExcel«áªº¦sÀÉ°Ê§@
 						try {
 							FileOutputStream out = new FileOutputStream(
 									new File("C:\\TUTK_QA_TestTool\\TestReport\\TestReport.xlsm"));
@@ -932,10 +932,10 @@ public class method {
 		}
 	}
 
-	public static void CeateAppiumSession() throws IOException {
+	public static void CreateAppiumSession() throws IOException {
 		DesiredCapabilities cap[] = new DesiredCapabilities[TestCase.DeviceInformation.deviceName.size()];
-		driver.clear();// æ¸…ç©ºdriver arraylist
-
+		driver.clear();// ²MªÅdriver arraylist
+		
 		for (int i = 0; i < TestCase.DeviceInformation.deviceName.size(); i++) {
 			cap[i] = new DesiredCapabilities();
 		}
@@ -949,9 +949,12 @@ public class method {
 					TestCase.DeviceInformation.platformVersion.get(i));
 			cap[i].setCapability(AndroidMobileCapabilityType.APP_PACKAGE, TestCase.DeviceInformation.appPackage);
 			cap[i].setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, TestCase.DeviceInformation.appActivity);
-			cap[i].setCapability(MobileCapabilityType.NO_RESET, TestCase.DeviceInformation.ResetAPP);// æ¯æ¬¡å–®ä¸€CaseåŸ·è¡Œå‰ï¼Œæ˜¯å¦æ¸…é™¤APPå¿«å–è³‡æ–™;æ˜¯ç‚ºtrue;å¦ç‚ºfalse
+			cap[i].setCapability(MobileCapabilityType.NO_RESET, TestCase.DeviceInformation.ResetAPP);// ¨C¦¸³æ¤@Case°õ¦æ«e¡A¬O§_²M°£APP§Ö¨ú¸ê®Æ;¬O¬°true;§_¬°false
 			cap[i].setCapability("autoLaunch", false);
-			cap[i].setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");// å› Android 7.0è¨­å‚™ä»¥ä¸Šéœ€ä½¿ç”¨UIAutomator2ï¼Œæ‰å¯æ“ä½œUIå…ƒä»¶
+			if (TestCase.DeviceInformation.UIAutomator2) {
+				cap[i].setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");// ¦]Android
+																							// 7.0³]³Æ¥H¤W»İ¨Ï¥ÎUIAutomator2¡A¤~¥i¾Ş§@UI¤¸¥ó
+			}
 			// cap[i].setCapability(AndroidMobileCapabilityType.SYSTEM_PORT,
 			// systemPort);
 
@@ -1048,11 +1051,11 @@ public class method {
 	// System.out.println("[info] Executing:|WiFi|" + switchWiFi + "|"
 	// + TestCase.DeviceInformation.deviceName.get(i) + "|");
 	// //
-	// ifé‚è¼¯èªªæ˜:(ç›®çš„é¿å…å·²é–‹å•Ÿwifiæˆ–å·²é—œé–‰wifäº†ï¼Œåˆå†æ¬¡åŸ·è¡Œä»¤å•Ÿå‹•wifiæˆ–é—œé–‰wif(çš†å»é™¤ifåˆ¤æ–·åƒ…è·‘switchæµç¨‹)ï¼Œå¦‚æ­¤å¯ç¯€çœæ¸¬è©¦æ™‚é–“)
-	// // [åˆ¤æ–·æ‰‹æ©Ÿé€£ç·šç‹€æ…‹ç‚ºWiFi offåŠdata off(çš†NONE) &&
-	// // ExcelæŒ‡ä»¤ç‚ºOnæ™‚ï¼Œæ‰åŸ·è¡Œswitchä¹‹Case"On"]
-	// // ||[[åˆ¤æ–·æ‰‹æ©Ÿé€£ç·šç‹€æ…‹ç‚ºWiFi on || WiFiåŠDataéƒ½å•Ÿå‹•(çš†ALL)] &&
-	// // ExcelæŒ‡ä»¤ç‚ºOffæ™‚ï¼Œæ‰åŸ·è¡Œswitchä¹‹Case"Off"]
+	// ifÅŞ¿è»¡©ú:(¥ØªºÁ×§K¤w¶}±Òwifi©Î¤wÃö³¬wif¤F¡A¤S¦A¦¸°õ¦æ¥O±Ò°Êwifi©ÎÃö³¬wif(¬Ò¥h°£if§PÂ_¶È¶]switch¬yµ{)¡A¦p¦¹¥i¸`¬Ù´ú¸Õ®É¶¡)
+	// // [§PÂ_¤â¾÷³s½uª¬ºA¬°WiFi off¤Îdata off(¬ÒNONE) &&
+	// // Excel«ü¥O¬°On®É¡A¤~°õ¦æswitch¤§Case"On"]
+	// // ||[[§PÂ_¤â¾÷³s½uª¬ºA¬°WiFi on || WiFi¤ÎData³£±Ò°Ê(¬ÒALL)] &&
+	// // Excel«ü¥O¬°Off®É¡A¤~°õ¦æswitch¤§Case"Off"]
 	//
 	// if ((driver.get(i).getConnection().toString().equals("NONE") &&
 	// switchWiFi.equals("On"))
@@ -1062,11 +1065,11 @@ public class method {
 	// switch (switchWiFi) {
 	// case "On":
 	//
-	// // Appium 6.1.0 API æœ‰å•é¡Œ!!!!
+	// // Appium 6.1.0 API ¦³°İÃD!!!!
 	// driver.get(i).setConnection(Connection.WIFI);
 	// break;
 	// case "Off":
-	// // Appium 6.1.0 API æœ‰å•é¡Œ!!!!
+	// // Appium 6.1.0 API ¦³°İÃD!!!!
 	// driver.get(i).setConnection(Connection.NONE);
 	// break;
 	// }
@@ -1097,10 +1100,10 @@ public class method {
 					wait[i] = new WebDriverWait(driver.get(i), command_timeout);
 					wait[i].until(ExpectedConditions.invisibilityOfElementLocated(
 							By.id(TestCase.DeviceInformation.appPackage + ":id/" + appElemnt)));
-					ErrorList[i] = "Pass";// å„²å­˜ç¬¬iå°è¨­å‚™commandçµæœï¼ŒæˆåŠŸåŸ·è¡ŒClickå‰‡ï¼Œå­˜å…¥Pass||èˆ‰ä¾‹
-											// è¿­ä»£1ï¼šErrorList=[Pass];è¿­ä»£2ï¼šErrorList=[Pass,Pass]
-					CaseErrorList[CurrentCaseNumber] = ErrorList;// å„²å­˜ç¬¬iå°è¨­å‚™åŸ·è¡Œç¬¬CurrentCaseNumberå€‹æ¡ˆä¾‹ä¹‹commandçµæœ||èˆ‰ä¾‹
-																	// è¿­ä»£1ï¼šCaseErrorList=[[Pass]];è¿­ä»£2ï¼šCaseErrorList=[[Pass,Pass]]
+					ErrorList[i] = "Pass";// Àx¦s²Äi¥x³]³Æcommandµ²ªG¡A¦¨¥\°õ¦æClick«h¡A¦s¤JPass||Á|¨Ò
+											// ­¡¥N1¡GErrorList=[Pass];­¡¥N2¡GErrorList=[Pass,Pass]
+					CaseErrorList[CurrentCaseNumber] = ErrorList;// Àx¦s²Äi¥x³]³Æ°õ¦æ²ÄCurrentCaseNumber­Ó®×¨Ò¤§commandµ²ªG||Á|¨Ò
+																	// ­¡¥N1¡GCaseErrorList=[[Pass]];­¡¥N2¡GCaseErrorList=[[Pass,Pass]]
 				} catch (Exception e) {
 
 					ErrorCheck(appElemnt, i);
@@ -1119,10 +1122,10 @@ public class method {
 					System.out.println("[info] Executing:|ByXpath_invisibility|" + appElemnt + "|");
 					wait[i] = new WebDriverWait(driver.get(i), command_timeout);
 					wait[i].until(ExpectedConditions.invisibilityOfElementLocated(By.xpath(appElemnt)));
-					ErrorList[i] = "Pass";// å„²å­˜ç¬¬iå°è¨­å‚™commandçµæœï¼ŒæˆåŠŸåŸ·è¡ŒClickå‰‡ï¼Œå­˜å…¥Pass||èˆ‰ä¾‹
-											// è¿­ä»£1ï¼šErrorList=[Pass];è¿­ä»£2ï¼šErrorList=[Pass,Pass]
-					CaseErrorList[CurrentCaseNumber] = ErrorList;// å„²å­˜ç¬¬iå°è¨­å‚™åŸ·è¡Œç¬¬CurrentCaseNumberå€‹æ¡ˆä¾‹ä¹‹commandçµæœ||èˆ‰ä¾‹
-																	// è¿­ä»£1ï¼šCaseErrorList=[[Pass]];è¿­ä»£2ï¼šCaseErrorList=[[Pass,Pass]]
+					ErrorList[i] = "Pass";// Àx¦s²Äi¥x³]³Æcommandµ²ªG¡A¦¨¥\°õ¦æClick«h¡A¦s¤JPass||Á|¨Ò
+											// ­¡¥N1¡GErrorList=[Pass];­¡¥N2¡GErrorList=[Pass,Pass]
+					CaseErrorList[CurrentCaseNumber] = ErrorList;// Àx¦s²Äi¥x³]³Æ°õ¦æ²ÄCurrentCaseNumber­Ó®×¨Ò¤§commandµ²ªG||Á|¨Ò
+																	// ­¡¥N1¡GCaseErrorList=[[Pass]];­¡¥N2¡GCaseErrorList=[[Pass,Pass]]
 				} catch (Exception e) {
 					ErrorCheck(appElemnt, i);
 				}
@@ -1144,10 +1147,10 @@ public class method {
 									By.id(TestCase.DeviceInformation.appPackage + ":id/" + appElemnt))))))
 							.perform();
 
-					ErrorList[i] = "Pass";// å„²å­˜ç¬¬iå°è¨­å‚™commandçµæœï¼ŒæˆåŠŸåŸ·è¡ŒClickå‰‡ï¼Œå­˜å…¥Pass||èˆ‰ä¾‹
-											// è¿­ä»£1ï¼šErrorList=[Pass];è¿­ä»£2ï¼šErrorList=[Pass,Pass]
-					CaseErrorList[CurrentCaseNumber] = ErrorList;// å„²å­˜ç¬¬iå°è¨­å‚™åŸ·è¡Œç¬¬CurrentCaseNumberå€‹æ¡ˆä¾‹ä¹‹commandçµæœ||èˆ‰ä¾‹
-																	// è¿­ä»£1ï¼šCaseErrorList=[[Pass]];è¿­ä»£2ï¼šCaseErrorList=[[Pass,Pass]]
+					ErrorList[i] = "Pass";// Àx¦s²Äi¥x³]³Æcommandµ²ªG¡A¦¨¥\°õ¦æClick«h¡A¦s¤JPass||Á|¨Ò
+											// ­¡¥N1¡GErrorList=[Pass];­¡¥N2¡GErrorList=[Pass,Pass]
+					CaseErrorList[CurrentCaseNumber] = ErrorList;// Àx¦s²Äi¥x³]³Æ°õ¦æ²ÄCurrentCaseNumber­Ó®×¨Ò¤§commandµ²ªG||Á|¨Ò
+																	// ­¡¥N1¡GCaseErrorList=[[Pass]];­¡¥N2¡GCaseErrorList=[[Pass,Pass]]
 				} catch (Exception e) {
 					ErrorCheck(appElemnt, i);
 				}
@@ -1170,10 +1173,10 @@ public class method {
 									wait[i].until(ExpectedConditions.visibilityOfElementLocated(By.xpath(appElemnt))))))
 							.perform();
 
-					ErrorList[i] = "Pass";// å„²å­˜ç¬¬iå°è¨­å‚™commandçµæœï¼ŒæˆåŠŸåŸ·è¡ŒClickå‰‡ï¼Œå­˜å…¥Pass||èˆ‰ä¾‹
-											// è¿­ä»£1ï¼šErrorList=[Pass];è¿­ä»£2ï¼šErrorList=[Pass,Pass]
-					CaseErrorList[CurrentCaseNumber] = ErrorList;// å„²å­˜ç¬¬iå°è¨­å‚™åŸ·è¡Œç¬¬CurrentCaseNumberå€‹æ¡ˆä¾‹ä¹‹commandçµæœ||èˆ‰ä¾‹
-																	// è¿­ä»£1ï¼šCaseErrorList=[[Pass]];è¿­ä»£2ï¼šCaseErrorList=[[Pass,Pass]]
+					ErrorList[i] = "Pass";// Àx¦s²Äi¥x³]³Æcommandµ²ªG¡A¦¨¥\°õ¦æClick«h¡A¦s¤JPass||Á|¨Ò
+											// ­¡¥N1¡GErrorList=[Pass];­¡¥N2¡GErrorList=[Pass,Pass]
+					CaseErrorList[CurrentCaseNumber] = ErrorList;// Àx¦s²Äi¥x³]³Æ°õ¦æ²ÄCurrentCaseNumber­Ó®×¨Ò¤§commandµ²ªG||Á|¨Ò
+																	// ­¡¥N1¡GCaseErrorList=[[Pass]];­¡¥N2¡GCaseErrorList=[[Pass,Pass]]
 				} catch (Exception e) {
 					ErrorCheck(appElemnt, i);
 				}
@@ -1184,7 +1187,7 @@ public class method {
 	}
 
 	public void ByXpath_Swipe() throws IOException {
-		Point p1, p2;// p1 ç‚ºèµ·é»;p2ç‚ºçµ‚é»
+		Point p1, p2;// p1 ¬°°_ÂI;p2¬°²×ÂI
 
 		for (int i = 0; i < driver.size(); i++) {
 			if (driver.get(i) != null) {
@@ -1209,7 +1212,7 @@ public class method {
 	}
 
 	public void Byid_Swipe() throws IOException {
-		Point p1, p2;// p1 ç‚ºèµ·é»;p2ç‚ºçµ‚é»
+		Point p1, p2;// p1 ¬°°_ÂI;p2¬°²×ÂI
 
 		for (int i = 0; i < driver.size(); i++) {
 			if (driver.get(i) != null) {
@@ -1250,7 +1253,7 @@ public class method {
 								.moveTo(PointOption.point(endx, endy)).release().perform();
 					} catch (Exception e) {
 						ErrorCheck("Swipe", i);
-						break;// å‡ºéŒ¯å¾Œï¼Œé›¢é–‹iterativeå›åœˆ
+						break;// ¥X¿ù«á¡AÂ÷¶}iterative¦^°é
 					}
 				}
 			}
@@ -1258,8 +1261,8 @@ public class method {
 	}
 
 	public void ByXpath_Swipe_Vertical() throws IOException {
-		Point p;// å…ƒä»¶åº§æ¨™
-		Dimension s;// å…ƒä»¶å¤§å°
+		Point p;// ¤¸¥ó®y¼Ğ
+		Dimension s;// ¤¸¥ó¤j¤p
 		WebElement e;
 
 		for (int i = 0; i < driver.size(); i++) {
@@ -1275,13 +1278,13 @@ public class method {
 					int errorX = (int) Math.round(s.width * 0.01);
 					int errorY = (int) Math.round(s.height * 0.01);
 					for (int j = 0; j < iterative; j++) {
-						if (scroll.equals("DOWN")) {// ç•«é¢å‘ä¸‹æ²å‹•
+						if (scroll.equals("DOWN")) {// µe­±¦V¤U±²°Ê
 
 							t.press(PointOption.point(p.x + errorX, p.y + s.height - errorY))
 									.waitAction(WaitOptions.waitOptions(ofSeconds(1)))
 									.moveTo(PointOption.point(p.x + errorX, p.y + errorY)).release().perform();
 
-						} else if (scroll.equals("UP")) {// ç•«é¢å‘ä¸Šæ²å‹•
+						} else if (scroll.equals("UP")) {// µe­±¦V¤W±²°Ê
 							t.press(PointOption.point(p.x + errorX, p.y + errorY))
 									.waitAction(WaitOptions.waitOptions(ofSeconds(1)))
 									.moveTo(PointOption.point(p.x + errorX, p.y + s.height - errorY)).release()
@@ -1298,8 +1301,8 @@ public class method {
 	}
 
 	public void ByXpath_Swipe_Horizontal() throws IOException {
-		Point p;// å…ƒä»¶åº§æ¨™
-		Dimension s;// å…ƒä»¶å¤§å°
+		Point p;// ¤¸¥ó®y¼Ğ
+		Dimension s;// ¤¸¥ó¤j¤p
 		WebElement e;
 		for (int i = 0; i < driver.size(); i++) {
 			if (driver.get(i) != null) {
@@ -1315,13 +1318,13 @@ public class method {
 					int errorX = (int) Math.round(s.getWidth() * 0.01);
 					int errorY = (int) Math.round(s.getHeight() * 0.01);
 					for (int j = 0; j < iterative; j++) {
-						if (scroll.equals("RIGHT")) {// ç•«é¢å‘å³æ²å‹• (è§€çœ‹ç•«é¢å·¦æ–¹å…§å®¹)
+						if (scroll.equals("RIGHT")) {// µe­±¦V¥k±²°Ê (Æ[¬İµe­±¥ª¤è¤º®e)
 
 							t.press(PointOption.point(p.x + errorX, p.y + errorY))
 									.waitAction(WaitOptions.waitOptions(ofSeconds(1)))
 									.moveTo(PointOption.point(p.x + s.width - errorX, p.y + errorY)).release()
 									.perform();
-						} else if (scroll.equals("LEFT")) {// ç•«é¢å‘å·¦æ²å‹• (è§€çœ‹ç•«é¢å³æ–¹å…§å®¹)
+						} else if (scroll.equals("LEFT")) {// µe­±¦V¥ª±²°Ê (Æ[¬İµe­±¥k¤è¤º®e)
 
 							t.press(PointOption.point(p.x + s.width - errorX, p.y + errorY))
 									.waitAction(WaitOptions.waitOptions(ofSeconds(1)))
@@ -1338,46 +1341,46 @@ public class method {
 		}
 	}
 
-	// ByXpath_Swipe_FindText_Click_Androidç¼ºé»ï¼š1.æœå°‹çš„å­—ä¸²ä¸å¯é‡è¤‡ 2.æœå°‹5æ¬¡éƒ½æ²’æ‰¾åˆ°å…ƒä»¶ï¼Œå‰‡åœæ­¢æœå°‹
+	// ByXpath_Swipe_FindText_Click_Android¯ÊÂI¡G1.·j´Mªº¦r¦ê¤£¥i­«½Æ 2.·j´M5¦¸³£¨S§ä¨ì¤¸¥ó¡A«h°±¤î·j´M
 	public void ByXpath_Swipe_FindText_Click_Android() throws IOException {
 
 		for (int j = 0; j < driver.size(); j++) {
 			if (driver.get(j) != null) {
-				int SearchNumber = 0;// æœå°‹æ¬¡æ•¸
-				Point ScrollBarP;// å·è»¸å…ƒä»¶åº§æ¨™
-				Dimension ScrollBarS;// å·è»¸å…ƒä»¶ä¹‹é•·åŠå¯¬
-				WebElement ScrollBar;// å·è»¸å…ƒä»¶
+				int SearchNumber = 0;// ·j´M¦¸¼Æ
+				Point ScrollBarP;// ¨÷¶b¤¸¥ó®y¼Ğ
+				Dimension ScrollBarS;// ¨÷¶b¤¸¥ó¤§ªø¤Î¼e
+				WebElement ScrollBar;// ¨÷¶b¤¸¥ó
 
 				try {
 					System.out.println("[info] Executing:|ByXpath_Swipe_FindText_Click_Android|" + appElemnt + "|"
 							+ scroll + "|" + appElemntarray + "|" + appInput + "|" + appInputXpath + "|");
 					wait[j] = new WebDriverWait(driver.get(j), command_timeout);
 					TouchAction t = new TouchAction(driver.get(j));
-					ScrollBar = wait[j].until(ExpectedConditions.visibilityOfElementLocated(By.xpath(appElemnt)));// å·è»¸å…ƒä»¶
-					ScrollBarS = ScrollBar.getSize();// å·è»¸å…ƒä»¶çš„é•·åŠå¯¬
-					ScrollBarP = ScrollBar.getLocation();// å·è»¸çš„åº§æ¨™
+					ScrollBar = wait[j].until(ExpectedConditions.visibilityOfElementLocated(By.xpath(appElemnt)));// ¨÷¶b¤¸¥ó
+					ScrollBarS = ScrollBar.getSize();// ¨÷¶b¤¸¥óªºªø¤Î¼e
+					ScrollBarP = ScrollBar.getLocation();// ¨÷¶bªº®y¼Ğ
 					int errorX = (int) Math.round(ScrollBarS.width * 0.1);
 					int errorY = (int) Math.round(ScrollBarS.height * 0.1);
 					List<WebElement> targetlist = wait[j]
-							.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(appElemntarray)));// è¦æœå°‹çš„å¤šç­†é¡ä¼¼å…ƒä»¶æ¸…å–®
+							.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(appElemntarray)));// ­n·j´Mªº¦hµ§Ãş¦ü¤¸¥ó²M³æ
 
 					for (int i = 0; i < targetlist.size(); i++) {
 
-						if ((targetlist.get(i).getText().toString()).equals(appInput)) {// è‹¥targetelementåœ¨targetlistæ¸…å–®ä¸­ï¼Œå‰‡é»æ“Štargetelement
-							WebElement targetElement;// æº–å‚™æœå°‹çš„å…ƒä»¶
-							Point targetElementP;// æº–å‚™æœå°‹çš„å…ƒä»¶ä¹‹åº§æ¨™
-							Dimension targetElementS;// æº–å‚™æœå°‹çš„å…ƒä»¶ä¹‹é•·åŠå¯¬
+						if ((targetlist.get(i).getText().toString()).equals(appInput)) {// ­Ytargetelement¦btargetlist²M³æ¤¤¡A«hÂIÀ»targetelement
+							WebElement targetElement;// ·Ç³Æ·j´Mªº¤¸¥ó
+							Point targetElementP;// ·Ç³Æ·j´Mªº¤¸¥ó¤§®y¼Ğ
+							Dimension targetElementS;// ·Ç³Æ·j´Mªº¤¸¥ó¤§ªø¤Î¼e
 
 							targetElement = wait[j]
 									.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(appInputXpath)));
 
-							targetElementP = targetElement.getLocation();// æº–å‚™æœå°‹å…ƒä»¶çš„åº§æ¨™
-							targetElementS = targetElement.getSize();// æº–å‚™æœå°‹å…ƒä»¶çš„é•·åŠå¯¬
+							targetElementP = targetElement.getLocation();// ·Ç³Æ·j´M¤¸¥óªº®y¼Ğ
+							targetElementS = targetElement.getSize();// ·Ç³Æ·j´M¤¸¥óªºªø¤Î¼e
 
 							switch (scroll.toString()) {
 
 							case "DOWN":
-								if (targetElementP.y > ScrollBarP.y + ScrollBarS.height) {// è‹¥æœå°‹å…ƒä»¶çš„yåº§æ¨™å¤§æ–¼å·è»¸ç¯„åœï¼Œè¡¨ç¤ºæœå°‹å…ƒä»¶å…¨éƒ¨UIè¢«å·è»¸é®ä½
+								if (targetElementP.y > ScrollBarP.y + ScrollBarS.height) {// ­Y·j´M¤¸¥óªºy®y¼Ğ¤j©ó¨÷¶b½d³ò¡Aªí¥Ü·j´M¤¸¥ó¥ş³¡UI³Q¨÷¶b¾B¦í
 
 									t.press(PointOption.point(targetElementP.x,
 											ScrollBarS.height + ScrollBarP.y - errorY))
@@ -1386,7 +1389,7 @@ public class method {
 											.release().perform();
 
 								} else if (targetElementP.y + targetElementS.height == ScrollBarP.y
-										+ ScrollBarS.height) {// è‹¥æœå°‹å…ƒä»¶çš„yåº§æ¨™èˆ‡å¯¬åº¦ç¸½å’Œç­‰æ–¼å·è»¸é•·åº¦ï¼Œè¡¨ç¤ºæœå°‹å…ƒä»¶çš„éƒ¨åˆ†UIè¢«å·è»¸é®ä½
+										+ ScrollBarS.height) {// ­Y·j´M¤¸¥óªºy®y¼Ğ»P¼e«×Á`©Mµ¥©ó¨÷¶bªø«×¡Aªí¥Ü·j´M¤¸¥óªº³¡¤ÀUI³Q¨÷¶b¾B¦í
 									t.press(PointOption.point(targetElementP.x - errorY, targetElementP.y))
 											.waitAction(WaitOptions.waitOptions(ofSeconds(1)))
 											.moveTo(PointOption.point(targetElementP.x, ScrollBarP.y + errorY))
@@ -1396,13 +1399,13 @@ public class method {
 								break;
 
 							case "UP":
-								if (targetElementP.y + targetElementS.height < ScrollBarP.y) {// è‹¥æœå°‹å…ƒä»¶çš„æœ€å¤§yåº§æ¨™å°æ–¼å·è»¸yåº§æ¨™ï¼Œè¡¨ç¤ºæœå°‹å…ƒä»¶å…¨éƒ¨UIè¢«å·è»¸é®ä½
+								if (targetElementP.y + targetElementS.height < ScrollBarP.y) {// ­Y·j´M¤¸¥óªº³Ì¤jy®y¼Ğ¤p©ó¨÷¶by®y¼Ğ¡Aªí¥Ü·j´M¤¸¥ó¥ş³¡UI³Q¨÷¶b¾B¦í
 									t.press(PointOption.point(targetElementP.x, ScrollBarP.y + errorY))
 											.waitAction(WaitOptions.waitOptions(ofSeconds(1))).moveTo(PointOption
 													.point(targetElementP.x, ScrollBarS.height + ScrollBarP.y - errorY))
 											.release().perform();
 
-								} else {// åä¹‹ï¼Œè‹¥æœå°‹å…ƒä»¶çš„æœ€å¤§yåº§æ¨™å¤§æ–¼å·è»¸yåº§æ¨™ï¼Œè¡¨ç¤ºæœå°‹å…ƒä»¶å…¨éƒ¨UIè¢«å·è»¸é®ä½
+								} else {// ¤Ï¤§¡A­Y·j´M¤¸¥óªº³Ì¤jy®y¼Ğ¤j©ó¨÷¶by®y¼Ğ¡Aªí¥Ü·j´M¤¸¥ó¥ş³¡UI³Q¨÷¶b¾B¦í
 									t.press(PointOption.point(targetElementP.x, ScrollBarP.y + errorY))
 											.waitAction(WaitOptions.waitOptions(ofSeconds(1))).moveTo(PointOption
 													.point(targetElementP.x, ScrollBarP.y + ScrollBarS.height - errorY))
@@ -1410,14 +1413,14 @@ public class method {
 								}
 								break;
 
-							case "LEFT":// ç•«é¢å‘å·¦æ²å‹•(è§€çœ‹ç•«é¢å³æ–¹å…§å®¹)
-								if (targetElementP.x > ScrollBarP.x + ScrollBarS.width) {// è‹¥æœå°‹å…ƒä»¶çš„xåº§æ¨™å¤§æ–¼å·è»¸ç¯„åœï¼Œè¡¨ç¤ºæœå°‹å…ƒä»¶å…¨éƒ¨UIè¢«å·è»¸é®ä½
+							case "LEFT":// µe­±¦V¥ª±²°Ê(Æ[¬İµe­±¥k¤è¤º®e)
+								if (targetElementP.x > ScrollBarP.x + ScrollBarS.width) {// ­Y·j´M¤¸¥óªºx®y¼Ğ¤j©ó¨÷¶b½d³ò¡Aªí¥Ü·j´M¤¸¥ó¥ş³¡UI³Q¨÷¶b¾B¦í
 									t.press(PointOption.point(ScrollBarP.x + ScrollBarS.width - errorX,
 											targetElementP.y)).waitAction(WaitOptions.waitOptions(ofSeconds(1)))
 											.moveTo(PointOption.point(ScrollBarP.x + errorX, targetElementP.y))
 											.release().perform();
 
-								} else if (targetElementP.x + targetElementS.width == ScrollBarP.x + ScrollBarS.width) {// è‹¥æœå°‹å…ƒä»¶çš„xåº§æ¨™èˆ‡å¯¬åº¦ç¸½å’Œç­‰æ–¼å·è»¸å¯¬åº¦ï¼Œè¡¨ç¤ºæœå°‹å…ƒä»¶çš„éƒ¨åˆ†UIè¢«å·è»¸é®ä½
+								} else if (targetElementP.x + targetElementS.width == ScrollBarP.x + ScrollBarS.width) {// ­Y·j´M¤¸¥óªºx®y¼Ğ»P¼e«×Á`©Mµ¥©ó¨÷¶b¼e«×¡Aªí¥Ü·j´M¤¸¥óªº³¡¤ÀUI³Q¨÷¶b¾B¦í
 									t.press(PointOption.point(targetElementP.x - errorX, targetElementP.y))
 											.waitAction(WaitOptions.waitOptions(ofSeconds(1)))
 											.moveTo(PointOption.point(ScrollBarP.x + errorX, targetElementP.y))
@@ -1425,14 +1428,14 @@ public class method {
 								}
 								break;
 
-							case "RIGHT":// ç•«é¢å‘å³æ²å‹•(è§€çœ‹ç•«é¢å·¦æ–¹å…§å®¹)
-								if (targetElementP.x + targetElementS.width < ScrollBarP.x) {// è‹¥æœå°‹å…ƒä»¶çš„æœ€å¤§xåº§æ¨™å°æ–¼å·è»¸xåº§æ¨™ï¼Œè¡¨ç¤ºæœå°‹å…ƒä»¶å…¨éƒ¨UIè¢«å·è»¸é®ä½
+							case "RIGHT":// µe­±¦V¥k±²°Ê(Æ[¬İµe­±¥ª¤è¤º®e)
+								if (targetElementP.x + targetElementS.width < ScrollBarP.x) {// ­Y·j´M¤¸¥óªº³Ì¤jx®y¼Ğ¤p©ó¨÷¶bx®y¼Ğ¡Aªí¥Ü·j´M¤¸¥ó¥ş³¡UI³Q¨÷¶b¾B¦í
 
 									t.press(PointOption.point(ScrollBarP.x + errorX, targetElementP.y))
 											.waitAction(WaitOptions.waitOptions(ofSeconds(1))).moveTo(PointOption
 													.point(ScrollBarP.x + ScrollBarS.width - errorX, targetElementP.y))
 											.release().perform();
-								} else if (targetElementP.x == ScrollBarP.x) {// è‹¥æœå°‹å…ƒä»¶çš„xåº§æ¨™ç­‰æ–¼å·è»¸xåº§æ¨™ï¼Œå¯èƒ½è¡¨ç¤ºæœå°‹å…ƒä»¶çš„éƒ¨åˆ†UIè¢«å·è»¸é®ä½
+								} else if (targetElementP.x == ScrollBarP.x) {// ­Y·j´M¤¸¥óªºx®y¼Ğµ¥©ó¨÷¶bx®y¼Ğ¡A¥i¯àªí¥Ü·j´M¤¸¥óªº³¡¤ÀUI³Q¨÷¶b¾B¦í
 									t.press(PointOption.point(targetElementP.x + targetElementS.width + errorX,
 											targetElementP.y)).waitAction(WaitOptions.waitOptions(ofSeconds(1)))
 											.moveTo(PointOption.point(ScrollBarP.x + ScrollBarS.width - errorX,
@@ -1447,7 +1450,7 @@ public class method {
 							break;
 						}
 
-						if (i == targetlist.size() - 1) {// è‹¥targetlistä¸­æœ€å¾Œä¸€ç­†è³‡æ–™æ¯”å°å®Œå¾Œï¼Œå‰‡é€²è¡ŒSrcollæ‹–æ›³
+						if (i == targetlist.size() - 1) {// ­Ytargetlist¤¤³Ì«á¤@µ§¸ê®Æ¤ñ¹ï§¹«á¡A«h¶i¦æSrcoll©ì¦²
 
 							switch (scroll.toString()) {
 
@@ -1456,7 +1459,7 @@ public class method {
 										ScrollBarP.y + ScrollBarS.height - errorY))
 										.waitAction(WaitOptions.waitOptions(ofSeconds(1)))
 										.moveTo(PointOption.point(ScrollBarP.x + errorX, ScrollBarP.y + errorY))
-										.release().perform();// å‘ä¸‹æ²å‹•
+										.release().perform();// ¦V¤U±²°Ê
 								break;
 
 							case "UP":
@@ -1465,34 +1468,34 @@ public class method {
 										.waitAction(WaitOptions.waitOptions(ofSeconds(1)))
 										.moveTo(PointOption.point(ScrollBarP.x + errorX,
 												ScrollBarP.y + ScrollBarS.height - errorY))
-										.release().perform();// å‘ä¸Šæ²å‹•
+										.release().perform();// ¦V¤W±²°Ê
 								break;
 
 							case "LEFT":
 								t.press(PointOption.point(ScrollBarP.x + ScrollBarS.width - errorX,
 										ScrollBarP.y + errorY)).waitAction(WaitOptions.waitOptions(ofSeconds(1)))
 										.moveTo(PointOption.point(ScrollBarP.x + errorX, ScrollBarP.y + errorY))
-										.release().perform();// ç•«é¢å‘å·¦æ²å‹•(è§€çœ‹ç•«é¢å³æ–¹å…§å®¹)
+										.release().perform();// µe­±¦V¥ª±²°Ê(Æ[¬İµe­±¥k¤è¤º®e)
 								break;
 
 							case "RIGHT":
 								t.press(PointOption.point(ScrollBarP.x + errorX, ScrollBarP.y + errorY))
 										.waitAction(WaitOptions.waitOptions(ofSeconds(1))).moveTo(PointOption
 												.point(ScrollBarP.x + ScrollBarS.width - errorX, ScrollBarP.y + errorY))
-										.release().perform();// ç•«é¢å‘å³æ²å‹•(è§€çœ‹ç•«é¢å·¦æ–¹å…§å®¹)
+										.release().perform();// µe­±¦V¥k±²°Ê(Æ[¬İµe­±¥ª¤è¤º®e)
 								break;
 
 							}
-							SearchNumber++;// ç´¯è¨ˆæœå°‹æ¬¡æ•¸
-							targetlist.clear();// æ¸…é™¤targetlist
+							SearchNumber++;// ²Ö­p·j´M¦¸¼Æ
+							targetlist.clear();// ²M°£targetlist
 							targetlist = wait[j].until(
-									ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(appElemntarray)));// å†æ¬¡å–å¾—æ–°targetlist
+									ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath(appElemntarray)));// ¦A¦¸¨ú±o·stargetlist
 
-							if (SearchNumber == 10) {// æœå°‹10æ¬¡éƒ½æ²’æ‰¾åˆ°å…ƒä»¶ï¼Œå‰‡è·³å‡ºfor
-								System.err.println("Can't find " + appInput);// å°å‡ºæ‰¾ä¸åˆ°
-								break;// è·³å‡ºfor
+							if (SearchNumber == 10) {// ·j´M10¦¸³£¨S§ä¨ì¤¸¥ó¡A«h¸õ¥Xfor
+								System.err.println("Can't find " + appInput);// ¦L¥X§ä¤£¨ì
+								break;// ¸õ¥Xfor
 							} else {
-								i = -1;// è‹¥SearchNumber!=10ï¼Œå‰‡ä»¤i=-1(ç›®çš„ï¼šå†æ¬¡åŸ·è¡Œfor)
+								i = -1;// ­YSearchNumber!=10¡A«h¥Oi=-1(¥Øªº¡G¦A¦¸°õ¦æfor)
 							}
 						}
 					}
@@ -1509,7 +1512,7 @@ public class method {
 	}
 
 	/*
-	 * ä¸Šä¸‹éš¨æ©Ÿæ»‘å‹•næ¬¡ public void Swipe() { Random rand = new Random(); boolean
+	 * ¤W¤UÀH¾÷·Æ°Ên¦¸ public void Swipe() { Random rand = new Random(); boolean
 	 * items[] = { true, false }; for (int i = 0; i < driver.size(); i++) { for
 	 * (int j = 0; j < iterative; j++) { if (items[rand.nextInt(items.size())])
 	 * { driver.get(i).swipe(startx, starty, endx, endy, 500); }else{
@@ -1518,7 +1521,7 @@ public class method {
 	 */
 
 	public void SubMethod_Result(boolean ErrorResult[], boolean result[]) {
-		// é–‹å•ŸExcel
+		// ¶}±ÒExcel
 		try {
 			workBook = new XSSFWorkbook(new FileInputStream("C:\\TUTK_QA_TestTool\\TestReport\\TestReport.xlsm"));
 		} catch (Exception e) {
@@ -1526,13 +1529,13 @@ public class method {
 		}
 		for (int i = 0; i < driver.size(); i++) {
 
-			if (TestCase.DeviceInformation.deviceName.get(i).toString().length() > 20) {// Excelå·¥ä½œè¡¨åç¨±æœ€å¸¸31å­—å…ƒå› ï¼Œæ•…éœ€åˆ¤æ–·UDIDé•·åº¦æ˜¯å¦å¤§æ–¼31
-				char[] NewUdid = new char[20];// å› éœ€åŒ…å«_TestReportå­—ä¸²(å…±11å­—å…ƒ)ï¼Œæ•…è¨­å®š20ä½å­—å…ƒé™£åˆ—(31-11)
-				TestCase.DeviceInformation.deviceName.get(i).toString().getChars(0, 20, NewUdid, 0);// å–å‡ºUDIDå‰20å­—å…ƒçµ¦NewUdid
-				Sheet = workBook.getSheet(String.valueOf(NewUdid) + "_TestReport");// æ ¹æ“šNewUdidï¼ŒæŒ‡å®šæŸå°è£ç½®çš„TestReport
+			if (TestCase.DeviceInformation.deviceName.get(i).toString().length() > 20) {// Excel¤u§@ªí¦WºÙ³Ì±`31¦r¤¸¦]¡A¬G»İ§PÂ_UDIDªø«×¬O§_¤j©ó31
+				char[] NewUdid = new char[20];// ¦]»İ¥]§t_TestReport¦r¦ê(¦@11¦r¤¸)¡A¬G³]©w20¦ì¦r¤¸°}¦C(31-11)
+				TestCase.DeviceInformation.deviceName.get(i).toString().getChars(0, 20, NewUdid, 0);// ¨ú¥XUDID«e20¦r¤¸µ¹NewUdid
+				Sheet = workBook.getSheet(String.valueOf(NewUdid) + "_TestReport");// ®Ú¾ÚNewUdid¡A«ü©w¬Y¥x¸Ë¸mªºTestReport
 																					// sheet
 			} else {
-				Sheet = workBook.getSheet(TestCase.DeviceInformation.deviceName.get(i).toString() + "_TestReport");// æŒ‡å®šæŸå°è£ç½®çš„TestReport
+				Sheet = workBook.getSheet(TestCase.DeviceInformation.deviceName.get(i).toString() + "_TestReport");// «ü©w¬Y¥x¸Ë¸mªºTestReport
 																													// sheet
 			}
 
@@ -1544,7 +1547,7 @@ public class method {
 				Sheet.getRow(CurrentCaseNumber + 1).createCell(1).setCellValue("Fail");
 			}
 		}
-		// åŸ·è¡Œå¯«å…¥Excelå¾Œçš„å­˜æª”å‹•ä½œ
+		// °õ¦æ¼g¤JExcel«áªº¦sÀÉ°Ê§@
 		try {
 			FileOutputStream out = new FileOutputStream(new File("C:\\TUTK_QA_TestTool\\TestReport\\TestReport.xlsm"));
 			workBook.write(out);

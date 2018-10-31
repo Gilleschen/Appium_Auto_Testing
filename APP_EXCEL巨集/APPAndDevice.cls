@@ -41,8 +41,16 @@ Private Sub importScriptAndCase_Click()
     Next
 End Sub
 
+
+
+
+
+Private Sub ComboBox1_Change()
+
+End Sub
+
 Private Sub ListBox1_Click()
-    ListBox2.clear
+    ListBox3.clear
     
     For i = 0 To ListBox1.ListCount - 1
         
@@ -51,7 +59,7 @@ Private Sub ListBox1_Click()
             Do
                 If Sheets(ListBox1.List(i)).Cells(j, "A") = "CaseName" Then
                 
-                  ListBox2.AddItem (Sheets(ListBox1.List(i)).Cells(j, "B"))
+                  ListBox3.AddItem (Sheets(ListBox1.List(i)).Cells(j, "B"))
                 
                 End If
                 
@@ -78,18 +86,18 @@ Private Sub ListBox1_Click()
     
 End Sub
 
-Private Sub ListBox2_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
+Private Sub ListBox3_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
 Sheets("APP&Device").Cells(2, "F").clear
     Count = 0
-    For i = 0 To ListBox2.ListCount - 1
+    For i = 0 To ListBox3.ListCount - 1
         
-        If ListBox2.selected(i) = True Then
+        If ListBox3.selected(i) = True Then
             Count = Count + 1
             
             If Count = 1 Then
-                Sheets("APP&Device").Cells(2, "F").Value = ListBox2.List(i)
+                Sheets("APP&Device").Cells(2, "F").Value = ListBox3.List(i)
             Else
-                Sheets("APP&Device").Cells(2, "F").Value = Sheets("APP&Device").Cells(2, "F").Value & "," & ListBox2.List(i)
+                Sheets("APP&Device").Cells(2, "F").Value = Sheets("APP&Device").Cells(2, "F").Value & "," & ListBox3.List(i)
             End If
     
         End If
@@ -97,8 +105,39 @@ Sheets("APP&Device").Cells(2, "F").clear
     Next
 End Sub
 
+Private Sub DeviceList_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
+    ' Clear UDID and OS version
+    i = 2
+    Do
+        Sheets("APP&Device").Cells(i, "C").Select
+        Selection.delete Shift:=xlUp
+        Sheets("APP&Device").Cells(i, "D").Select
+        Selection.delete Shift:=xlUp
+        'i = i + 1
+    Loop Until Sheets("APP&Device").Cells(i, "C") = ""
+    
+    
+    For i = 0 To DeviceList.ListCount - 1
+    
+        If DeviceList.selected(i) = True Then
+        
+            Count = Count + 1
+            
+            If Count = 1 Then
+                Sheets("APP&Device").Cells(Count + 1, "C").Value = DeviceList.List(i)
+                Sheets("APP&Device").Cells(Count + 1, "D").Value = Sheets("APP&Device_Data").Cells(i + 2, "D")
+            Else
+                Sheets("APP&Device").Cells(Count + 1, "C").Value = DeviceList.List(i)
+                Sheets("APP&Device").Cells(Count + 1, "D").Value = Sheets("APP&Device_Data").Cells(i + 2, "D")
+            End If
+        
+        End If
+    
+    Next i
+
+End Sub
 Private Sub loadingTestCase_Click()
-   ListBox2.clear
+   ListBox3.clear
     
     For i = 0 To ListBox1.ListCount - 1
         
@@ -107,7 +146,7 @@ Private Sub loadingTestCase_Click()
             Do
                 If Sheets(ListBox1.List(i)).Cells(j, "A") = "CaseName" Then
                 
-                  ListBox2.AddItem (Sheets(ListBox1.List(i)).Cells(j, "B"))
+                  ListBox3.AddItem (Sheets(ListBox1.List(i)).Cells(j, "B"))
                 
                 End If
                 
@@ -145,6 +184,23 @@ Sub loadingTestScript()
     i = i + 1
     Loop Until i = ThisWorkbook.Sheets.Count
     
+End Sub
+
+Sub loadingDeivceUdid()
+    DeviceList.clear
+    i = 2
+    Do
+        DeviceList.AddItem (Sheets("APP&Device_Data").Cells(i, "C"))
+        
+    
+        i = i + 1
+    Loop Until Sheets("APP&Device_Data").Cells(i, "C") = ""
+    
+    
+End Sub
+
+Private Sub ListBox3_Click()
+
 End Sub
 
 Private Sub Package_Change()
@@ -200,16 +256,30 @@ Sub loadingResetAPP()
     End If
 
 End Sub
+Sub loadingUIAutomator2()
+
+     If Sheets("APP&Device").Cells(2, "I") = "" Then
+        UIAutomator2.clear
+        UIAutomator2.AddItem ("TRUE")
+        UIAutomator2.AddItem ("FALSE")
+        UIAutomator2.Text = Sheets("APP&Device").Cells(2, "I")
+    End If
+
+End Sub
 
 
+Private Sub UIAutomator2_Change()
+    Sheets("APP&Device").Cells(2, "I") = UIAutomator2.Text
+End Sub
 
 Private Sub Worksheet_Activate()
     'Sheets("APP&Device").Cells(2, "B").Clear
     'Sheets("APP&Device").Cells(2, "D").Clear
     Call loadingPackage
-    Call loadingDeviceUDID
+    Call loadingDeivceUdid
     Call loadingTestScript
     Call loadingResetAPP
+    Call loadingUIAutomator2
     
 End Sub
 

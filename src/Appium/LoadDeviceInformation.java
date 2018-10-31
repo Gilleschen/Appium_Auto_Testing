@@ -14,6 +14,7 @@ public class LoadDeviceInformation {
 	public String appPackage;// APP Packagename
 	public String appActivity;// APP Activity
 	public Boolean ResetAPP; //每次單一Case執行前，是否清除APP快取資料;是為true;否為false
+	public Boolean UIAutomator2; //是否調用UIautomator2
 
 	public LoadDeviceInformation() {
 		XSSFWorkbook workBook;
@@ -36,6 +37,12 @@ public class LoadDeviceInformation {
 				ResetAPP = false;
 			} else {
 				ResetAPP = true;
+			}
+			
+			if (Sheet.getRow(1).getCell(8).toString() == "TRUE") {
+				UIAutomator2 = true;
+			} else {
+				UIAutomator2 = false;
 			}
 
 			int j = 1;
