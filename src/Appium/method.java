@@ -763,6 +763,8 @@ public class method {
 						System.out.println(
 								"[info] Executing:|HideKeyboard|" + TestCase.DeviceInformation.deviceName.get(i) + "|");
 						driver.get(i).hideKeyboard();
+						ErrorList[i] = "Pass";
+						CaseErrorList[CurrentCaseNumber] = ErrorList;
 					}
 				} catch (Exception e) {
 					ErrorCheck("HideKeyboard", i);
@@ -791,6 +793,8 @@ public class method {
 					Thread.sleep((long) (Float.valueOf(appInput) * 1000));
 					// Thread.sleep(Integer.valueOf(NewString) * 1000);//
 					// 將字串轉成整數
+					ErrorList[i] = "Pass";
+					CaseErrorList[CurrentCaseNumber] = ErrorList;
 
 				} catch (Exception e) {
 					ErrorCheck("Sleep", i);
@@ -812,6 +816,8 @@ public class method {
 							"[info] Executing:|ScreenShot|" + TestCase.DeviceInformation.deviceName.get(i) + "|");
 					FileUtils.copyFile(screenShotFile, new File("C:\\TUTK_QA_TestTool\\TestReport\\" + "#" + i + 1
 							+ TestCase.CaseList.get(CurrentCaseNumber) + "_" + reportDate + ".jpg"));
+					ErrorList[i] = "Pass";
+					CaseErrorList[CurrentCaseNumber] = ErrorList;
 				} catch (IOException e) {
 					ErrorCheck("ScreenShot", i);
 				}
@@ -832,6 +838,8 @@ public class method {
 						System.out.println("[info] Executing:|Orientation|Portrait|");
 						driver.get(i).rotate(ScreenOrientation.PORTRAIT);
 					}
+					ErrorList[i] = "Pass";
+					CaseErrorList[CurrentCaseNumber] = ErrorList;
 				} catch (Exception e) {
 					if (appInput.equals("Landscape")) {
 						ErrorCheck("Landscape", i);
@@ -925,6 +933,8 @@ public class method {
 					System.out.println(
 							"[info] Executing:|ResetAPP|" + TestCase.DeviceInformation.deviceName.get(i) + "|");
 					driver.get(i).resetApp();
+					ErrorList[i] = "Pass";
+					CaseErrorList[CurrentCaseNumber] = ErrorList;
 				} catch (Exception e) {
 					ErrorCheck("ResetAPP", i);
 				}
@@ -935,7 +945,7 @@ public class method {
 	public static void CreateAppiumSession() throws IOException {
 		DesiredCapabilities cap[] = new DesiredCapabilities[TestCase.DeviceInformation.deviceName.size()];
 		driver.clear();// 清空driver arraylist
-		
+
 		for (int i = 0; i < TestCase.DeviceInformation.deviceName.size(); i++) {
 			cap[i] = new DesiredCapabilities();
 		}
@@ -981,6 +991,8 @@ public class method {
 					System.out.println("[info] Executing:|LaunchAPP|" + TestCase.DeviceInformation.appPackage + "|"
 							+ TestCase.DeviceInformation.deviceName.get(i) + "|");
 					driver.get(i).launchApp();
+					ErrorList[i] = "Pass";
+					CaseErrorList[CurrentCaseNumber] = ErrorList;
 				} catch (Exception e) {
 					ErrorCheck("LaunchAPP", i);
 				}
@@ -995,6 +1007,8 @@ public class method {
 				try {
 					System.out.println("[info] Executing:|Back|" + TestCase.DeviceInformation.deviceName.get(i) + "|");
 					driver.get(i).pressKeyCode(AndroidKeyCode.BACK);
+					ErrorList[i] = "Pass";
+					CaseErrorList[CurrentCaseNumber] = ErrorList;
 				} catch (Exception e) {
 					ErrorCheck("Back", i);
 				}
@@ -1008,6 +1022,8 @@ public class method {
 				try {
 					System.out.println("[info] Executing:|Home|" + TestCase.DeviceInformation.deviceName.get(i) + "|");
 					driver.get(i).pressKeyCode(AndroidKeyCode.HOME);
+					ErrorList[i] = "Pass";
+					CaseErrorList[CurrentCaseNumber] = ErrorList;
 				} catch (Exception e) {
 					ErrorCheck("Home", i);
 				}
@@ -1021,6 +1037,8 @@ public class method {
 				try {
 					System.out.println("[info] Executing:|Power|" + TestCase.DeviceInformation.deviceName.get(i) + "|");
 					driver.get(i).pressKeyCode(AndroidKeyCode.KEYCODE_POWER);
+					ErrorList[i] = "Pass";
+					CaseErrorList[CurrentCaseNumber] = ErrorList;
 				} catch (Exception e) {
 					ErrorCheck("Power", i);
 				}
@@ -1035,6 +1053,8 @@ public class method {
 					System.out
 							.println("[info] Executing:|Recent|" + TestCase.DeviceInformation.deviceName.get(i) + "|");
 					driver.get(i).pressKeyCode(AndroidKeyCode.KEYCODE_APP_SWITCH);
+					ErrorList[i] = "Pass";
+					CaseErrorList[CurrentCaseNumber] = ErrorList;
 				} catch (Exception e) {
 					ErrorCheck("Recent", i);
 				}
@@ -1155,9 +1175,7 @@ public class method {
 					ErrorCheck(appElemnt, i);
 				}
 			}
-
 		}
-
 	}
 
 	public void ByXpath_LongPress() throws IOException {
@@ -1181,14 +1199,11 @@ public class method {
 					ErrorCheck(appElemnt, i);
 				}
 			}
-
 		}
-
 	}
 
 	public void ByXpath_Swipe() throws IOException {
-		Point p1, p2;// p1 為起點;p2為終點
-
+	
 		for (int i = 0; i < driver.size(); i++) {
 			if (driver.get(i) != null) {
 				try {
@@ -1212,7 +1227,6 @@ public class method {
 	}
 
 	public void Byid_Swipe() throws IOException {
-		Point p1, p2;// p1 為起點;p2為終點
 
 		for (int i = 0; i < driver.size(); i++) {
 			if (driver.get(i) != null) {
@@ -1243,20 +1257,24 @@ public class method {
 	public void Swipe() throws IOException {
 		for (int i = 0; i < driver.size(); i++) {
 			if (driver.get(i) != null) {
-				for (int j = 0; j < iterative; j++) {
-					try {
+
+				try {
+					for (int j = 0; j < iterative; j++) {
 						System.out.println(
 								"[info] Executing:|Swipe|(" + startx + "," + starty + ")|(" + endx + "," + endy + ")|");
 						TouchAction t = new TouchAction(driver.get(i));
-
+						
 						t.press(PointOption.point(startx, starty)).waitAction(WaitOptions.waitOptions(ofSeconds(1)))
 								.moveTo(PointOption.point(endx, endy)).release().perform();
-					} catch (Exception e) {
-						ErrorCheck("Swipe", i);
-						break;// 出錯後，離開iterative回圈
 					}
+					ErrorList[i] = "Pass";
+					CaseErrorList[CurrentCaseNumber] = ErrorList;
+				} catch (Exception e) {
+					ErrorCheck("Swipe", i);
+					break;// 出錯後，離開iterative回圈
 				}
 			}
+
 		}
 	}
 
