@@ -1,5 +1,6 @@
 Attribute VB_Name = "檢查期望結果"
 Sub CheckExpectResult()
+    Application.ScreenUpdating = False
     Dim result As String
     Dim x As Integer
     i = 0

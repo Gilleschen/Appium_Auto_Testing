@@ -188,7 +188,7 @@ End Sub
 
 
 Private Sub CreateCase_Click()
-
+    Application.ScreenUpdating = False
     If CheckBox1.Value = True And CaseName.Text <> "" Then
         
         start_row = Sheets(ScriptBox.Text).Cells(Sheets(ScriptBox.Text).Rows.Count, 1).End(xlUp).row + 1

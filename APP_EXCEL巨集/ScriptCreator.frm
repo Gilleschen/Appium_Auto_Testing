@@ -123,6 +123,10 @@ End Sub
 
 
 
+Private Sub Command_Click()
+
+End Sub
+
 Private Sub CommandList_Change()
     For i = 0 To CommandList.ListCount - 1
     
@@ -149,10 +153,11 @@ Private Sub CommandList_Change()
 End Sub
 
 Private Sub CreateCase_Click()
+    Application.ScreenUpdating = False
     Dim exist As Boolean
     exist = False
     
-    If scriptname.Text <> "" And casename.Text <> "" Then
+    If scriptname.Text <> "" And CaseName.Text <> "" Then
     
         If Right(scriptname.Text, 11) = "_TestScript" Then
             i = 0
@@ -178,13 +183,13 @@ Private Sub CreateCase_Click()
             original_start_row = start_row
             '填入Step
             If start_row = 1 Then
-                Sheets(scriptname.Text).Cells(start_row, "B") = casename.Text
+                Sheets(scriptname.Text).Cells(start_row, "B") = CaseName.Text
                 For i = 0 To StepList.ListCount - 1
                     Sheets(scriptname.Text).Cells(start_row, 1) = StepList.List(i)
                     start_row = start_row + 1
                 Next i
             Else
-                Sheets(scriptname.Text).Cells(start_row + 1, "B") = casename.Text
+                Sheets(scriptname.Text).Cells(start_row + 1, "B") = CaseName.Text
                 For i = 0 To StepList.ListCount - 1
                     Sheets(scriptname.Text).Cells(start_row + 1, 1) = StepList.List(i)
                     start_row = start_row + 1
@@ -198,7 +203,7 @@ Private Sub CreateCase_Click()
             x = MsgBox("Script名稱必須以_TestScript結尾", 0 + 16, "Error")
         
         End If
-    ElseIf scriptname.Text = "" And casename.Text = "" Then
+    ElseIf scriptname.Text = "" And CaseName.Text = "" Then
         
         x = MsgBox("請輸入Script名稱及Case名稱", 0 + 16, "Error")
         
@@ -206,7 +211,7 @@ Private Sub CreateCase_Click()
         
          x = MsgBox("請輸入Script名稱", 0 + 16, "Error")
         
-    ElseIf casename.Text = "" Then
+    ElseIf CaseName.Text = "" Then
         
          x = MsgBox("請輸入Case名稱", 0 + 16, "Error")
     
@@ -291,10 +296,7 @@ Private Sub StepList_Change()
             
             StepCommand.Caption = "Command:" + StepList.List(i)
             Exit For
-        
         End If
-        
-    
     Next i
 End Sub
 

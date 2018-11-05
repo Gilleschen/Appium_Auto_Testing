@@ -1,5 +1,6 @@
 Attribute VB_Name = "ÀË¬d®×¨Ò¿é¤J­È"
 Function CheckValue()
+    Application.ScreenUpdating = False
     Dim sheetname As String
     Dim xpath, id As String
     xpath = "xpath": id = "id"
@@ -1093,7 +1094,7 @@ Function Clear_Hidekeyboard_LaunchAPP_QuitAPP()
                     If ThisWorkbook.Sheets(i + 1).Cells(j, "A").Value = "ScreenShot" Or ThisWorkbook.Sheets(i + 1).Cells(j, "A").Value = "ResetAPP" Or ThisWorkbook.Sheets(i + 1).Cells(j, "A").Value = "Power" Or ThisWorkbook.Sheets(i + 1).Cells(j, "A").Value = "Home" Or ThisWorkbook.Sheets(i + 1).Cells(j, "A").Value = "Back" Or ThisWorkbook.Sheets(i + 1).Cells(j, "A").Value = "QuitAPP" Or ThisWorkbook.Sheets(i + 1).Cells(j, "A").Value = "LaunchAPP" Or ThisWorkbook.Sheets(i + 1).Cells(j, "A").Value = "HideKeyboard" Or ThisWorkbook.Sheets(i + 1).Cells(j, "A").Value = "Recent" Then
                         For k = 1 To 5
                             ThisWorkbook.Sheets(i + 1).Cells(j, "B").Select
-                            Selection.Delete Shift:=xlToLeft
+                            Selection.delete Shift:=xlToLeft
                         Next k
                     End If
                     
@@ -1131,7 +1132,7 @@ Function Delete_All_Blank_Cells()
                        
                     For w = 1 To 10
                         ThisWorkbook.Sheets(i + 1).Cells(j, k).Select
-                        Selection.Delete Shift:=xlToLeft
+                        Selection.delete Shift:=xlToLeft
                     Next w
       
                 j = j + 1

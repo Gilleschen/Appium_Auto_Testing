@@ -1,5 +1,6 @@
 Attribute VB_Name = "ÀË¬d®×¨Ò»yªk"
 Function CheckCommand()
+    Application.ScreenUpdating = False
     Dim sheetname As String
     Dim CaseName, LaunchAPP, Byid_Result, ByXpath_Result, QuitAPP As Integer
     
