@@ -1,4 +1,69 @@
 Attribute VB_Name = "檢查期望結果"
+Function CheckExpectResult_2(TestScriptName As String)
+    Application.ScreenUpdating = False
+    Dim result As String
+    Dim x As Integer
+    
+    j = 1: x = 0
+    Do
+        If Sheets(TestScriptName).Cells(j, "A") = "CaseName" Then
+            
+            x = x + 1
+        
+        End If
+    
+        
+        j = j + 1
+    Loop Until Sheets(TestScriptName).Cells(j, "A") = ""
+    
+    ReDim CaseName(x - 1)
+    
+    j = 1: x = 0
+    
+    Do
+        If Sheets(TestScriptName).Cells(j, "A") = "CaseName" Then
+            
+            CaseName(x) = Sheets(TestScriptName).Cells(j, "B")
+            x = x + 1
+            
+        End If
+    
+        j = j + 1
+    Loop Until Sheets(TestScriptName).Cells(j, "A") = ""
+
+
+
+    k = 0
+    Do
+        j = 2
+        Do
+            
+            If CaseName(k) = Sheets("ExpectResult").Cells(j, "A") Then
+                result = "Pass"
+                Exit Do
+            End If
+            
+            j = j + 1
+        Loop Until Sheets("ExpectResult").Cells(j, "A") = ""
+        
+        If result <> "Pass" Then
+            x = MsgBox(CaseName(k) + "的期望結果為未寫入ExpectResult", 0 + 16, "Error")
+            CheckExpectResult_2 = False
+            Exit Function
+        End If
+        
+        result = ""
+        
+        k = k + 1
+    Loop Until k = UBound(CaseName) - LBound(CaseName) + 1
+    
+    CheckExpectResult_2 = True
+        
+    
+End Function
+
+
+
 Sub CheckExpectResult()
     Application.ScreenUpdating = False
     Dim result As String

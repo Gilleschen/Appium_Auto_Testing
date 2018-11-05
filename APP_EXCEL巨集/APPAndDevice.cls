@@ -204,10 +204,7 @@ Private Sub Package_Change()
     Sheets("APP&Device").Cells(2, "A") = Package.Text
     Sheets("APP&Device").Cells(2, "B") = Sheets("APP&Device_Data").Cells(Package.ListIndex + 2, "B")
 End Sub
-Private Sub DeviceUDID_Change()
-    Sheets("APP&Device").Cells(2, "C") = DeviceUDID.Text
-    Sheets("APP&Device").Cells(2, "D") = Sheets("APP&Device_Data").Cells(DeviceUDID.ListIndex + 2, "D")
-End Sub
+
 Private Sub ResetAPP_Change()
     Sheets("APP&Device").Cells(2, "H") = ResetAPP.Text
 End Sub

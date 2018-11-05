@@ -1,4 +1,413 @@
 Attribute VB_Name = "檢查案例輸入值"
+Function CheckValue_2(TestScriptName As String)
+    Application.ScreenUpdating = False
+    Dim sheetname As String
+    Dim xpath, id As String
+    xpath = "xpath": id = "id"
+    
+    sheetname = TestScriptName 'ThisWorkbook.Sheets(i + 1).Name
+    j = 1
+    Do
+    
+        Select Case Sheets(sheetname).Cells(j, "A")
+        
+        Case "CaseName"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            If Sheets(sheetname).Cells(j, "B") = "" Then
+               x = MsgBox(sheetname & "中，第" & j & "行缺少CaseName", 0 + 16, "Error")
+               Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+               CheckValue_2 = False
+               Exit Function
+               
+            Else
+                Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+                CheckValue_2 = True
+            End If
+            
+             CheckValue_2 = checkExcessData_2(sheetname, j, "C")
+            If CheckValue_2 = False Then Exit Function
+        
+        Case "Byid_Click"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkClick_2(sheetname, j, id)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "C")
+            If CheckValue_2 = False Then Exit Function
+            
+        
+        Case "ByXpath_Click"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkClick_2(sheetname, j, xpath)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkXpath(sheetname, i, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "C")
+            If CheckValue_2 = False Then Exit Function
+            
+        Case "Byid_LongPress"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkClick_2(sheetname, j, id)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "C")
+            If CheckValue_2 = False Then Exit Function
+            
+        Case "ByXpath_LongPress"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkClick_2(sheetname, j, xpath)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkXpath_2(sheetname, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "C")
+            If CheckValue_2 = False Then Exit Function
+
+        Case "Byid_SendKey"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkSendKey_2(sheetname, j, id)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "D")
+            If CheckValue_2 = False Then Exit Function
+            
+        Case "ByXpath_SendKey"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkSendKey_2(sheetname, j, xpath)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkXpath_2(sheetname, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "D")
+            If CheckValue_2 = False Then Exit Function
+            
+        Case "Byid_Clear"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkClick_2(sheetname, j, id)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "C")
+            If CheckValue_2 = False Then Exit Function
+            
+        Case "ByXpath_Clear"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkClick_2(sheetname, j, xpath)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkXpath_2(sheetname, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "C")
+            If CheckValue_2 = False Then Exit Function
+            
+        Case "Byid_invisibility"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkClick_2(sheetname, j, id)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "C")
+            If CheckValue_2 = False Then Exit Function
+            
+        Case "ByXpath_invisibility"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkClick_2(sheetname, j, xpath)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkXpath_2(sheetname, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "C")
+            If CheckValue_2 = False Then Exit Function
+                  
+        Case "Byid_Swipe"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkSwipe_2(sheetname, j, id)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "D")
+            If CheckValue_2 = False Then Exit Function
+            
+        Case "ByXpath_Swipe"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkSwipe_2(sheetname, j, xpath)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkSwipeXpath_2(sheetname, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "D")
+            If CheckValue_2 = False Then Exit Function
+        
+        Case "HideKeyboard"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            If Sheets(sheetname).Cells(j, "B") <> "" Then
+                x = MsgBox(sheetname & "中，第" & j & "行僅能填入HideKeyboard", 0 + 16, "Error"): Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0): CheckValue_2 = False: Exit Function
+            Else
+                Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+                CheckValue_2 = True
+            End If
+            
+        Case "LaunchAPP"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            If Sheets(sheetname).Cells(j, "B") <> "" Then
+                x = MsgBox(sheetname & "中，第" & j & "行僅能填入LaunchAPP", 0 + 16, "Error"): Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0): CheckValue_2 = False: Exit Function
+            Else
+                Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+                CheckValue_2 = True
+            End If
+        
+        Case "QuitAPP"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            If Sheets(sheetname).Cells(j, "B") <> "" Then
+                x = MsgBox(sheetname & "中，第" & j & "行僅能填入QuitAPP", 0 + 16, "Error"): Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0): CheckValue_2 = False: Exit Function
+            Else
+                Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+                CheckValue_2 = True
+            End If
+        
+        Case "Byid_VerifyText"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            'If Sheets(sheetname).Cells(j, "B") = "" Then x = MsgBox(sheetname & "中，第" & j & "行缺少元件id", 0 + 16, "Error")
+            CheckValue_2 = checkResult_2(sheetname, j, id)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "C")
+            If CheckValue_2 = False Then Exit Function
+            
+        Case "ByXpath_VerifyText"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            'If Sheets(sheetname).Cells(j, "B") = "" Then x = MsgBox(sheetname & "中，第" & j & "行缺少元件id", 0 + 16, "Error")
+            CheckValue_2 = checkResult_2(sheetname, j, xpath)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkXpath_2(sheetname, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "C")
+            If CheckValue_2 = False Then Exit Function
+
+        Case "Byid_VerifyRadioButton"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            'If Sheets(sheetname).Cells(j, "B") = "" Then x = MsgBox(sheetname & "中，第" & j & "行缺少元件id", 0 + 16, "Error")
+            CheckValue_2 = checkResult_2(sheetname, j, id)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkVerifyRadioButton_2(sheetname, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "D")
+            If CheckValue_2 = False Then Exit Function
+
+        Case "ByXpath_VerifyRadioButton"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            'If Sheets(sheetname).Cells(j, "B") = "" Then x = MsgBox(sheetname & "中，第" & j & "行缺少元件id", 0 + 16, "Error")
+            CheckValue_2 = checkXpath_2(sheetname, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkVerifyRadioButton_2(sheetname, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "D")
+            If CheckValue_2 = False Then Exit Function
+
+        Case "ResetAPP"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            If Sheets(sheetname).Cells(j, "B") <> "" Then
+                x = MsgBox(sheetname & "中，第" & j & "僅能填入ResetAPP", 0 + 16, "Error"): Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0): CheckValue_2 = False: Exit Function
+            Else
+                Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+                CheckValue_2 = True
+            End If
+        
+        Case "Byid_Wait"
+        
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkWait_2(sheetname, j, id)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "C")
+            If CheckValue_2 = False Then Exit Function
+        
+        Case "ByXpath_Wait"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkWait_2(sheetname, j, xpath)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkXpath_2(sheetname, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "C")
+            If CheckValue_2 = False Then Exit Function
+        
+        Case "Sleep"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            If Sheets(sheetname).Cells(j, "B") = "" Then
+                x = MsgBox(sheetname & "中，第" & j & "行缺少秒數", 0 + 16, "Error")
+                Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+                CheckValue_2 = False
+                Exit Function
+            ElseIf IsNumeric(Sheets(sheetname).Cells(j, "B")) = False Then
+                x = MsgBox(sheetname & "中，第" & j & "行請輸入數值", 0 + 16, "Error")
+                Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+                CheckValue_2 = False
+                Exit Function
+            
+            Else
+                If TypeName(Sheets(sheetname).Cells(j, "B").Value) <> "String" Then
+                   Sheets(sheetname).Cells(j, "B") = "'" & Sheets(sheetname).Cells(j, "B")
+                End If
+                Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+                CheckValue_2 = True
+            End If
+            
+            CheckValue_2 = checkExcessData_2(sheetname, j, "C")
+            If CheckValue_2 = False Then Exit Function
+            
+        Case "ScreenShot"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            If Sheets(sheetname).Cells(j, "B") <> "" Then
+                x = MsgBox(sheetname & "中，第" & j & "行僅能填入ScreenShot", 0 + 16, "Error")
+                Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+                CheckValue_2 = False
+                Exit Function
+            Else
+                Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+                CheckValue_2 = True
+            End If
+            
+        Case "Orientation"
+        
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            If Sheets(sheetname).Cells(j, "B") = "" Then
+                x = MsgBox(sheetname & "中，第" & j & "請填入Landscape或Portrait", 0 + 16, "Error")
+                 Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+                 CheckValue_2 = False
+                 Exit Function
+            ElseIf Sheets(sheetname).Cells(j, "B") <> "Landscape" And Sheets(sheetname).Cells(j, "B") <> "Portrait" Then
+            
+                x = MsgBox(sheetname & "中，第" & j & "行僅能填入Landscape或Portrait (大小寫有分)", 0 + 16, "Error")
+                Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+                CheckValue_2 = False
+                Exit Function
+            Else
+                Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+                CheckValue_2 = True
+            End If
+            CheckValue_2 = checkExcessData_2(sheetname, j, "C")
+            If CheckValue_2 = False Then Exit Function
+            
+        Case "Back"
+        
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            If Sheets(sheetname).Cells(j, "B") <> "" Then
+                x = MsgBox(sheetname & "中，第" & j & "行僅能填入Back", 0 + 16, "Error")
+                Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+                CheckValue_2 = False
+                Exit Function
+            Else
+                Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+                CheckValue_2 = True
+            End If
+        
+        Case "Home"
+        
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            If Sheets(sheetname).Cells(j, "B") <> "" Then
+                x = MsgBox(sheetname & "中，第" & j & "行僅能填入Home", 0 + 16, "Error")
+                Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+                CheckValue_2 = False
+                Exit Function
+            Else
+                Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+                CheckValue_2 = True
+            End If
+            
+        Case "Power"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            If Sheets(sheetname).Cells(j, "B") <> "" Then
+                x = MsgBox(sheetname & "中，第" & j & "行僅能填入Power", 0 + 16, "Error")
+                Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+                CheckValue_2 = False
+                Exit Function
+            Else
+                Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+                CheckValue_2 = True
+            End If
+            
+        Case "Recent"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            If Sheets(sheetname).Cells(j, "B") <> "" Then
+                x = MsgBox(sheetname & "中，第" & j & "行僅能填入Recent", 0 + 16, "Error")
+                Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+                CheckValue_2 = False
+                Exit Function
+            Else
+                Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+                CheckValue_2 = True
+            End If
+            
+        Case "Customized"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            If Sheets(sheetname).Cells(j, "B") <> "" Then
+                x = MsgBox(sheetname & "中，第" & j & "行僅能填入Customized", 0 + 16, "Error")
+                Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+                CheckValue_2 = False
+                Exit Function
+            Else
+                Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+                CheckValue_2 = True
+            End If
+            
+        Case "WiFi"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            If Sheets(sheetname).Cells(j, "B") = "" Then
+                x = MsgBox(sheetname & "中，第" & j & "行請填入On或Off (大小寫有分)", 0 + 16, "Error")
+                Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+                CheckValue_2 = False
+                Exit Function
+            ElseIf Sheets(sheetname).Cells(j, "B") <> "Off" And Sheets(sheetname).Cells(j, "B") <> "On" Then
+                x = MsgBox(sheetname & "中，第" & j & "行僅能填入On或Off (大小寫有分)", 0 + 16, "Error")
+                Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+                CheckValue_2 = False
+                Exit Function
+            Else
+                Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+                CheckValue_2 = True
+            End If
+        
+        Case "Swipe"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkSwipeData_2(sheetname, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "G")
+            If CheckValue_2 = False Then Exit Function
+            
+        Case "ByXpath_Swipe_Vertical"
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkXpath_2(sheetname, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkSwipeVertical_HorHorizontal_2(sheetname, j, "Vertical")
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "E")
+            If CheckValue_2 = False Then Exit Function
+            
+        Case "ByXpath_Swipe_Horizontal"
+            
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = checkXpath_2(sheetname, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkSwipeVertical_HorHorizontal_2(sheetname, j, "Horizontal")
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "E")
+            If CheckValue_2 = False Then Exit Function
+            
+        Case "ByXpath_Swipe_FindText_Click_Android"
+        
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = ByXpath_Swipe_FindText_Click_Android_2(sheetname, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue = checkExcessData(sheetname, i, j, "G")
+            If CheckValue_2 = False Then Exit Function
+            
+        Case "ByXpath_Swipe_FindText_Click_iOS"
+        
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(0, 0, 0)
+            CheckValue_2 = ByXpath_Swipe_FindText_Click_iOS_2(sheetname, j)
+            If CheckValue_2 = False Then Exit Function
+            CheckValue_2 = checkExcessData_2(sheetname, j, "E")
+            If CheckValue_2 = False Then Exit Function
+        
+        Case Else
+            
+            x = MsgBox(sheetname & "中，第" & j & "行語法有誤，" & "無" & Sheets(sheetname).Cells(j, "A").Value & " 語法", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "A").Font.color = RGB(255, 0, 0)
+            CheckValue_2 = False
+            Exit Function
+        End Select
+        
+        
+    j = j + 1
+    Loop Until Sheets(sheetname).Cells(j, "A") = ""
+    Call Classification_TestCase_2(TestScriptName)
+    CheckValue2 = Delete_All_Blank_Cells_2(TestScriptName)
+End Function
+
 Function CheckValue()
     Application.ScreenUpdating = False
     Dim sheetname As String
@@ -418,7 +827,23 @@ Function CheckValue()
     
     CheckValue2 = Delete_All_Blank_Cells
 End Function
+Function checkVerifyRadioButton_2(sheetname, j)
+    
+    If Sheets(sheetname).Cells(j, "C") <> "True" And Sheets(sheetname).Cells(j, "C") <> "False" Then
 
+        x = MsgBox(sheetname & "中，第" & j & "列第C欄請填入TRUE/FALSE", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+        checkVerifyRadioButton_2 = False
+        Exit Function
+    ElseIf TypeName(Sheets(sheetname).Cells(j, "C").Value) = "Boolean" Then
+        Sheets(sheetname).Cells(j, "C") = "'" & Sheets(sheetname).Cells(j, "C")
+        Sheets(sheetname).Cells(j, "C").Interior.Pattern = xlNone
+        checkVerifyRadioButton_2 = True
+    Else
+        checkVerifyRadioButton_2 = True
+    End If
+
+End Function
 Function checkVerifyRadioButton(sheetname, i, j)
     
     If Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(j, "C") <> "True" And Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(j, "C") <> "False" Then
@@ -438,6 +863,19 @@ Function checkVerifyRadioButton(sheetname, i, j)
 
 End Function
 
+Function checkExcessData_2(sheetname, j, col) '檢查所有指令最後一欄是否為空白或無資料
+
+    If Sheets(sheetname).Cells(j, col) <> "" Then
+                                
+        x = MsgBox(sheetname & "中，第" & j & "列第" & col & "欄請保持空白", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, col).Interior.color = RGB(255, 0, 0)
+        checkExcessData_2 = False
+    Else
+        Sheets(sheetname).Cells(j, col).Interior.Pattern = xlNone
+        checkExcessData_2 = True
+    End If
+
+End Function
 
 
 Function checkExcessData(sheetname, i, j, col) '檢查所有指令最後一欄是否為空白或無資料
@@ -454,6 +892,68 @@ Function checkExcessData(sheetname, i, j, col) '檢查所有指令最後一欄是否為空白或
 
 End Function
 
+Function ByXpath_Swipe_FindText_Click_iOS_2(sheetname, j)
+
+    If Sheets(sheetname).Cells(j, "B") = "" Then
+        x = MsgBox(sheetname & "中，第" & j & "行缺少xpath", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_iOS_2 = False
+        Exit Function
+    ElseIf Left(Sheets(sheetname).Cells(j, "B"), 5) <> "//*[@" And Left(Sheets(sheetname).Cells(j, "B"), 6) <> "(//*[@" Then
+        x = MsgBox(sheetname & "中，第" & j & "行xpath有誤", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_iOS_2 = False
+        Exit Function
+    ElseIf Right(Sheets(sheetname).Cells(j, "B"), 1) <> "]" Then
+        x = MsgBox(sheetname & "中，第" & j & "行xpath有誤", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_iOS_2 = False
+        Exit Function
+    Else
+        Sheets(sheetname).Cells(j, "B").Font.color = RGB(0, 0, 0)
+        Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+        ByXpath_Swipe_FindText_Click_iOS_2 = True
+    End If
+    
+    If Sheets(sheetname).Cells(j, "C") = "" Then
+        
+        x = MsgBox(sheetname & "中，第" & j & "列第C欄缺少UP/DOWN", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_iOS_2 = False
+        Exit Function
+        
+    ElseIf Sheets(sheetname).Cells(j, "C") <> "LEFT" And Sheets(sheetname).Cells(j, "C") <> "RIGHT" And Sheets(sheetname).Cells(j, "C") <> "UP" And Sheets(sheetname).Cells(j, "C") <> "DOWN" Then
+        
+        x = MsgBox(sheetname & "中，第" & j & "列第C欄ByXpath_Swipe_FindText_Click_iOS方法只包含UP/DOWN/LEFT/RIGHT", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_iOS_2 = False
+        Exit Function
+    Else
+        
+        Sheets(sheetname).Cells(j, "C").Interior.Pattern = xlNone
+        Sheets(sheetname).Cells(j, "C").Font.color = RGB(0, 0, 0)
+        ByXpath_Swipe_FindText_Click_iOS_2 = True
+    End If
+
+    If Left(Sheets(sheetname).Cells(j, "D"), 11) <> "//*[@text='" Then
+        x = MsgBox(sheetname & "中，第" & j & "行僅能輸入//*[@text='String']格式", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "D").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_iOS_2 = False
+        Exit Function
+        
+    ElseIf Right(Sheets(sheetname).Cells(j, "D"), 2) <> "']" Then
+        x = MsgBox(sheetname & "中，第" & j & "行僅能輸入//*[@text='String']格式", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "D").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_iOS_2 = False
+        Exit Function
+        
+    Else
+        Sheets(sheetname).Cells(j, "D").Font.color = RGB(0, 0, 0)
+        Sheets(sheetname).Cells(j, "D").Interior.Pattern = xlNone
+        ByXpath_Swipe_FindText_Click_iOS_2 = True
+    End If
+
+End Function
 
 
 
@@ -519,6 +1019,110 @@ Function ByXpath_Swipe_FindText_Click_iOS(sheetname, i, j)
     End If
 
 End Function
+Function ByXpath_Swipe_FindText_Click_Android_2(sheetname, j)
+    
+    If Sheets(sheetname).Cells(j, "B") = "" Then
+        x = MsgBox(sheetname & "中，第" & j & "行缺少xpath", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_Android_2 = False
+        Exit Function
+        
+    ElseIf Left(Sheets(sheetname).Cells(j, "B"), 5) <> "//*[@" And Left(Sheets(sheetname).Cells(j, "B"), 6) <> "(//*[@" Then
+        x = MsgBox(sheetname & "中，第" & j & "行xpath有誤", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_Android_2 = False
+        Exit Function
+        
+    ElseIf Right(Sheets(sheetname).Cells(j, "B"), 1) <> "]" Then
+        x = MsgBox(sheetname & "中，第" & j & "行xpath有誤", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_Android_2 = False
+        Exit Function
+        
+    Else
+        Sheets(sheetname).Cells(j, "B").Font.color = RGB(0, 0, 0)
+        Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+        ByXpath_Swipe_FindText_Click_Android_2 = True
+    End If
+    
+    If Sheets(sheetname).Cells(j, "D") = "" Then
+        x = MsgBox(sheetname & "中，第" & j & "行缺少xpath", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "D").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_Android_2 = False
+        Exit Function
+    
+    ElseIf Left(Sheets(sheetname).Cells(j, "D"), 5) <> "//*[@" And Left(Sheets(sheetname).Cells(j, "D"), 6) <> "(//*[@" Then
+        x = MsgBox(sheetname & "中，第" & j & "行xpath有誤", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "D").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_Android_2 = False
+        Exit Function
+    ElseIf Right(Sheets(sheetname).Cells(j, "D"), 1) <> "]" Then
+        x = MsgBox(sheetname & "中，第" & j & "行xpath有誤", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "D").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_Android_2 = False
+        Exit Function
+        
+    Else
+        Sheets(sheetname).Cells(j, "D").Font.color = RGB(0, 0, 0)
+        Sheets(sheetname).Cells(j, "D").Interior.Pattern = xlNone
+        ByXpath_Swipe_FindText_Click_Android_2 = True
+    End If
+    
+    If Left(Sheets(sheetname).Cells(j, "F"), 11) <> "//*[@text='" Then
+        x = MsgBox(sheetname & "中，第" & j & "行僅能輸入//*[@text='String']格式", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "F").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_Android_2 = False
+        Exit Function
+        
+    ElseIf Right(Sheets(sheetname).Cells(j, "F"), 2) <> "']" Then
+        x = MsgBox(sheetname & "中，第" & j & "行僅能輸入//*[@text='String']格式", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "F").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_Android_2 = False
+        Exit Function
+    Else
+        Sheets(sheetname).Cells(j, "F").Interior.Pattern = xlNone
+        ByXpath_Swipe_FindText_Click_Android_2 = True
+    End If
+    
+    If Sheets(sheetname).Cells(j, "C") = "" Then
+        
+        x = MsgBox(sheetname & "中，第" & j & "列第C欄缺少UP/DOWN/LEFT/RIGHT", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_Android_2 = False
+        Exit Function
+        
+    ElseIf Sheets(sheetname).Cells(j, "C") <> "UP" And Sheets(sheetname).Cells(j, "C") <> "DOWN" And Sheets(sheetname).Cells(j, "C") <> "LEFT" And Sheets(sheetname).Cells(j, "C") <> "RIGHT" Then
+        
+        x = MsgBox(sheetname & "中，第" & j & "列第C欄ByXpath_Swipe_FindText_Click_Android方法只包含UP/DOWN/LEFT/RIGHT", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_Android_2 = False
+        Exit Function
+        
+    Else
+        
+        Sheets(sheetname).Cells(j, "C").Interior.Pattern = xlNone
+        ByXpath_Swipe_FindText_Click_Android_2 = True
+    End If
+    
+    If Sheets(sheetname).Cells(j, "E") = "" Then
+        
+        x = MsgBox(sheetname & "中，第" & j & "列第E欄缺少字串", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "E").Interior.color = RGB(255, 0, 0)
+        ByXpath_Swipe_FindText_Click_Android_2 = False
+        Exit Function
+        
+    ElseIf TypeName(Sheets(sheetname).Cells(j, "E").Value) <> "String" Then
+    
+        Sheets(sheetname).Cells(j, "E") = "'" & Sheets(sheetname).Cells(j, "E")
+        ByXpath_Swipe_FindText_Click_Android_2 = False
+        Exit Function
+    Else
+        Sheets(sheetname).Cells(j, "E").Interior.Pattern = xlNone
+        ByXpath_Swipe_FindText_Click_Android_2 = True
+    End If
+    
+End Function
+
 
 
 Function ByXpath_Swipe_FindText_Click_Android(sheetname, i, j)
@@ -625,7 +1229,26 @@ Function ByXpath_Swipe_FindText_Click_Android(sheetname, i, j)
     
 End Function
 
-
+Function checkXpath_2(sheetname, j)
+    
+    If Left(Sheets(sheetname).Cells(j, "B"), 5) <> "//*[@" And Left(Sheets(sheetname).Cells(j, "B"), 6) <> "(//*[@" Then
+        x = MsgBox(sheetname & "中，第" & j & "行xpath有誤", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+        checkXpath_2 = False
+        Exit Function
+    ElseIf Right(Sheets(sheetname).Cells(j, "B"), 1) <> "]" Then
+        x = MsgBox(sheetname & "中，第" & j & "行xpath有誤", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+        checkXpath_2 = False
+        Exit Function
+    Else
+        Sheets(sheetname).Cells(j, "E").Interior.Pattern = xlNone
+        Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+        Sheets(sheetname).Cells(j, "B").Font.color = RGB(0, 0, 0)
+        checkXpath_2 = True
+    End If
+    
+End Function
 
 Function checkXpath(sheetname, i, j)
     
@@ -647,6 +1270,25 @@ Function checkXpath(sheetname, i, j)
     End If
     
 End Function
+Function checkSwipeXpath_2(sheetname, j)
+    If Left(Sheets(sheetname).Cells(j, "B"), 5) <> "//*[@" Or Right(Sheets(sheetname).Cells(j, "B"), 1) <> "]" Then
+        x = MsgBox(sheetname & "中，第" & j & "行xpath有誤", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+        checkSwipeXpath_2 = False
+        Exit Function
+    ElseIf Left(Sheets(sheetname).Cells(j, "C"), 5) <> "//*[@" Or Right(Sheets(sheetname).Cells(j, "C"), 1) <> "]" Then
+        x = MsgBox(sheetname & "中，第" & j & "行xpath有誤", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+        checkSwipeXpath_2 = False
+        Exit Function
+    Else
+        Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+        Sheets(sheetname).Cells(j, "C").Interior.Pattern = xlNone
+        Sheets(sheetname).Cells(j, "B").Font.color = RGB(0, 0, 0)
+        Sheets(sheetname).Cells(j, "C").Font.color = RGB(0, 0, 0)
+        checkSwipeXpath_2 = True
+    End If
+End Function
 
 Function checkSwipeXpath(sheetname, i, j)
     If Left(Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(j, "B"), 5) <> "//*[@" Or Right(Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(j, "B"), 1) <> "]" Then
@@ -666,6 +1308,41 @@ Function checkSwipeXpath(sheetname, i, j)
         Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(j, "C").Font.color = RGB(0, 0, 0)
         checkSwipeXpath = True
     End If
+End Function
+
+Function checkClick_2(sheetname, j, status)
+    
+    If status = "xpath" Then
+        
+        If Sheets(sheetname).Cells(j, "B") = "" Then
+            x = MsgBox(sheetname & "中，第" & j & "行缺少元件xpath", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+            checkClick_2 = False
+            Exit Function
+        Else
+            Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+            checkClick_2 = True
+        End If
+        
+    Else
+    
+        If Sheets(sheetname).Cells(j, "B") = "" Then
+            x = MsgBox(sheetname & "中，第" & j & "行缺少元件id", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+            checkClick_2 = False
+            Exit Function
+        ElseIf Left(Sheets(sheetname).Cells(j, "B"), 5) = "//*[@" Then
+            x = MsgBox(sheetname & "中，第" & j & "使用Byid定位，卻輸入Xpath", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+            checkClick_2 = False
+            Exit Function
+        Else
+            Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+            checkClick_2 = True
+        End If
+        
+    End If
+
 End Function
 
 Function checkClick(sheetname, i, j, status)
@@ -697,6 +1374,61 @@ Function checkClick(sheetname, i, j, status)
         Else
             Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(j, "B").Interior.Pattern = xlNone
             checkClick = True
+        End If
+        
+    End If
+
+End Function
+Function checkSwipe_2(sheetname, j, status)
+    
+    If status = "xpath" Then
+        
+        If Sheets(sheetname).Cells(j, "B") = "" Then
+            x = MsgBox(sheetname & "中，第" & j & "行缺少元件xpath", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+            checkSwipe_2 = False
+            Exit Function
+        ElseIf Sheets(sheetname).Cells(j, "C") = "" Then
+            x = MsgBox(sheetname & "中，第" & j & "行缺少元件xpath", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+            checkSwipe_2 = False
+            Exit Function
+        Else
+            Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+            Sheets(sheetname).Cells(j, "C").Interior.Pattern = xlNone
+            checkSwipe_2 = True
+        End If
+        
+    Else
+    
+        If Sheets(sheetname).Cells(j, "B") = "" Then
+            x = MsgBox(sheetname & "中，第" & j & "行缺少元件id", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+            checkSwipe_2 = False
+            Exit Function
+            
+        ElseIf Sheets(sheetname).Cells(j, "C") = "" Then
+            x = MsgBox(sheetname & "中，第" & j & "行缺少元件id", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+            checkSwipe_2 = False
+            Exit Function
+            
+        ElseIf Left(Sheets(sheetname).Cells(j, "B"), 5) = "//*[@" Then
+            x = MsgBox(sheetname & "中，第" & j & "使用Byid_Swipe，卻輸入Xpath", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+            checkSwipe_2 = False
+            Exit Function
+            
+        ElseIf Left(Sheets(sheetname).Cells(j, "C"), 5) = "//*[@" Then
+            x = MsgBox(sheetname & "中，第" & j & "使用Byid_Swipe，卻輸入Xpath", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+            checkSwipe_2 = False
+            Exit Function
+            
+        Else
+            Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+            Sheets(sheetname).Cells(j, "C").Interior.Pattern = xlNone
+            checkSwipe_2 = True
         End If
         
     End If
@@ -757,6 +1489,76 @@ Function checkSwipe(sheetname, i, j, status)
         
     End If
 
+End Function
+Function checkSwipeVertical_HorHorizontal_2(sheetname, j, state)
+
+    If state = "Vertical" Then
+        
+        If Sheets(sheetname).Cells(j, "C") = "" Then
+        
+            x = MsgBox(sheetname & "中，第" & j & "缺少UP/DOWN", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+            checkSwipeVertical_HorHorizontal_2 = False
+            Exit Function
+            
+        ElseIf Sheets(sheetname).Cells(j, "C") <> "UP" And Sheets(sheetname).Cells(j, "C") <> "DOWN" Then
+            
+            x = MsgBox(sheetname & "中，第" & j & "Vertical方法只包含UP與DOWN", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+            checkSwipeVertical_HorHorizontal_2 = False
+            Exit Function
+            
+        Else
+            
+            Sheets(sheetname).Cells(j, "C").Interior.Pattern = xlNone
+            checkSwipeVertical_HorHorizontal_2 = True
+        End If
+        
+    
+    Else
+         If Sheets(sheetname).Cells(j, "C") = "" Then
+        
+            x = MsgBox(sheetname & "中，第" & j & "缺少RIGHT/LEFT", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+            checkSwipeVertical_HorHorizontal_2 = False
+            Exit Function
+            
+        ElseIf Sheets(sheetname).Cells(j, "C") <> "RIGHT" And Sheets(sheetname).Cells(j, "C") <> "LEFT" Then
+            
+            x = MsgBox(sheetname & "中，第" & j & "Vertical方法只包含RIGHT與LEFT", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+            checkSwipeVertical_HorHorizontal_2 = False
+            Exit Function
+            
+        Else
+            
+            Sheets(sheetname).Cells(j, "C").Interior.Pattern = xlNone
+            checkSwipeVertical_HorHorizontal_2 = True
+        End If
+    
+    End If
+    
+    If Sheets(sheetname).Cells(j, "D") = "" Then
+        x = MsgBox(sheetname & "中，第" & j & "行缺少滑動次數", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "D").Interior.color = RGB(255, 0, 0)
+        checkSwipeVertical_HorHorizontal_2 = False
+        Exit Function
+        
+    ElseIf IsNumeric(Sheets(sheetname).Cells(j, "D")) = False Then
+        x = MsgBox(sheetname & "中，第" & j & "行請輸入數值", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "D").Interior.color = RGB(255, 0, 0)
+        checkSwipeVertical_HorHorizontal_2 = False
+        Exit Function
+        
+    Else
+        If TypeName(Sheets(sheetname).Cells(j, "D").Value) <> "String" Then
+            Sheets(sheetname).Cells(j, "D") = "'" & Sheets(sheetname).Cells(j, "D")
+        End If
+        Sheets(sheetname).Cells(j, "D").Interior.Pattern = xlNone
+        checkSwipeVertical_HorHorizontal_2 = True
+    End If
+    
+    
 End Function
 Function checkSwipeVertical_HorHorizontal(sheetname, i, j, state)
 
@@ -828,6 +1630,116 @@ Function checkSwipeVertical_HorHorizontal(sheetname, i, j, state)
     
     
 End Function
+
+Function checkSwipeData_2(sheetname, j)
+    
+    '起始X座標
+    If Sheets(sheetname).Cells(j, "B") = "" Then
+        x = MsgBox(sheetname & "中，第" & j & "行缺少起始X座標", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+        checkSwipeData_2 = False
+        Exit Function
+        
+    ElseIf IsNumeric(Sheets(sheetname).Cells(j, "B")) = False Then
+        x = MsgBox(sheetname & "中，第" & j & "行請輸入數值", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+        checkSwipeData_2 = False
+        Exit Function
+        
+    Else
+        If TypeName(Sheets(sheetname).Cells(j, "B").Value) <> "String" Then
+            Sheets(sheetname).Cells(j, "B") = "'" & Sheets(sheetname).Cells(j, "B")
+        End If
+        Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(j, "B").Interior.Pattern = xlNone
+        checkSwipeData_2 = True
+    End If
+    
+    '起始Y座標
+    If Sheets(sheetname).Cells(j, "C") = "" Then
+        x = MsgBox(sheetname & "中，第" & j & "行缺少起始Y座標", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+        checkSwipeData_2 = False
+        Exit Function
+        
+    ElseIf IsNumeric(Sheets(sheetname).Cells(j, "C")) = False Then
+        x = MsgBox(sheetname & "中，第" & j & "行請輸入數值", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+        checkSwipeData_2 = False
+        Exit Function
+        
+    Else
+        If TypeName(Sheets(sheetname).Cells(j, "C").Value) <> "String" Then
+            Sheets(sheetname).Cells(j, "C") = "'" & Sheets(sheetname).Cells(j, "C")
+        End If
+        Sheets(sheetname).Cells(j, "C").Interior.Pattern = xlNone
+        checkSwipeData_2 = True
+    End If
+    
+    '結束X座標
+    If Sheets(sheetname).Cells(j, "D") = "" Then
+        x = MsgBox(sheetname & "中，第" & j & "行缺少結束X座標", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "D").Interior.color = RGB(255, 0, 0)
+        checkSwipeData_2 = False
+        Exit Function
+        
+    ElseIf IsNumeric(Sheets(sheetname).Cells(j, "D")) = False Then
+        x = MsgBox(sheetname & "中，第" & j & "行請輸入數值", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "D").Interior.color = RGB(255, 0, 0)
+        checkSwipeData_2 = False
+        Exit Function
+        
+    Else
+        If TypeName(Sheets(sheetname).Cells(j, "D").Value) <> "String" Then
+            Sheets(sheetname).Cells(j, "D") = "'" & Sheets(sheetname).Cells(j, "D")
+        End If
+        Sheets(sheetname).Cells(j, "D").Interior.Pattern = xlNone
+        checkSwipeData_2 = True
+    End If
+    
+    '結束Y座標
+    If Sheets(sheetname).Cells(j, "E") = "" Then
+        x = MsgBox(sheetname & "中，第" & j & "行缺少結束Y座標", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "E").Interior.color = RGB(255, 0, 0)
+        checkSwipeData_2 = False
+        Exit Function
+        
+    ElseIf IsNumeric(Sheets(sheetname).Cells(j, "E")) = False Then
+        x = MsgBox(sheetname & "中，第" & j & "行請輸入數值", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "E").Interior.color = RGB(255, 0, 0)
+        checkSwipeData_2 = False
+        Exit Function
+        
+    Else
+        If TypeName(Sheets(sheetname).Cells(j, "E").Value) <> "String" Then
+            Sheets(sheetname).Cells(j, "E") = "'" & Sheets(sheetname).Cells(j, "E")
+        End If
+        Sheets(sheetname).Cells(j, "E").Interior.Pattern = xlNone
+        checkSwipeData_2 = True
+    End If
+    
+    '滑動次數
+    If Sheets(sheetname).Cells(j, "F") = "" Then
+        x = MsgBox(sheetname & "中，第" & j & "行缺少滑動次數", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "F").Interior.color = RGB(255, 0, 0)
+        checkSwipeData_2 = False
+        Exit Function
+        
+    ElseIf IsNumeric(Sheets(sheetname).Cells(j, "F")) = False Then
+        x = MsgBox(sheetname & "中，第" & j & "行請輸入數值", 0 + 16, "Error")
+        Sheets(sheetname).Cells(j, "F").Interior.color = RGB(255, 0, 0)
+        checkSwipeData_2 = False
+        Exit Function
+        
+    Else
+        If TypeName(Sheets(sheetname).Cells(j, "F").Value) <> "String" Then
+            Sheets(sheetname).Cells(j, "F") = "'" & Sheets(sheetname).Cells(j, "F")
+        End If
+        Sheets(sheetname).Cells(j, "F").Interior.Pattern = xlNone
+        checkSwipeData_2 = True
+    End If
+
+End Function
+
 
 Function checkSwipeData(sheetname, i, j)
     
@@ -937,6 +1849,46 @@ Function checkSwipeData(sheetname, i, j)
     End If
 
 End Function
+
+Function checkWait_2(sheetname, j, status)
+    
+    If status = "xpath" Then
+        
+        If Sheets(sheetname).Cells(j, "B") = "" Then
+            x = MsgBox(sheetname & "中，第" & j & "行缺少元件xpath", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+            checkWait_2 = False
+            Exit Function
+            
+        Else
+            Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+            checkWait_2 = True
+        End If
+        
+    Else
+    
+        If Sheets(sheetname).Cells(j, "B") = "" Then
+            x = MsgBox(sheetname & "中，第" & j & "行缺少元件id", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+            checkWait_2 = False
+            Exit Function
+            
+        ElseIf Left(Sheets(sheetname).Cells(j, "B"), 5) = "//*[@" Then
+            x = MsgBox(sheetname & "中，第" & j & "使用Byid_Wait，卻輸入Xpath", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+            checkWait_2 = False
+            Exit Function
+            
+        Else
+            Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+            checkWait_2 = True
+        End If
+
+        
+    End If
+
+End Function
+
 Function checkWait(sheetname, i, j, status)
     
     If status = "xpath" Then
@@ -974,6 +1926,46 @@ Function checkWait(sheetname, i, j, status)
         
     End If
 
+End Function
+
+Function checkResult_2(sheetname, j, status)
+    If status = "xpath" Then
+        
+        If Sheets(sheetname).Cells(j, "B") = "" Then
+            x = MsgBox(sheetname & "中，第" & j & "行缺少元件xpath", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+            checkResult_2 = False
+            Exit Function
+            
+        Else
+            Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+            checkResult_2 = True
+        End If
+    
+    Else
+        If Sheets(sheetname).Cells(j, "B") = "" Then
+            x = MsgBox(sheetname & "中，第" & j & "行缺少元件id", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+            checkResult_2 = False
+            Exit Function
+            
+        Else
+            Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+            checkResult_2 = True
+        End If
+        
+        If Left(Sheets(sheetname).Cells(j, "B"), 5) = "//*[@" Then
+            x = MsgBox(sheetname & "中，第" & j & "使用Byid_VerifyText，卻輸入Xpath", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+            checkResult_2 = False
+            Exit Function
+            
+        Else
+            Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+            checkResult_2 = True
+        End If
+    
+    End If
 End Function
 
 Function checkResult(sheetname, i, j, status)
@@ -1014,6 +2006,66 @@ Function checkResult(sheetname, i, j, status)
         End If
     
     End If
+End Function
+
+Function checkSendKey_2(sheetname, j, status)
+
+    If status = "xpath" Then
+        
+        If Sheets(sheetname).Cells(j, "B") = "" Then
+            x = MsgBox(sheetname & "中，第" & j & "行缺少元件Xpath", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+            checkSendKey_2 = False
+            Exit Function
+        Else
+            Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+            checkSendKey_2 = True
+        End If
+        
+        If Sheets(sheetname).Cells(j, "C") = "" Then
+            x = MsgBox(sheetname & "中，第" & j & "行缺少輸入值", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+            checkSendKey_2 = False
+            Exit Function
+            
+        Else
+            
+            If TypeName(Sheets(sheetname).Cells(j, "C").Value) <> "String" Then
+                Sheets(sheetname).Cells(j, "C") = "'" & Sheets(sheetname).Cells(j, "C")
+            End If
+        
+            Sheets(sheetname).Cells(j, "C").Interior.Pattern = xlNone
+            checkSendKey_2 = True
+        End If
+    Else
+        If Sheets(sheetname).Cells(j, "B") = "" Then
+            x = MsgBox(sheetname & "中，第" & j & "行缺少元件id", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "B").Interior.color = RGB(255, 0, 0)
+            checkSendKey_2 = False
+            Exit Function
+            
+        Else
+            Sheets(sheetname).Cells(j, "B").Interior.Pattern = xlNone
+            checkSendKey_2 = True
+        End If
+        
+        If Sheets(sheetname).Cells(j, "C") = "" Then
+            x = MsgBox(sheetname & "中，第" & j & "行缺少輸入值", 0 + 16, "Error")
+            Sheets(sheetname).Cells(j, "C").Interior.color = RGB(255, 0, 0)
+            checkSendKey_2 = False
+            Exit Function
+            
+        Else
+            If TypeName(Sheets(sheetname).Cells(j, "C").Value) <> "String" Then
+                Sheets(sheetname).Cells(j, "C") = "'" & Sheets(sheetname).Cells(j, "C")
+            End If
+        
+            Sheets(sheetname).Cells(j, "C").Interior.Pattern = xlNone
+            checkSendKey_2 = True
+        End If
+                
+    End If
+    
 End Function
 
 Function checkSendKey(sheetname, i, j, status)
@@ -1075,6 +2127,8 @@ Function checkSendKey(sheetname, i, j, status)
     End If
     
 End Function
+
+
 Function Clear_Hidekeyboard_LaunchAPP_QuitAPP()
     Application.ScreenUpdating = False
     Dim sheetname As String
@@ -1110,6 +2164,28 @@ Function Clear_Hidekeyboard_LaunchAPP_QuitAPP()
     
     Sheets("APP&Device").Select
 End Function
+Function Delete_All_Blank_Cells_2(TestScriptName As String)
+    Application.ScreenUpdating = False
+   
+    Sheets(TestScriptName).Select
+    j = 1
+    Do
+        k = 1
+        Do While Sheets(TestScriptName).Cells(j, k) <> ""
+            k = k + 1
+        Loop
+           
+        For w = 1 To 10
+            Sheets(TestScriptName).Cells(j, k).Select
+            Selection.delete Shift:=xlToLeft
+        Next w
+
+    j = j + 1
+    Loop Until Sheets(TestScriptName).Cells(j, "A") = ""
+    
+    Sheets("APP&Device").Select
+End Function
+
 
 Function Delete_All_Blank_Cells()
     Application.ScreenUpdating = False
