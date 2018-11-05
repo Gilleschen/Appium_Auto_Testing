@@ -253,6 +253,12 @@ Sub loadingResetAPP()
         ResetAPP.AddItem ("TRUE")
         ResetAPP.AddItem ("FALSE")
         ResetAPP.Text = Sheets("APP&Device").Cells(2, "H")
+    Else
+        tmp = Sheets("APP&Device").Cells(2, "H")
+        ResetAPP.clear
+        ResetAPP.AddItem ("TRUE")
+        ResetAPP.AddItem ("FALSE")
+        ResetAPP.Text = tmp
     End If
 
 End Sub
@@ -263,10 +269,15 @@ Sub loadingUIAutomator2()
         UIAutomator2.AddItem ("TRUE")
         UIAutomator2.AddItem ("FALSE")
         UIAutomator2.Text = Sheets("APP&Device").Cells(2, "I")
+    Else
+        tmp = Sheets("APP&Device").Cells(2, "I")
+        UIAutomator2.clear
+        UIAutomator2.AddItem ("TRUE")
+        UIAutomator2.AddItem ("FALSE")
+        UIAutomator2.Text = tmp
     End If
 
 End Sub
-
 
 Private Sub UIAutomator2_Change()
     Sheets("APP&Device").Cells(2, "I") = UIAutomator2.Text
@@ -275,6 +286,7 @@ End Sub
 Private Sub Worksheet_Activate()
     'Sheets("APP&Device").Cells(2, "B").Clear
     'Sheets("APP&Device").Cells(2, "D").Clear
+    Application.ScreenUpdating = False
     Call loadingPackage
     Call loadingDeivceUdid
     Call loadingTestScript
