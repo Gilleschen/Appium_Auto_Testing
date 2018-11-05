@@ -41,15 +41,8 @@ Private Sub importScriptAndCase_Click()
     Next
 End Sub
 
-
-
-
-
-Private Sub ComboBox1_Change()
-
-End Sub
-
 Private Sub ListBox1_Click()
+    Application.ScreenUpdating = False
     ListBox3.clear
     
     For i = 0 To ListBox1.ListCount - 1
@@ -87,7 +80,8 @@ Private Sub ListBox1_Click()
 End Sub
 
 Private Sub ListBox3_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
-Sheets("APP&Device").Cells(2, "F").clear
+    Application.ScreenUpdating = False
+    Sheets("APP&Device").Cells(2, "F").clear
     Count = 0
     For i = 0 To ListBox3.ListCount - 1
         
@@ -107,6 +101,8 @@ End Sub
 
 Private Sub DeviceList_DblClick(ByVal Cancel As MSForms.ReturnBoolean)
     ' Clear UDID and OS version
+    Application.ScreenUpdating = False
+    
     i = 2
     Do
         Sheets("APP&Device").Cells(i, "C").Select
@@ -204,6 +200,7 @@ Private Sub ListBox3_Click()
 End Sub
 
 Private Sub Package_Change()
+    Application.ScreenUpdating = False
     Sheets("APP&Device").Cells(2, "A") = Package.Text
     Sheets("APP&Device").Cells(2, "B") = Sheets("APP&Device_Data").Cells(Package.ListIndex + 2, "B")
 End Sub
@@ -215,7 +212,7 @@ Private Sub ResetAPP_Change()
     Sheets("APP&Device").Cells(2, "H") = ResetAPP.Text
 End Sub
 Sub loadingPackage()
-
+    
     Dim PackageCurrent_index As Integer
     
     PackageCurrent_index = Package.ListIndex
