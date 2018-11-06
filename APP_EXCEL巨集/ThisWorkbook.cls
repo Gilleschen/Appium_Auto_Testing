@@ -133,7 +133,10 @@ Private Sub Workbook_Open()
         .Position = msoBarTop             '工具列擺放在上層
         .Visible = True
     End With
-    'Call loadingAPPAndDevice
+    
+    Call loadingDeviceInfo
+    
+    
 skipp:
 
 End Sub
