@@ -824,7 +824,7 @@ Function CheckValue()
         End If
         i = i + 1
     Loop Until i = ThisWorkbook.Sheets.Count
-    
+    Call Classification_TestCase
     CheckValue2 = Delete_All_Blank_Cells
 End Function
 Function checkVerifyRadioButton_2(sheetname, j)
