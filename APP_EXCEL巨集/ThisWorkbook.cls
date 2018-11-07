@@ -38,7 +38,6 @@ Private Sub Workbook_Open()
         Set ScriptEditor = .Controls.add(msoControlButton)
         Set CheckAPP = .Controls.add(msoControlButton)
         
-        
         With ScriptCreator
             .Style = msoButtonIconAndCaption
             .BeginGroup = True
@@ -79,7 +78,7 @@ Private Sub Workbook_Open()
             .BeginGroup = True
             .Caption = "執行腳本"                  '顯示在工具列上的按鈕文字
             .TooltipText = "執行腳本" ' "TUTK QA團隊製作"  '滑鼠移過去時，所顯示的提示文字
-            .FaceId = 1763 '1778                       '小圖示
+            .FaceId = 156 '1763 '1778                       '小圖示
             .Tag = "Jhih Chen"
             .OnAction = "RunScript"     '設定按下此鍵時所要執行的巨集
         End With
@@ -122,7 +121,7 @@ Private Sub Workbook_Open()
             .TooltipText = "確認Case之期望結果均列於ExpectResult工作表(非所有Case都要填寫ExpectResult)"
             .FaceId = 720 '25
             .Tag = "Jhih Chen"
-            .OnAction = "CheckExpectResult"
+            .OnAction = "CheckExpectResult_Ver2"
         
         End With
         
