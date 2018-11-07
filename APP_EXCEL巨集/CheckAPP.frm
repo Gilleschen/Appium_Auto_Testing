@@ -90,15 +90,17 @@ Private Sub CreateCase_Click()
             
             If CheckValue.Value = True Then
             
-                x = CheckValue_2(CheckScriptList.List(i))
+                x = CheckValueResult_2(CheckScriptList.List(i))
                 
             End If
             
             If CheckExpectResult.Value = True Then
                 
-                x = CheckExpectResult_2(CheckScriptList.List(i))
+                x = CheckExpectResult_Ver2_2(CheckScriptList.List(i))
                 
             End If
+            
+            CheckAPP.Caption = "«ü¥OÀË¬d " & ((i + 1) / CheckScriptList.ListCount) * 100 & "%"
             
         Next i
         CheckAPP.Hide
