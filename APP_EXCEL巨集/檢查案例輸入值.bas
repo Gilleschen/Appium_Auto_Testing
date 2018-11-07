@@ -408,6 +408,42 @@ Function CheckValue_2(TestScriptName As String)
     CheckValue2 = Delete_All_Blank_Cells_2(TestScriptName)
 End Function
 
+Function CheckValueResult_2(TestScriptName As String)
+        
+    Dim result As Boolean
+    
+    result = CheckValue_2(TestScriptName)
+    
+    If result = True Then
+        
+        Call Classification_TestCase
+        CheckValueResult_2 = True
+        
+    Else
+        CheckValueResult_2 = False
+        
+    End If
+    
+End Function
+Function CheckValueResult()
+        
+    Dim result As Boolean
+    
+    result = CheckValue()
+    
+    If result = True Then
+        
+        Call Classification_TestCase
+        CheckValueResult = True
+        
+    Else
+        CheckValueResult = False
+        
+    End If
+    
+End Function
+
+
 Function CheckValue()
     Application.ScreenUpdating = False
     Dim sheetname As String
@@ -824,7 +860,7 @@ Function CheckValue()
         End If
         i = i + 1
     Loop Until i = ThisWorkbook.Sheets.Count
-    Call Classification_TestCase
+    'Call Classification_TestCase
     CheckValue2 = Delete_All_Blank_Cells
 End Function
 Function checkVerifyRadioButton_2(sheetname, j)

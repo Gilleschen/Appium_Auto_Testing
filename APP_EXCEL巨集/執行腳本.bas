@@ -8,10 +8,11 @@ Sub RunScript()
     
     
     CheckAPPandDeviceResult = CheckAPPandDevice()
-    CheckValueResult = CheckValue()
+    CheckValueResults = CheckValueResult()
     CheckCommandResult = CheckCommand()
+    CheckExpectResult2 = CheckExpectResult_Ver2()
     
-    If CheckAPPandDeviceResult = True And CheckValueResult = True And CheckCommandResult = True Then
+    If CheckAPPandDeviceResult = True And CheckValueResults = True And CheckCommandResult = True And CheckExpectResult2 = True Then
 
         jar = "java -jar " & Sheets("APP&Device").Cells(2, "G")
         r = Shell(Environ("windir") & "\system32\cmd.exe cmd/k" & jar, 1)  '啟動cmd，指定路徑cd
