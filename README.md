@@ -1,29 +1,29 @@
 # 使用說明
 #### 使用前設定：
 
-* 安裝Appium (http://appium.io/)
+* 安裝 Appium (http://appium.io/)
 
 * 環境設定 (請參考<a href="http://www.qa-knowhow.com/?p=2363">Appium手機自動化測試從頭學 –Windows/Android環境安裝篇</a>)
 
-* 啟動Appium Server (相關參數設定請參考<a href="http://www.automationtestinghub.com/appium-desktop-client-features/">Automation Testing Hub</a>)
+* 啟動 Appium Server (相關參數設定請參考<a href="http://www.automationtestinghub.com/appium-desktop-client-features/">Automation Testing Hub</a>)
 
-* 下載<a href="https://github.com/Gilleschen/Appium_Auto_Testing_Android/raw/master/Appium_Android.jar">Appium_Android.jar</a>及<a href="https://github.com/Gilleschen/Appium_Auto_Testing/blob/master/TestScript.xlsm">TestScript.xlsm</a>
+* 下載<a href="https://github.com/Gilleschen/Appium_Auto_Testing_Android/raw/master/Appium_Android.jar"> Appium_Android.jar</a>及<a href="https://github.com/Gilleschen/Appium_Auto_Testing/blob/master/TestScript.xlsm"> TestScript.xlsm</a>
 
 #### 測試腳本建立流程：
 
-1. 於C:\建立TUTK_QA_TestTool資料夾 (C:\TUTK_QA_TestTool)
+1. 於C:\建立 TUTK_QA_TestTool 資料夾 (C:\TUTK_QA_TestTool)
 
-2. TUTK_QA_TestTool中分別建立TestTool資料夾與TestReport資料夾
+2. 於 TUTK_QA_TestTool 中建立TestTool資料夾與TestReport資料夾
 
-3. 將TestScript.xlsm放至TestTool資料夾 (C:\TUTK_QA_TestTool\TestTool\TestScript.xlsm)(檔名及副檔名請勿更改)
+3. 將 TestScript.xlsm 放至TestTool資料夾 (C:\TUTK_QA_TestTool\TestTool\TestScript.xlsm)(檔名及副檔名請勿更改)
 
-4. 開啟TestScript.xlsm並允許啟動巨集 (已建立APP&Device、ExpectResult及說明工作表)
+4. 開啟 TestScript.xlsm 並允許啟動巨集 (已建立APP&Device、ExpectResult及說明工作表)
 
 5. APP&Device工作表輸入APP Packageanme、APP Activity、測試裝置UDID、測試裝置OS版本、待測試腳本(以_TestScript結尾的工作表)、測試案例名稱、Appium_Android.jar路徑及Reset APP，範例如下圖：
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPAndDevice_3.PNG)
 
-6. 建立腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (e.g. Login_TestScript)，請參考[腳本產生器](#scriptcreater)，目前支援指令如下: (大小寫有分，使用方式請參考TestScript.xlsm內說明工作表) 
+6. 建立測試腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (e.g. Login_TestScript)，請參考[腳本產生器](#scriptcreater)，目前支援指令如下: (有區分大小寫，使用方式請參考TestScript.xlsm內說明工作表) 
 
           CaseName=>測試案列名稱(各案列開始時第一個填寫項目，必填!!!)
 
@@ -147,7 +147,7 @@
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/ScriptCreator3.png)
 
-# 如何序列執行多台裝置
+# 序列測試
 
 1. 啟動與測試裝置數量相同的Appium (例如：要測試兩支裝置，則啟動兩組Appium)
 
@@ -176,8 +176,6 @@
 * 固定Server Address = 127.0.0.1, 預設Server Port = 4723
 
 * Appium NEW_COMMAND_TIMEOUT=120 second ;WebDriverWait timeout=30 second
-
-* AUTOMATION_NAME=uiautomator2
 
 * *目前不支援WiFi指令*
 
