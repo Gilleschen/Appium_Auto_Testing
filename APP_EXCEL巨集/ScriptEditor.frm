@@ -16,7 +16,7 @@ Attribute VB_Exposed = False
 
 
 Private Sub add_Click()
-Dim selected As Boolean
+    Dim selected As Boolean
     selected = False
     casenamestate = False
     QuitAPP = False
@@ -56,15 +56,33 @@ Dim selected As Boolean
                     If StepList.List(j) <> "CaseName" Then
                         StepList.AddItem CommandList.List(i), j
                         StepList.selected(j + 1) = True
+                        'processing edit case
+                        Sheets("EditCase").Select
+                        Rows(j + 1 & ":" & j + 1).Select
+                        Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+                        Sheets("EditCase").Cells(j + 1, "A") = CommandList.List(i)
+                        
+                        
                         'Exit For
                     End If
                 Else
                     StepList.AddItem CommandList.List(i), StepList.ListCount - 1
                     'Exit For
+                    'processing edit case
+                    Sheets("EditCase").Select
+                    lastRow = Cells(1, 1).End(xlDown).row
+                    Rows(lastRow & ":" & lastRow).Select
+                    Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+                    Sheets("EditCase").Cells(lastRow, "A") = CommandList.List(i)
+                    
                 End If
         End If
  
     Next i
+    
+    
+
+    
 End Sub
 
 Private Sub APP_Click()
@@ -86,7 +104,7 @@ Private Sub cancelSelect_Click()
 End Sub
 
 Private Sub CaseBox_Change()
-    
+    Application.ScreenUpdating = False
     j = 1
     Do
         If Sheets(ScriptBox.Text).Cells(j, "B") = CaseBox.Text Then
@@ -105,6 +123,35 @@ Private Sub CaseBox_Change()
         
     j = j + 1
     Loop Until Sheets(ScriptBox.Text).Cells(j, "A") = ""
+    
+    'Create temp sheet
+    Call creatTempSheets
+    
+    
+    i = 1
+    Do
+        If Sheets(ScriptBox.Text).Cells(i, "B") = CaseBox.Text Then
+            
+            j = i: k2 = 1
+            Do
+                k = 1
+                Do
+                    
+                    Sheets("EditCase").Cells(k2, k) = Sheets(ScriptBox.Text).Cells(j, k)
+                    
+                    k = k + 1
+                Loop Until Sheets(ScriptBox.Text).Cells(j, k) = ""
+                k2 = k2 + 1
+                
+                j = j + 1
+            Loop Until Sheets(ScriptBox.Text).Cells(j, "A") = "QuitAPP"
+            Sheets("EditCase").Cells(k2, "A") = "QuitAPP"
+            Exit Do
+            
+        End If
+    
+        i = i + 1
+    Loop Until Sheets(ScriptBox.Text).Cells(i, "A") = ""
     
 
 End Sub
@@ -138,6 +185,18 @@ Private Sub clear_Click()
     StepList.clear
     StepList.AddItem ("CaseName")
     StepList.AddItem ("QuitAPP")
+    
+    
+    Sheets("EditCase").Select
+    i = 2
+    Do
+        Rows(i & ":" & i).Select
+        Selection.delete Shift:=xlUp
+        'i = i + 1
+    Loop Until Sheets("EditCase").Cells(i, "A") = "QuitAPP"
+    
+    
+    
 End Sub
 
 Private Sub ClearElement_Click()
@@ -205,14 +264,22 @@ Private Sub CreateCase_Click()
     
     ElseIf CheckBox1.Value = False Then
     
-        If ScriptBox.Text <> "" And CaseBox.Text <> "" Then
+        If ScriptBox.Text <> "" And CaseBox.Text <> "" And StepList.ListCount > 2 Then
         
             'x = getOldStepData()
             
             startRow = deleteOldStep()
             original_startRow = startRow
             Call importNewStep(original_startRow)
+            Call importOriginalData(startRow)
             Call importDataFiled(startRow)
+            
+            'Delete EditCase sheet without alert message
+            Application.DisplayAlerts = False
+            Sheets("EditCase").Select
+            ActiveWindow.SelectedSheets.delete
+            Application.DisplayAlerts = True
+            
             x = MsgBox("Done.", 0 + 64, "Message")
         
         ElseIf ScriptBox.Text = "" And CaseBox.Text = "" Then
@@ -226,7 +293,10 @@ Private Sub CreateCase_Click()
         ElseIf CaseBox.Text = "" Then
             
              x = MsgBox("請選擇Case名稱", 0 + 16, "Error")
-        
+             
+        ElseIf StepList.ListCount = 2 Then
+            
+            x = MsgBox("請填入指令", 0 + 16, "Error")
         
         End If
     End If
@@ -288,7 +358,8 @@ Sub importNewStep_2(starRow)
 End Sub
 Sub importDataFiled(startj)
 
-
+    Dim exitDo As Boolean
+    exitDo = False
     x = ScriptBox.Text
     Sheets(ScriptBox.Text).Select
     j = startj
@@ -305,15 +376,35 @@ Sub importDataFiled(startj)
                     Call line
                     k = k + 1
                 Loop
+                'exitDo = True
                 Exit Do
+                
             End If
             i = i + 1
         Loop Until Sheets("說明").Cells(i, "A") = ""
-    
+        'If exitDo = True Then Exit Do
         j = j + 1
-    Loop Until Sheets(ScriptBox.Text).Cells(j, "A") = ""
+    Loop Until Sheets(ScriptBox.Text).Cells(j, "A") = "QuitAPP"
     
 End Sub
+
+Sub importOriginalData(startj)
+    j = startj
+    i = 2
+    Do
+        k = 1
+        Do
+            Sheets(ScriptBox.Text).Cells(j, k) = Sheets("EditCase").Cells(i, k)
+            k = k + 1
+        Loop Until Sheets("EditCase").Cells(i, k) = ""
+        i = i + 1: j = j + 1
+    Loop Until Sheets("EditCase").Cells(i, "A") = "QuitAPP"
+    
+
+
+End Sub
+
+
 Function getOldStepData()
     Dim stepArray()
     i = 1
@@ -352,6 +443,12 @@ Private Sub delete_Click()
             If StepList.List(i) <> "CaseName" And StepList.List(i) <> "QuitAPP" Then
                 StepList.RemoveItem (i)
                 StepList.selected(i) = False
+                
+                'processing edit case
+                Sheets("EditCase").Select
+                Rows(i + 1 & ":" & i + 1).Select
+                Selection.delete Shift:=xlUp
+                Exit For
             End If
             
         End If
@@ -369,6 +466,14 @@ Private Sub down_Click()
             StepList.RemoveItem (i)
             StepList.AddItem temp, i + 1
             StepList.selected(i + 1) = True
+            
+            'processing edit case
+            Sheets("EditCase").Select
+            Rows(i + 1 & ":" & i + 1).Select
+            Selection.Cut
+            Rows(i + 3 & ":" & i + 3).Select
+            Selection.Insert Shift:=xlDown
+            
             Exit For
             
         End If
@@ -414,10 +519,7 @@ Private Sub ScriptBox_Change()
         
 End Sub
 
-Private Sub ScriptBox_Click()
-   
-    
-End Sub
+
 
 Private Sub SendKey_Click()
     CommandList.clear
@@ -471,6 +573,15 @@ Private Sub up_Click()
             StepList.RemoveItem (i)
             StepList.AddItem temp, i - 1
             StepList.selected(i - 1) = True
+            
+            'processing edit case
+            Sheets("EditCase").Select
+            Rows(i + 1 & ":" & i + 1).Select
+            Selection.Cut
+            Rows(i & ":" & i).Select
+            Selection.Insert Shift:=xlDown
+            
+            
             Exit For
             
         End If
@@ -490,6 +601,36 @@ Private Sub UserForm_Activate()
     
     i = i + 1
     Loop Until i = ThisWorkbook.Sheets.Count
+End Sub
+
+
+Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
+    
+    Application.ScreenUpdating = False
+    i = 0
+    Do
+    
+        If ThisWorkbook.Sheets(i + 1).Name = "EditCase" Then
+    
+            exist = True
+            Exit Do
+    
+        End If
+        i = i + 1
+    Loop Until i = ThisWorkbook.Sheets.Count
+    
+    If exist = True Then
+        
+        'Delete EditCase sheet without alert message
+        Application.DisplayAlerts = False
+        Sheets("EditCase").Select
+        ActiveWindow.SelectedSheets.delete
+        Application.DisplayAlerts = True
+    
+    End If
+    
+    Sheets(ScriptBox.Text).Select
+    
 End Sub
 
 Private Sub Verify_Click()

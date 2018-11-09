@@ -6,7 +6,7 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} ScriptCreator
    ClientTop       =   465
    ClientWidth     =   9645.001
    OleObjectBlob   =   "ScriptCreator.frx":0000
-   StartUpPosition =   2  '螢幕中央
+   StartUpPosition =   1  '所屬視窗中央
 End
 Attribute VB_Name = "ScriptCreator"
 Attribute VB_GlobalNameSpace = False
@@ -123,10 +123,6 @@ End Sub
 
 
 
-Private Sub Command_Click()
-
-End Sub
-
 Private Sub CommandList_Change()
     For i = 0 To CommandList.ListCount - 1
     
@@ -157,7 +153,7 @@ Private Sub CreateCase_Click()
     Dim exist As Boolean
     exist = False
     
-    If scriptname.Text <> "" And CaseName.Text <> "" Then
+    If scriptname.Text <> "" And CaseName.Text <> "" And StepList.ListCount > 2 Then
     
         If Right(scriptname.Text, 11) = "_TestScript" Then
             i = 0
@@ -214,6 +210,10 @@ Private Sub CreateCase_Click()
     ElseIf CaseName.Text = "" Then
         
          x = MsgBox("請輸入Case名稱", 0 + 16, "Error")
+         
+    ElseIf StepList.ListCount = 2 Then
+    
+        x = MsgBox("請加入指令", 0 + 16, "Error")
     
     End If
     
