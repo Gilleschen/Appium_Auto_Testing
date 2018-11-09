@@ -20,7 +20,7 @@ Private Sub add_Click()
     selected = False
     casenamestate = False
     QuitAPP = False
-    
+    On Error GoTo skipp
     For i = 0 To CommandList.ListCount - 1
     
         If CommandList.selected(i) = True Then
@@ -76,6 +76,7 @@ Private Sub add_Click()
                     Sheets("EditCase").Cells(lastRow, "A") = CommandList.List(i)
                     
                 End If
+skipp:
         End If
  
     Next i
@@ -165,9 +166,7 @@ Private Sub CheckBox1_Change()
         CaseBox.Visible = False
         CaseName.Visible = True
         CaseName.Text = ""
-        
     
-        start_row = Sheets("T1_TestScript").Cells(Sheets("T1_TestScript").Rows.Count, 1).End(xlUp).row
     Else
         StepList.clear
         CaseBox.Visible = True
@@ -182,6 +181,7 @@ End Sub
 
 
 Private Sub clear_Click()
+    On Error GoTo skipp
     StepList.clear
     StepList.AddItem ("CaseName")
     StepList.AddItem ("QuitAPP")
@@ -194,7 +194,7 @@ Private Sub clear_Click()
         Selection.delete Shift:=xlUp
         'i = i + 1
     Loop Until Sheets("EditCase").Cells(i, "A") = "QuitAPP"
-    
+skipp:
     
     
 End Sub
@@ -248,7 +248,8 @@ End Sub
 
 Private Sub CreateCase_Click()
     Application.ScreenUpdating = False
-    If CheckBox1.Value = True And CaseName.Text <> "" Then
+    
+    If CheckBox1.Value = True And CaseName.Text <> "" And StepList.ListCount > 2 Then
         
         start_row = Sheets(ScriptBox.Text).Cells(Sheets(ScriptBox.Text).Rows.Count, 1).End(xlUp).row + 1
         Sheets(ScriptBox.Text).Cells(start_row, "B") = CaseName.Value
@@ -258,9 +259,17 @@ Private Sub CreateCase_Click()
         Call Classification_TestCase
         x = MsgBox("Done.", 0 + 64, "Message")
     
-    ElseIf CheckBox1.Value = True And CaseName.Text = "" Then
+    ElseIf CheckBox1.Value = True And CaseName.Text = "" And StepList.ListCount > 2 Then
         
          x = MsgBox("請填入Case名稱", 0 + 16, "Error")
+         
+    ElseIf CheckBox1.Value = True And CaseName.Text <> "" And StepList.ListCount = 2 Then
+        
+         x = MsgBox("請加入指令", 0 + 16, "Error")
+         
+    ElseIf CheckBox1.Value = True And CaseName.Text = "" And StepList.ListCount = 2 Then
+        
+         x = MsgBox("請填入Case名稱並加入指令", 0 + 16, "Error")
     
     ElseIf CheckBox1.Value = False Then
     
@@ -436,7 +445,7 @@ Function getOldStepData()
 End Function
 
 Private Sub delete_Click()
-
+    On Error GoTo skipp
     For i = 0 To StepList.ListCount - 1
     
         If StepList.selected(i) = True Then
@@ -450,7 +459,7 @@ Private Sub delete_Click()
                 Selection.delete Shift:=xlUp
                 Exit For
             End If
-            
+skipp:
         End If
     
     Next i
@@ -458,6 +467,7 @@ Private Sub delete_Click()
 End Sub
 
 Private Sub down_Click()
+    On Error GoTo skipp
     For i = StepList.ListCount - 1 To 0 Step -1
     
         If StepList.ListIndex <> StepList.ListCount - 1 And StepList.selected(i) = True And StepList.ListIndex <> StepList.ListCount - 2 And StepList.List(i) <> "CaseName" Then
@@ -477,7 +487,7 @@ Private Sub down_Click()
             Exit For
             
         End If
-        
+skipp:
     Next i
 End Sub
 
@@ -503,7 +513,9 @@ End Sub
 
 Private Sub ScriptBox_Change()
     CaseBox.clear
-    StepList.clear
+    
+    If CheckBox1.Value = False Then StepList.clear
+    
     j = 1
     Do
         If Sheets(ScriptBox.Text).Cells(j, "A") = "CaseName" Then
@@ -565,6 +577,7 @@ Private Sub System_Click()
 End Sub
 
 Private Sub up_Click()
+    On Error GoTo skipp
     For i = 0 To StepList.ListCount - 1
     
         If StepList.ListIndex > 0 And StepList.selected(i) = True And StepList.ListIndex <> 1 And StepList.List(i) <> "QuitAPP" Then
@@ -585,7 +598,7 @@ Private Sub up_Click()
             Exit For
             
         End If
-        
+skipp:
     Next i
 End Sub
 
