@@ -38,13 +38,13 @@ Function CheckCommand_2(TestScriptName As String)
     j = j + 1
     Loop Until Sheets(TestScriptName).Cells(j, "A") = ""
     
-    If LaunchAPP <> CaseName Then
-        x = MsgBox(TestScriptName & "中缺少LaunchAPP或CaseName", 0 + 16, "Error")
-        CheckCommand_2 = False
-        Exit Function
-    Else
-        CheckCommand_2 = True
-    End If
+'    If LaunchAPP <> casename Then
+'        x = MsgBox(TestScriptName & "中缺少LaunchAPP或CaseName", 0 + 16, "Error")
+'        CheckCommand_2 = False
+'        Exit Function
+'    Else
+'        CheckCommand_2 = True
+'    End If
 
     If QuitAPP <> CaseName Then
         x = MsgBox(TestScriptName & "中缺少QuitAPP或CaseName", 0 + 16, "Error")
@@ -102,13 +102,13 @@ Function CheckCommand()
                 j = j + 1
                 Loop Until Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(j, "A") = ""
                 
-                If LaunchAPP <> CaseName Then
-                    x = MsgBox(sheetname & "中缺少LaunchAPP或CaseName", 0 + 16, "Error")
-                    CheckCommand = False
-                    Exit Function
-                Else
-                    CheckCommand = True
-                End If
+'                If LaunchAPP <> casename Then
+'                    x = MsgBox(sheetname & "中缺少LaunchAPP或CaseName", 0 + 16, "Error")
+'                    CheckCommand = False
+'                    Exit Function
+'                Else
+'                    CheckCommand = True
+'                End If
  
                 If QuitAPP <> CaseName Then
                     x = MsgBox(sheetname & "中缺少QuitAPP或CaseName", 0 + 16, "Error")
