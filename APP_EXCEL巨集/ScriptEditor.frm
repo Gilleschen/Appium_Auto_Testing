@@ -629,7 +629,9 @@ Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
     
     End If
     
-    Sheets(ScriptBox.Text).Select
+    If ScriptBox.Text <> "" Then
+        Sheets(ScriptBox.Text).Select
+    End If
     
 End Sub
 
