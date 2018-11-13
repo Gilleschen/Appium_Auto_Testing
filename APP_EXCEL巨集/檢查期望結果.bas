@@ -16,14 +16,14 @@ Function CheckExpectResult_2(TestScriptName As String)
         j = j + 1
     Loop Until Sheets(TestScriptName).Cells(j, "A") = ""
     
-    ReDim CaseName(x - 1)
+    ReDim casename(x - 1)
     
     j = 1: x = 0
     
     Do
         If Sheets(TestScriptName).Cells(j, "A") = "CaseName" Then
             
-            CaseName(x) = Sheets(TestScriptName).Cells(j, "B")
+            casename(x) = Sheets(TestScriptName).Cells(j, "B")
             x = x + 1
             
         End If
@@ -38,7 +38,7 @@ Function CheckExpectResult_2(TestScriptName As String)
         j = 2
         Do
             
-            If CaseName(k) = Sheets("ExpectResult").Cells(j, "A") Then
+            If casename(k) = Sheets("ExpectResult").Cells(j, "A") Then
                 result = "Pass"
                 Exit Do
             End If
@@ -47,7 +47,7 @@ Function CheckExpectResult_2(TestScriptName As String)
         Loop Until Sheets("ExpectResult").Cells(j, "A") = ""
         
         If result <> "Pass" Then
-            x = MsgBox(CaseName(k) + "的期望結果為未寫入ExpectResult", 0 + 16, "Error")
+            x = MsgBox(casename(k) + "的期望結果為未寫入ExpectResult", 0 + 16, "Error")
             CheckExpectResult_2 = False
             Exit Function
         End If
@@ -55,7 +55,7 @@ Function CheckExpectResult_2(TestScriptName As String)
         result = ""
         
         k = k + 1
-    Loop Until k = UBound(CaseName) - LBound(CaseName) + 1
+    Loop Until k = UBound(casename) - LBound(casename) + 1
     
     CheckExpectResult_2 = True
         
@@ -85,14 +85,14 @@ Sub CheckExpectResult()
                 j = j + 1
             Loop Until Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(j, "A") = ""
             
-            ReDim CaseName(x - 1)
+            ReDim casename(x - 1)
             
             j = 1: x = 0
             
             Do
                 If Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(j, "A") = "CaseName" Then
                     
-                    CaseName(x) = Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(j, "B")
+                    casename(x) = Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(j, "B")
                     x = x + 1
                     
                 End If
@@ -107,7 +107,7 @@ Sub CheckExpectResult()
                 j = 2
                 Do
                     
-                    If CaseName(k) = Sheets("ExpectResult").Cells(j, "A") Then
+                    If casename(k) = Sheets("ExpectResult").Cells(j, "A") Then
                         result = "Pass"
                         Exit Do
                     End If
@@ -115,12 +115,12 @@ Sub CheckExpectResult()
                     j = j + 1
                 Loop Until Sheets("ExpectResult").Cells(j, "A") = ""
                 
-                If result <> "Pass" Then x = MsgBox(CaseName(k) + "的期望結果為未寫入ExpectResult", 0 + 16, "Error")
+                If result <> "Pass" Then x = MsgBox(casename(k) + "的期望結果為未寫入ExpectResult工作表", 0 + 16, "Error")
                 
                 result = ""
                 
                 k = k + 1
-            Loop Until k = UBound(CaseName) - LBound(CaseName) + 1
+            Loop Until k = UBound(casename) - LBound(casename) + 1
         
         End If
 
@@ -155,6 +155,8 @@ Function CheckExpectResult_Ver2_2(TestScriptName As String)
     
         k = j + 1
     Loop Until Sheets(TestScriptName).Cells(k, "A") = ""
+    
+    x = CheckExpectResultisEmpty()
         
 End Function
 
@@ -193,13 +195,16 @@ Function CheckExpectResult_Ver2()
     
         i = i + 1
     Loop Until i = ThisWorkbook.Sheets.Count
+    
+    
+    x = CheckExpectResultisEmpty()
 End Function
 
-Sub CompareExpectResult_2(CaseName, CaseRow, ScriptName)
+Sub CompareExpectResult_2(casename, CaseRow, scriptname)
     Dim result As Boolean
     j = 2
     Do
-        If CaseName = Sheets("ExpectResult").Cells(j, "A") Then
+        If casename = Sheets("ExpectResult").Cells(j, "A") Then
         
             result = True
             Exit Do
@@ -209,21 +214,21 @@ Sub CompareExpectResult_2(CaseName, CaseRow, ScriptName)
     Loop Until Sheets("ExpectResult").Cells(j, "A") = ""
     
     If result = False Then
-        x = MsgBox(CaseName + "的期望結果為未寫入ExpectResult", 0 + 16, "Error")
-        Sheets(ScriptName).Cells(CaseRow, "B").Font.color = RGB(255, 0, 0)
+        x = MsgBox(casename + "的期望結果為未寫入ExpectResult", 0 + 16, "Error")
+        Sheets(scriptname).Cells(CaseRow, "B").Font.color = RGB(255, 0, 0)
         
     Else
         
-        Sheets(ScriptName).Cells(CaseRow, "B").Font.color = RGB(0, 0, 0)
+        Sheets(scriptname).Cells(CaseRow, "B").Font.color = RGB(0, 0, 0)
     End If
     
 End Sub
-Function CompareExpectResult(CaseName, CaseRow, i)
+Function CompareExpectResult(casename, CaseRow, i)
     Dim result As Boolean
     j = 2
     Do
-        If CaseName = Sheets("ExpectResult").Cells(j, "A") Then
-        
+        If casename = Sheets("ExpectResult").Cells(j, "A") Then
+            
             result = True
             Exit Do
         End If
@@ -232,7 +237,7 @@ Function CompareExpectResult(CaseName, CaseRow, i)
     Loop Until Sheets("ExpectResult").Cells(j, "A") = ""
     
     If result = False Then
-        x = MsgBox(CaseName + "的期望結果為未寫入ExpectResult", 0 + 16, "Error")
+        x = MsgBox(casename + "的期望結果為未寫入ExpectResult", 0 + 16, "Error")
         Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(CaseRow, "B").Font.color = RGB(255, 0, 0)
         CompareExpectResult = False
         
@@ -242,4 +247,43 @@ Function CompareExpectResult(CaseName, CaseRow, i)
         CompareExpectResult = True
     End If
     
+End Function
+
+
+Function CheckExpectResultisEmpty()
+
+    
+    Sheets("ExpectResult").Select
+    i = 2
+    Do
+        j = 1: x = 0
+        Do While Sheets("ExpectResult").Cells(i, j + 1) <> ""
+            x = x + 1
+            j = j + 1
+        Loop
+        
+        If x > 0 Then
+            Sheets("ExpectResult").Cells(i, "A").Select
+            With Selection.Font
+                .ColorIndex = xlAutomatic
+                .TintAndShade = 0
+            End With
+            CheckExpectResultisEmpty = True
+        Else
+            x = MsgBox(Sheets("ExpectResult").Cells(i, "A") & "缺少ExpectResult", 0 + 16, "Error")
+            Sheets("ExpectResult").Cells(i, "A").Select
+            With Selection.Font
+                .color = -16776961
+                .TintAndShade = 0
+            End With
+            CheckExpectResultisEmpty = False
+            Exit Function
+            
+        End If
+
+        i = i + 1
+    Loop Until Sheets("ExpectResult").Cells(i, "A") = ""
+    
+
+
 End Function
