@@ -73,11 +73,11 @@
 
 ![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Testcase_example.PNG)
   
-7. ExpectResult工作表輸入各測試案例的期望結果
-
+7. ExpectResult工作表：針對「字串」進行比對
+   
    * A欄第二列處往下填入案列名稱 (CaseName)
         
-   * 與案例名稱同列處輸入期望結果
+   * 與案例名稱同列處輸入期望「字串」結果
         
  ExpectResult範例如下圖：
  
@@ -103,13 +103,13 @@
         
         註：2.2, 2.3及2.4功能僅檢查以_TestScript為結尾且未隱藏的工作表 
 
-3. 功能異常排除：
+3. 功能異常排除：針對功能無法正常運作
 
         3.1 移除增益集自訂工具列，如下圖：
         
       ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/troubleshooting.png)
         
-        3.2 存檔並關閉TestScript.xlsm
+        3.2 存檔TestScript.xlsm
         
         3.3 重新開啟TestScript.xlsm
 
@@ -127,7 +127,7 @@
 
 #### Log紀錄
 
-針對Error之測試案例，進行log的紀錄，存放於C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
+針對Error之測試案例，進行log紀錄，存放於C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
 
 <a name="scriptcreater"/>
 
@@ -137,7 +137,7 @@
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/ScriptCreator.png)
 
-1. 透過指令類型按鈕(藍框)，列出指令清單(綠框)
+1. 指令類型按鈕(藍框)，列出指令清單(綠框)
 
 2. 點選指令清單中的指令(綠框)後，透過Add按鈕加入右側的腳本清單(紫框)
 
