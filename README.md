@@ -101,7 +101,7 @@
         
         2.5 執行腳本：開始執行指定的工作表腳本，建議執行腳本前請確認前4項功能無誤
         
-        註：2.2、2.3及2.4功能僅檢查以_TestScript為結尾且未隱藏的工作表 
+        註：2.2, 2.3及2.4功能僅檢查以_TestScript為結尾且未隱藏的工作表 
 
 3. 功能異常排除：
 
@@ -125,11 +125,9 @@
 
 ![image](https://github.com/Gilleschen/Web_Auto_Testing/blob/master/picture/TestResult.PNG)
 
-#### log紀錄
+#### Log紀錄
 
-1. 針對Error之測試案例，進行log的紀錄
-
-2. 存放於C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
+針對Error之測試案例，進行log的紀錄，存放於C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
 
 <a name="scriptcreater"/>
 
@@ -139,7 +137,7 @@
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/ScriptCreator.png)
 
-1. 透過指令類型按鈕(籃框)，列出指令清單(綠框)
+1. 透過指令類型按鈕(藍框)，列出指令清單(綠框)
 
 2. 點選指令清單中的指令(綠框)後，透過Add按鈕加入右側的腳本清單(紫框)
 
@@ -149,7 +147,7 @@
 
 # 序列測試
 
-1. 啟動與測試裝置數量相同的Appium (例如：要測試兩支裝置，則啟動兩組Appium)
+1. 啟動與測試裝置相同數量的Appium (例如：要測試兩支裝置，則啟動兩組Appium)
 
 2. 進入Advanced欄位 (設定Server Address, Server Port)
 
