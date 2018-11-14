@@ -91,17 +91,17 @@
 
 2. 各功能說明：
 
-        2.1 檢查資訊：確認APP&Device工作表所有欄位是否正確
+        2.1 執行腳本：執行指定的工作表腳本，執行腳本前請確認以下4項功能無誤
         
-        2.2 檢查案例語法：確認各案例結束後均執行QuitAPP方法
+        2.2 檢查資訊：確認APP&Device工作表所有欄位是否正確
         
-        2.3 檢查案例輸入值：確認所有命令及參數是否正確
+        2.3 檢查案例語法：確認各案例結束後均執行QuitAPP方法
         
-        2.4 檢查期望結果：確認案例之期望字串是否列於ExpectResult工作表，當然非所有案列都需列ExpectResult
+        2.4 檢查案例輸入值：確認所有命令及參數是否正確
         
-        2.5 執行腳本：開始執行指定的工作表腳本，建議執行腳本前請確認前4項功能無誤
+        2.5 檢查期望結果：確認案例之期望字串是否列於ExpectResult工作表，當然非所有案列都需列ExpectResult    
         
-        註：2.2, 2.3及2.4功能僅檢查以_TestScript為結尾且未隱藏的工作表 
+        註：2.3, 2.4及2.5功能僅檢查以_TestScript為結尾且未隱藏的工作表 
 
 3. 功能異常排除：針對功能無法正常運作
 
@@ -115,7 +115,7 @@
 
 #### Excel 測試報告
 
-1. 開啟C:\TUTK_QA_TestTool\TestReport\TestReport.xlsm
+1. 開啟 C:\TUTK_QA_TestTool\TestReport\TestReport.xlsm
 
 2. 根據手機UDID自動建立TestReport工作表，如下圖： (e.g. abc123ABC123_TestReport)
 
@@ -125,9 +125,9 @@
 
 ![image](https://github.com/Gilleschen/Web_Auto_Testing/blob/master/picture/TestResult.PNG)
 
-#### Log紀錄
+#### Log 紀錄
 
-針對Error之測試案例，進行log紀錄，存放於C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
+針對Error之測試案例，進行log紀錄，存放於 C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
 
 <a name="scriptcreater"/>
 
