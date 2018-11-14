@@ -91,27 +91,27 @@
 
 2. 各功能說明：
 
-        1 執行腳本：執行指定的工作表腳本，執行腳本前請確認以下4項功能無誤
+        1. 執行腳本：執行指定的工作表腳本，執行腳本前請確認以下4項功能無誤
         
-        2 檢查資訊：確認APP&Device工作表所有欄位是否填寫
+        2. 檢查資訊：確認APP&Device工作表所有欄位是否填寫
         
-        3 檢查案例語法：確認各案例結束後均執行QuitAPP方法
+        3. 檢查案例語法：確認各案例結束後均執行QuitAPP方法
         
-        4 檢查案例輸入值：確認所有命令及參數是否正確
+        4. 檢查案例輸入值：確認所有命令及參數是否正確
         
-        5 檢查期望結果：確認案例之期望字串是否列於ExpectResult工作表，當然非所有案列都需列ExpectResult    
+        5. 檢查期望結果：確認案例之期望字串是否列於ExpectResult工作表，當然非所有案列都需列ExpectResult    
         
         備註：3, 4及5功能僅檢查以_TestScript為結尾且未隱藏的工作表 
 
 3. 功能異常排除：針對功能無法正常運作
 
-        3.1 移除增益集自訂工具列，如下圖：
+        1. 移除增益集自訂工具列，如下圖：
         
       ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/troubleshooting.png)
         
-        3.2 存檔TestScript.xlsm
+        2. 存檔TestScript.xlsm
         
-        3.3 重新開啟TestScript.xlsm
+        3. 重新開啟TestScript.xlsm
 
 #### Excel 測試報告
 
