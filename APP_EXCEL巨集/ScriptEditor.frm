@@ -154,7 +154,15 @@ Private Sub CaseBox_Change()
         i = i + 1
     Loop Until Sheets(ScriptBox.Text).Cells(i, "A") = ""
     
-
+    
+    If StepList.List(StepList.ListCount - 1) <> "QuitAPP" Then
+        x = MsgBox("缺少QuitAPP指令，是否加入?", 4 + 32, "Error")
+    End If
+    
+    If x = 6 Then
+        StepList.AddItem ("QuitAPP")
+        Sheets("EditCase").Cells(k2, "A") = "QuitAPP"
+    End If
 End Sub
 
 
