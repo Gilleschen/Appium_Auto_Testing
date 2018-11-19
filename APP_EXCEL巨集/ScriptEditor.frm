@@ -70,10 +70,10 @@ Private Sub add_Click()
                     'Exit For
                     'processing edit case
                     Sheets("EditCase").Select
-                    lastRow = Cells(1, 1).End(xlDown).row
-                    Rows(lastRow & ":" & lastRow).Select
+                    lastrow = Cells(1, 1).End(xlDown).row
+                    Rows(lastrow & ":" & lastrow).Select
                     Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
-                    Sheets("EditCase").Cells(lastRow, "A") = CommandList.List(i)
+                    Sheets("EditCase").Cells(lastrow, "A") = CommandList.List(i)
                     
                 End If
 skipp:
@@ -145,8 +145,8 @@ Private Sub CaseBox_Change()
                 k2 = k2 + 1
                 
                 j = j + 1
-            Loop Until Sheets(ScriptBox.Text).Cells(j, "A") = "QuitAPP"
-            Sheets("EditCase").Cells(k2, "A") = "QuitAPP"
+            Loop Until Sheets(ScriptBox.Text).Cells(j, "A") = "CaseName" Or Sheets(ScriptBox.Text).Cells(j, "A") = ""
+            'Sheets("EditCase").Cells(k2, "A") = "QuitAPP"
             Exit Do
             
         End If
@@ -154,6 +154,12 @@ Private Sub CaseBox_Change()
         i = i + 1
     Loop Until Sheets(ScriptBox.Text).Cells(i, "A") = ""
     
+
+End Sub
+
+
+
+Private Sub CaseName_Change()
 
 End Sub
 
@@ -166,17 +172,16 @@ Private Sub CheckBox1_Change()
         CaseBox.Visible = False
         CaseName.Visible = True
         CaseName.Text = ""
-    
+        
     Else
         StepList.clear
         CaseBox.Visible = True
         CaseName.Visible = False
         CaseName.Text = ""
+        Call CaseBox_Change
         
     End If
 
-
-    
 End Sub
 
 
@@ -224,17 +229,17 @@ For i = 0 To CommandList.ListCount - 1
     
         If CommandList.selected(i) = True Then
         
-        j = 2
-        Do
-            
-            If CommandList.List(i) = Sheets("說明").Cells(j, "A") Then
-                    
-                    x = Mid(Sheets("說明").Cells(j, "A").NoteText, 12, Len(Sheets("說明").Cells(j, "A").NoteText) - 12 + 1)
-                    Exit Do
-            End If
-            
-            j = j + 1
-        Loop Until Sheets("說明").Cells(j, "A") = ""
+            j = 2
+            Do
+                
+                If CommandList.List(i) = Sheets("說明").Cells(j, "A") Then
+                        
+                        x = Mid(Sheets("說明").Cells(j, "A").NoteText, 12, Len(Sheets("說明").Cells(j, "A").NoteText) - 12 + 1)
+                        Exit Do
+                End If
+                
+                j = j + 1
+            Loop Until Sheets("說明").Cells(j, "A") = ""
             
             Command.Caption = "Command:" + CommandList.List(i) + vbNewLine + x
             Exit For
@@ -323,7 +328,7 @@ Function deleteOldStep()
                 Rows(j).Select
                 Selection.delete Shift:=xlUp
                 
-            Loop Until Sheets(ScriptBox.Text).Cells(j, "A") = "QuitAPP"
+            Loop Until Sheets(ScriptBox.Text).Cells(j, "A") = "" Or Sheets(ScriptBox.Text).Cells(j, "A") = "CaseName"
             Exit Do
         End If
         
@@ -338,7 +343,7 @@ Sub importNewStep(starRow)
    
     Sheets(ScriptBox.Text).Select
     
-    For j = 1 To StepList.ListCount - 2
+    For j = 1 To StepList.ListCount - 1
     
         Rows(starRow).Select
         Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
@@ -393,7 +398,7 @@ Sub importDataFiled(startj)
         Loop Until Sheets("說明").Cells(i, "A") = ""
         'If exitDo = True Then Exit Do
         j = j + 1
-    Loop Until Sheets(ScriptBox.Text).Cells(j, "A") = "QuitAPP"
+    Loop Until Sheets(ScriptBox.Text).Cells(j, "A") = "" Or Sheets(ScriptBox.Text).Cells(j, "A") = "CaseName"
     
 End Sub
 
@@ -407,7 +412,7 @@ Sub importOriginalData(startj)
             k = k + 1
         Loop Until Sheets("EditCase").Cells(i, k) = ""
         i = i + 1: j = j + 1
-    Loop Until Sheets("EditCase").Cells(i, "A") = "QuitAPP"
+    Loop Until Sheets("EditCase").Cells(i, "A") = "CaseName" Or Sheets("EditCase").Cells(i, "A") = ""
     
 
 
@@ -593,7 +598,6 @@ Private Sub up_Click()
             Selection.Cut
             Rows(i & ":" & i).Select
             Selection.Insert Shift:=xlDown
-            
             
             Exit For
             

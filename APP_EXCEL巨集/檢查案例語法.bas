@@ -118,8 +118,12 @@ Function CheckCommand()
 '                    CheckCommand = True
 '                End If
  
-                If QuitAPP <> CaseName Then
-                    x = MsgBox(sheetname & "中缺少QuitAPP或CaseName", 0 + 16, "Error")
+                If QuitAPP > CaseName Then
+                    x = MsgBox(sheetname & "中缺少CaseName", 0 + 16, "Error")
+                    CheckCommand = False
+                    Exit Function
+                ElseIf QuitAPP < CaseName Then
+                    x = MsgBox(sheetname & "中缺少QuitAPP指令", 0 + 16, "Error")
                     CheckCommand = False
                     Exit Function
                 Else
@@ -137,6 +141,7 @@ Function CheckCommand()
     Call Classification_TestCase
     Sheets("APP&Device").Select
 End Function
+
 
 
 Sub Classification_TestCase_2(TestScriptName As String)
