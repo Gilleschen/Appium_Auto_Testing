@@ -17,13 +17,17 @@ Function CheckCommand_2(TestScriptName As String)
         
             CaseName = CaseName + 1
         
-        Case "LaunchAPP"
+        'Case "LaunchAPP"
         
-            LaunchAPP = LaunchAPP + 1
+            'LaunchAPP = LaunchAPP + 1
         
         Case "QuitAPP"
-        
-            QuitAPP = QuitAPP + 1
+            
+            If Sheets(TestScriptName).Cells(j + 1, "A") = "CaseName" Or Sheets(TestScriptName).Cells(j + 1, "A") = "" Then
+            
+                QuitAPP = QuitAPP + 1
+            
+            End If
         
         'Case "Byid_Result"
 
@@ -38,7 +42,7 @@ Function CheckCommand_2(TestScriptName As String)
     j = j + 1
     Loop Until Sheets(TestScriptName).Cells(j, "A") = ""
     
-'    If LaunchAPP <> casename Then
+'    If LaunchAPP <> CaseName Then
 '        x = MsgBox(TestScriptName & "中缺少LaunchAPP或CaseName", 0 + 16, "Error")
 '        CheckCommand_2 = False
 '        Exit Function
@@ -81,13 +85,17 @@ Function CheckCommand()
                     
                         CaseName = CaseName + 1
                     
-                    Case "LaunchAPP"
+                    'Case "LaunchAPP"
                     
-                        LaunchAPP = LaunchAPP + 1
+                        'LaunchAPP = LaunchAPP + 1
                     
                     Case "QuitAPP"
                     
-                        QuitAPP = QuitAPP + 1
+                        If Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(j + 1, "A") = "CaseName" Or Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(j + 1, "A") = "" Then
+            
+                            QuitAPP = QuitAPP + 1
+            
+                        End If
                     
                     'Case "Byid_Result"
     
@@ -102,7 +110,7 @@ Function CheckCommand()
                 j = j + 1
                 Loop Until Sheets(ThisWorkbook.Sheets(i + 1).Name).Cells(j, "A") = ""
                 
-'                If LaunchAPP <> casename Then
+'                If LaunchAPP <> CaseName Then
 '                    x = MsgBox(sheetname & "中缺少LaunchAPP或CaseName", 0 + 16, "Error")
 '                    CheckCommand = False
 '                    Exit Function
@@ -131,7 +139,6 @@ Function CheckCommand()
 End Function
 
 
-
 Sub Classification_TestCase_2(TestScriptName As String)
     Dim row As String
     Dim color As Integer
@@ -154,10 +161,10 @@ Sub Classification_TestCase_2(TestScriptName As String)
             
                 Count = Count + 1
         
-            Loop Until Sheets(sheetname).Cells(Count, "A") = "QuitAPP"
+            Loop Until Sheets(sheetname).Cells(Count, "A") = "CaseName" Or Sheets(sheetname).Cells(Count, "A") = ""
             
-            row = start_count & ":" & Count
-            start_count = Count + 1
+            row = start_count & ":" & Count - 1
+            start_count = Count
             
             color = color * (-1)
             
@@ -210,10 +217,10 @@ Sub Classification_TestCase()
                 
                     Count = Count + 1
             
-                Loop Until Sheets(sheetname).Cells(Count, "A") = "QuitAPP"
+                Loop Until Sheets(sheetname).Cells(Count, "A") = "CaseName" Or Sheets(sheetname).Cells(Count, "A") = ""
                 
-                row = start_count & ":" & Count
-                start_count = Count + 1
+                row = start_count & ":" & Count - 1
+                start_count = Count
                 
                 color = color * (-1)
                 
