@@ -82,6 +82,7 @@ public class method {
 	static long totaltime;// 統計所有案例測試時間
 	static int location;// 紀錄driver arraylist中null的index
 	static int CurrentCase;
+	static int CurrentCaseStep;
 
 	public static void main(String[] args) throws IOException, NoSuchMethodException, SecurityException,
 			IllegalAccessException, IllegalArgumentException, InvocationTargetException, InstantiationException {
@@ -90,7 +91,7 @@ public class method {
 		invokeFunction();
 		EndAppiumSession();// 中斷 Appium 通道
 		System.out.println("測試結束!!!" + "(" + totaltime + " s)");
-		Process proc = Runtime.getRuntime().exec("explorer C:\\TUTK_QA_TestTool\\TestReport");// 開啟TestReport資料夾
+		Runtime.getRuntime().exec("explorer C:\\TUTK_QA_TestTool\\TestReport");// 開啟TestReport資料夾
 
 	}
 
@@ -116,11 +117,12 @@ public class method {
 			System.out.println("[info] CaseName:|" + TestCase.CaseList.get(CurrentCase).toString() + "|");
 			CommandError = true;// 預設CommandError為True
 			CurrentErrorDevice = 0;// 預設出錯的設備數為0台
-			for (int CurrentCaseStep = 0; CurrentCaseStep < TestCase.StepList.get(CurrentCase)
-					.size(); CurrentCaseStep++) {
+			CurrentCaseNumber = CurrentCaseNumber + 1;
+			for (CurrentCaseStep = 0; CurrentCaseStep < TestCase.StepList.get(CurrentCase).size(); CurrentCaseStep++) {
 				if (!CommandError & CurrentErrorDevice == TestCase.DeviceInformation.deviceName.size()) {
 					break;// 若目前測試案例出現CommandError=false，則跳出目前案例並執行下一個案例
 				}
+
 				switch (TestCase.StepList.get(CurrentCase).get(CurrentCaseStep).toString()) {
 
 				case "LaunchAPP":
@@ -303,16 +305,21 @@ public class method {
 					methodName = "ResetAPP";
 					break;
 
+				case "Unlock":
+					methodName = "Unlock";
+					break;
+
 				case "QuitAPP":
 					methodName = "QuitAPP";
 					checkVerifyText = TestCase.StepList.get(CurrentCase).get(CurrentCaseStep - 2).toString();
 					break;
 
-				case "WiFi":
-					methodName = "WiFi";
-					switchWiFi = TestCase.StepList.get(CurrentCase).get(CurrentCaseStep + 1);
-					CurrentCaseStep = CurrentCaseStep + 1;
-					break;
+				// case "WiFi":
+				// methodName = "WiFi";
+				// switchWiFi =
+				// TestCase.StepList.get(CurrentCase).get(CurrentCaseStep + 1);
+				// CurrentCaseStep = CurrentCaseStep + 1;
+				// break;
 
 				}
 
@@ -515,7 +522,6 @@ public class method {
 				}
 			}
 		}
-
 	}
 
 	public void Byid_VerifyText() throws IOException {
@@ -872,50 +878,54 @@ public class method {
 					System.out
 							.println("[info] Executing:|QuitAPP|" + TestCase.DeviceInformation.deviceName.get(j) + "|");
 					driver.get(j).closeApp();
+					// 判斷Step是否到最後一步；是，則填寫TestReport
+					if (CurrentCaseStep + 1 == TestCase.StepList.get(CurrentCase).size()) {
+						// 執行完QuitAPP後，代表該Case流程操作正常結束，因此會再TestReport填入Pass
+						// ;但若先前執行過VerifyText動作後，也會在TestReport填入該Case結果Pass/Fail/Error，因此此處需判斷是否執行過Verify，避免Verify結果被刷掉，如下判斷式
+						for (int i = 0; i < TestCase.StepList.get(CurrentCaseNumber).size(); i++) {
+							if (TestCase.StepList.get(CurrentCaseNumber).get(i).equals("Byid_VerifyText")
+									|| TestCase.StepList.get(CurrentCaseNumber).get(i).equals("ByXpath_VerifyText")
+									|| TestCase.StepList.get(CurrentCaseNumber).get(i).equals("Byid_VerifyRadioButton")
+									|| TestCase.StepList.get(CurrentCaseNumber).get(i)
+											.equals("ByXpath_VerifyRadioButton")) {
+								state[j] = true;// true代表找到Verify
+								break;
+							}
+						}
+						if (!state[j]) {// 若state[j]=false表該case未執行Verify指令，故執行以下流程
 
-					// 執行完QuitAPP後，代表該Case流程操作正常結束，因此會再TestReport填入Pass
-					// ;但若先前執行過VerifyText動作後，也會在TestReport填入該Case結果Pass/Fail/Error，因此此處需判斷是否執行過Verify，避免Verify結果被刷掉，如下判斷式
-					for (int i = 0; i < TestCase.StepList.get(CurrentCaseNumber).size(); i++) {
-						if (TestCase.StepList.get(CurrentCaseNumber).get(i).equals("Byid_VerifyText")
-								|| TestCase.StepList.get(CurrentCaseNumber).get(i).equals("ByXpath_VerifyText")
-								|| TestCase.StepList.get(CurrentCaseNumber).get(i).equals("Byid_VerifyRadioButton")
-								|| TestCase.StepList.get(CurrentCaseNumber).get(i)
-										.equals("ByXpath_VerifyRadioButton")) {
-							state[j] = true;// true代表找到Verify
-							break;
-						}
-					}
-					if (!state[j]) {// 若state[j]=false表該case未執行Verify指令，故執行以下流程
+							try {
+								workBook = new XSSFWorkbook(
+										new FileInputStream("C:\\TUTK_QA_TestTool\\TestReport\\TestReport.xlsm"));
+							} catch (Exception e) {
+								System.err.println(
+										"[Error] Can't find C:\\TUTK_QA_TestTool\\TestReport\\TestReport.xlsm");
+							}
 
-						try {
-							workBook = new XSSFWorkbook(
-									new FileInputStream("C:\\TUTK_QA_TestTool\\TestReport\\TestReport.xlsm"));
-						} catch (Exception e) {
-							System.err.println("[Error] Can't find C:\\TUTK_QA_TestTool\\TestReport\\TestReport.xlsm");
-						}
-
-						if (TestCase.DeviceInformation.deviceName.get(j).toString().length() > 20) {// Excel工作表名稱最常31字元因，故需判斷UDID長度是否大於31
-							char[] NewUdid = new char[20];// 因需包含_TestReport字串(共11字元)，故設定20位字元陣列(31-11)
-							TestCase.DeviceInformation.deviceName.get(j).toString().getChars(0, 20, NewUdid, 0);// 取出UDID前20字元給NewUdid
-							Sheet = workBook.getSheet(String.valueOf(NewUdid) + "_TestReport");// 根據NewUdid，指定某台裝置的TestReport
-																								// sheet
-						} else {
-							Sheet = workBook
-									.getSheet(TestCase.DeviceInformation.deviceName.get(j).toString() + "_TestReport");// 指定某台裝置的TestReport
-																														// sheet
-						}
-						if (CaseErrorList[CurrentCaseNumber][j].equals("Pass")) {// 取出CaseErrorList之第CurrentCaseNumber個測項中的第i台行動裝置之結果
-							Sheet.getRow(CurrentCaseNumber + 1).getCell(1).setCellValue("Pass");// 填入第i台行動裝置之第CurrentCaseNumber個測項結果Pass
-						}
-						// 執行寫入Excel後的存檔動作
-						try {
-							FileOutputStream out = new FileOutputStream(
-									new File("C:\\TUTK_QA_TestTool\\TestReport\\TestReport.xlsm"));
-							workBook.write(out);
-							out.close();
-							workBook.close();
-						} catch (Exception e) {
-							System.err.println("[Error] Can't find C:\\TUTK_QA_TestTool\\TestReport\\TestReport.xlsm");
+							if (TestCase.DeviceInformation.deviceName.get(j).toString().length() > 20) {// Excel工作表名稱最常31字元因，故需判斷UDID長度是否大於31
+								char[] NewUdid = new char[20];// 因需包含_TestReport字串(共11字元)，故設定20位字元陣列(31-11)
+								TestCase.DeviceInformation.deviceName.get(j).toString().getChars(0, 20, NewUdid, 0);// 取出UDID前20字元給NewUdid
+								Sheet = workBook.getSheet(String.valueOf(NewUdid) + "_TestReport");// 根據NewUdid，指定某台裝置的TestReport
+																									// sheet
+							} else {
+								Sheet = workBook.getSheet(
+										TestCase.DeviceInformation.deviceName.get(j).toString() + "_TestReport");// 指定某台裝置的TestReport
+																													// sheet
+							}
+							if (CaseErrorList[CurrentCaseNumber][j].equals("Pass")) {// 取出CaseErrorList之第CurrentCaseNumber個測項中的第i台行動裝置之結果
+								Sheet.getRow(CurrentCaseNumber + 1).getCell(1).setCellValue("Pass");// 填入第i台行動裝置之第CurrentCaseNumber個測項結果Pass
+							}
+							// 執行寫入Excel後的存檔動作
+							try {
+								FileOutputStream out = new FileOutputStream(
+										new File("C:\\TUTK_QA_TestTool\\TestReport\\TestReport.xlsm"));
+								workBook.write(out);
+								out.close();
+								workBook.close();
+							} catch (Exception e) {
+								System.err.println(
+										"[Error] Can't find C:\\TUTK_QA_TestTool\\TestReport\\TestReport.xlsm");
+							}
 						}
 					}
 
@@ -984,7 +994,7 @@ public class method {
 	}
 
 	public void LaunchAPP() throws IOException {
-		CurrentCaseNumber = CurrentCaseNumber + 1;
+		// CurrentCaseNumber = CurrentCaseNumber + 1;
 		for (int i = 0; i < driver.size(); i++) {
 			if (driver.get(i) != null) {
 				try {
@@ -998,7 +1008,6 @@ public class method {
 				}
 			}
 		}
-
 	}
 
 	public void Back() throws IOException {
@@ -1062,21 +1071,35 @@ public class method {
 		}
 	}
 
+	public void Unlock() {
+		for (int i = 0; i < driver.size(); i++) {
+			if (driver.get(i) != null) {
+				try {
+					driver.get(i).unlockDevice();
+					ErrorList[i] = "Pass";
+					CaseErrorList[CurrentCaseNumber] = ErrorList;
+				} catch (Exception e) {
+
+				}
+			}
+		}
+	}
+
 	// public void WiFi() throws IOException {
 	//
 	// for (int i = 0; i < driver.size(); i++) {
 	// if (driver.get(i) != null) {
-
+	//
 	// try {
 	// System.out.println("[info] Executing:|WiFi|" + switchWiFi + "|"
 	// + TestCase.DeviceInformation.deviceName.get(i) + "|");
-	// //
+
 	// if邏輯說明:(目的避免已開啟wifi或已關閉wif了，又再次執行令啟動wifi或關閉wif(皆去除if判斷僅跑switch流程)，如此可節省測試時間)
-	// // [判斷手機連線狀態為WiFi off及data off(皆NONE) &&
-	// // Excel指令為On時，才執行switch之Case"On"]
-	// // ||[[判斷手機連線狀態為WiFi on || WiFi及Data都啟動(皆ALL)] &&
-	// // Excel指令為Off時，才執行switch之Case"Off"]
-	//
+	// [判斷手機連線狀態為WiFi off及data off(皆NONE) &&
+	// Excel指令為On時，才執行switch之Case"On"]
+	// ||[[判斷手機連線狀態為WiFi on || WiFi及Data都啟動(皆ALL)] &&
+	// Excel指令為Off時，才執行switch之Case"Off"]
+
 	// if ((driver.get(i).getConnection().toString().equals("NONE") &&
 	// switchWiFi.equals("On"))
 	// || ((driver.get(i).getConnection().toString().equals("ALL")
@@ -1087,6 +1110,7 @@ public class method {
 	//
 	// // Appium 6.1.0 API 有問題!!!!
 	// driver.get(i).setConnection(Connection.WIFI);
+	//
 	// break;
 	// case "Off":
 	// // Appium 6.1.0 API 有問題!!!!
@@ -1116,7 +1140,6 @@ public class method {
 
 				try {
 					System.out.println("[info] Executing:|Byid_invisibility|" + appElemnt + "|");
-
 					wait[i] = new WebDriverWait(driver.get(i), command_timeout);
 					wait[i].until(ExpectedConditions.invisibilityOfElementLocated(
 							By.id(TestCase.DeviceInformation.appPackage + ":id/" + appElemnt)));
@@ -1161,7 +1184,6 @@ public class method {
 					System.out.println("[info] Executing:|Byid_LongPress|" + appElemnt + "|");
 					TouchAction t = new TouchAction(driver.get(i));
 					wait[i] = new WebDriverWait(driver.get(i), command_timeout);
-
 					t.longPress(LongPressOptions.longPressOptions().withElement(
 							ElementOption.element(wait[i].until(ExpectedConditions.visibilityOfElementLocated(
 									By.id(TestCase.DeviceInformation.appPackage + ":id/" + appElemnt))))))
@@ -1203,7 +1225,7 @@ public class method {
 	}
 
 	public void ByXpath_Swipe() throws IOException {
-	
+
 		for (int i = 0; i < driver.size(); i++) {
 			if (driver.get(i) != null) {
 				try {
@@ -1263,7 +1285,7 @@ public class method {
 						System.out.println(
 								"[info] Executing:|Swipe|(" + startx + "," + starty + ")|(" + endx + "," + endy + ")|");
 						TouchAction t = new TouchAction(driver.get(i));
-						
+
 						t.press(PointOption.point(startx, starty)).waitAction(WaitOptions.waitOptions(ofSeconds(1)))
 								.moveTo(PointOption.point(endx, endy)).release().perform();
 					}
@@ -1271,7 +1293,6 @@ public class method {
 					CaseErrorList[CurrentCaseNumber] = ErrorList;
 				} catch (Exception e) {
 					ErrorCheck("Swipe", i);
-					break;// 出錯後，離開iterative回圈
 				}
 			}
 
@@ -1293,8 +1314,8 @@ public class method {
 					e = wait[i].until(ExpectedConditions.visibilityOfElementLocated(By.xpath(appElemnt)));
 					s = e.getSize();
 					p = e.getLocation();
-					int errorX = (int) Math.round(s.width * 0.01);
-					int errorY = (int) Math.round(s.height * 0.01);
+					int errorX = (int) Math.round(s.width * 0.05);
+					int errorY = (int) Math.round(s.height * 0.05);
 					for (int j = 0; j < iterative; j++) {
 						if (scroll.equals("DOWN")) {// 畫面向下捲動
 
@@ -1333,8 +1354,8 @@ public class method {
 
 					s = e.getSize();
 					p = e.getLocation();
-					int errorX = (int) Math.round(s.getWidth() * 0.01);
-					int errorY = (int) Math.round(s.getHeight() * 0.01);
+					int errorX = (int) Math.round(s.getWidth() * 0.05);
+					int errorY = (int) Math.round(s.getHeight() * 0.05);
 					for (int j = 0; j < iterative; j++) {
 						if (scroll.equals("RIGHT")) {// 畫面向右捲動 (觀看畫面左方內容)
 
