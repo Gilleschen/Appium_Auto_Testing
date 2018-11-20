@@ -63,7 +63,6 @@ Function CheckCommand_2(TestScriptName As String)
 End Function
 
 
-
 Function CheckCommand()
     Application.ScreenUpdating = False
     Dim sheetname As String
@@ -142,7 +141,90 @@ Function CheckCommand()
     Sheets("APP&Device").Select
 End Function
 
+Function CheckCommand_Ver2()
+    Dim CaseNameState As Boolean
+    Application.ScreenUpdating = False
+    i = 0: j = 1
+    Do
+        If Right(ThisWorkbook.Sheets(i + 1).Name, 11) = "_TestScript" And ThisWorkbook.Sheets(i + 1).Visible = True Then
 
+            Do
+            CaseNameState = False
+                Do
+                    
+                    If ThisWorkbook.Sheets(i + 1).Cells(j, "A") = "CaseName" Then
+                        CaseNameState = True
+                        CaseNameRow = j
+                    End If
+                    j = j + 1
+                Loop Until ThisWorkbook.Sheets(i + 1).Cells(j, "A") = "CaseName" Or ThisWorkbook.Sheets(i + 1).Cells(j, "A") = ""
+                
+                If CaseNameState = True Then
+                
+                     If ThisWorkbook.Sheets(i + 1).Cells(j - 1, "A") <> "QuitAPP" Then
+                        x = MsgBox(ThisWorkbook.Sheets(i + 1).Name & "中缺少QuitAPP指令", 0 + 16, "Error")
+                        ThisWorkbook.Sheets(i + 1).Cells(CaseNameRow, "A").Interior.color = RGB(255, 0, 0)
+                        CheckCommand_Ver2 = False
+                        Exit Function
+                     Else
+                        ThisWorkbook.Sheets(i + 1).Cells(CaseNameRow, "A").Interior.Pattern = xlNone
+                        ThisWorkbook.Sheets(i + 1).Cells(j - 1, "A").Interior.Pattern = xlNone
+                     End If
+                Else
+                        x = MsgBox(ThisWorkbook.Sheets(i + 1).Name & "中缺少CaseName", 0 + 16, "Error")
+                        ThisWorkbook.Sheets(i + 1).Cells(j - 1, "A").Interior.color = RGB(255, 0, 0)
+                        CheckCommand_Ver2 = False
+                        Exit Function
+                    
+                End If
+            Loop Until ThisWorkbook.Sheets(i + 1).Cells(j, "A") = ""
+        End If
+        i = i + 1
+    Loop Until i = ThisWorkbook.Sheets.Count
+    Call Classification_TestCase
+    Sheets("APP&Device").Select
+End Function
+Function CheckCommand_Ver2_2(TestScriptName As String)
+    Dim CaseNameState As Boolean
+    Application.ScreenUpdating = False
+    j = 1
+    
+    Do
+    CaseNameState = False
+        Do
+            
+            If Sheets(TestScriptName).Cells(j, "A") = "CaseName" Then
+                CaseNameState = True
+                CaseNameRow = j
+            End If
+            j = j + 1
+        Loop Until Sheets(TestScriptName).Cells(j, "A") = "CaseName" Or Sheets(TestScriptName).Cells(j, "A") = ""
+        
+        If CaseNameState = True Then
+        
+             If Sheets(TestScriptName).Cells(j - 1, "A") <> "QuitAPP" Then
+                x = MsgBox(TestScriptName & "中缺少QuitAPP指令", 0 + 16, "Error")
+                Sheets(TestScriptName).Cells(CaseNameRow, "A").Interior.color = RGB(255, 0, 0)
+                CheckCommand_Ver2_2 = False
+                Exit Function
+             Else
+                Sheets(TestScriptName).Cells(CaseNameRow, "A").Interior.Pattern = xlNone
+                Sheets(TestScriptName).Cells(j - 1, "A").Interior.Pattern = xlNone
+             End If
+        Else
+                x = MsgBox(TestScriptName & "中缺少CaseName", 0 + 16, "Error")
+                Sheets(TestScriptName).Cells(j - 1, "A").Interior.color = RGB(255, 0, 0)
+                CheckCommand_Ver2_2 = False
+                Exit Function
+            
+        End If
+    Loop Until Sheets(TestScriptName).Cells(j, "A") = ""
+
+        
+    Call Classification_TestCase_2(TestScriptName)
+    Sheets("APP&Device").Select
+    
+End Function
 
 Sub Classification_TestCase_2(TestScriptName As String)
     Dim row As String

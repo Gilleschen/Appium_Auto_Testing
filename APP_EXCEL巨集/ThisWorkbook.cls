@@ -10,7 +10,7 @@ Attribute VB_Exposed = True
 
 Private Sub Workbook_BeforeClose(Cancel As Boolean)
     On Error GoTo skipp
-    Application.CommandBars("功能說明").delete
+    Application.CommandBars("功能說明").Delete
     
     
 skipp:
@@ -101,7 +101,7 @@ Private Sub Workbook_Open()
             .TooltipText = "檢查每Case結束後是否執行QiutAPP"
             .FaceId = 720
             .Tag = "Jhih Chen"
-            .OnAction = "CheckCommand"
+            .OnAction = "CheckCommand_Ver2"
         End With
             
         With CheckValue

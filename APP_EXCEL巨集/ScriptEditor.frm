@@ -18,7 +18,7 @@ Attribute VB_Exposed = False
 Private Sub add_Click()
     Dim selected As Boolean
     selected = False
-    casenamestate = False
+    CaseNameState = False
     QuitAPP = False
     On Error GoTo skipp
     For i = 0 To CommandList.ListCount - 1
@@ -30,7 +30,7 @@ Private Sub add_Click()
                     If CommandList.List(i) = StepList.List(k) Then
                     
                         If StepList.List(k) = "CaseName" Then
-                            casenamestate = True
+                            CaseNameState = True
                             x = MsgBox("CaseName¤w¦s¦b", 0 + 64, "Message")
                             Exit For
                         ElseIf StepList.List(k) = "QuitAPP" Then
@@ -204,7 +204,7 @@ Private Sub clear_Click()
     i = 2
     Do
         Rows(i & ":" & i).Select
-        Selection.delete Shift:=xlUp
+        Selection.Delete Shift:=xlUp
         'i = i + 1
     Loop Until Sheets("EditCase").Cells(i, "A") = "QuitAPP"
 skipp:
@@ -299,7 +299,7 @@ Private Sub CreateCase_Click()
             'Delete EditCase sheet without alert message
             Application.DisplayAlerts = False
             Sheets("EditCase").Select
-            ActiveWindow.SelectedSheets.delete
+            ActiveWindow.SelectedSheets.Delete
             Application.DisplayAlerts = True
             
             x = MsgBox("Done.", 0 + 64, "Message")
@@ -334,7 +334,7 @@ Function deleteOldStep()
             Do
             
                 Rows(j).Select
-                Selection.delete Shift:=xlUp
+                Selection.Delete Shift:=xlUp
                 
             Loop Until Sheets(ScriptBox.Text).Cells(j, "A") = "" Or Sheets(ScriptBox.Text).Cells(j, "A") = "CaseName"
             Exit Do
@@ -469,7 +469,7 @@ Private Sub delete_Click()
                 'processing edit case
                 Sheets("EditCase").Select
                 Rows(i + 1 & ":" & i + 1).Select
-                Selection.delete Shift:=xlUp
+                Selection.Delete Shift:=xlUp
                 Exit For
             End If
 skipp:
@@ -649,7 +649,7 @@ Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
         'Delete EditCase sheet without alert message
         Application.DisplayAlerts = False
         Sheets("EditCase").Select
-        ActiveWindow.SelectedSheets.delete
+        ActiveWindow.SelectedSheets.Delete
         Application.DisplayAlerts = True
     
     End If
