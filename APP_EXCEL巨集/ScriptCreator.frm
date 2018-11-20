@@ -16,30 +16,30 @@ Attribute VB_Exposed = False
 Private Sub add_Click()
     Dim selected As Boolean
     selected = False
-    casenamestate = False
+    CaseNameState = False
     QuitAPP = False
     
     For i = 0 To CommandList.ListCount - 1
     
         If CommandList.selected(i) = True Then
                 
-                For k = 0 To StepList.ListCount - 1
-                    
-                    If CommandList.List(i) = StepList.List(k) Then
-                    
-                        If StepList.List(k) = "CaseName" Then
-                            casenamestate = True
-                            x = MsgBox("CaseName已存在", 0 + 64, "Message")
-                            Exit For
-                        ElseIf StepList.List(k) = "QuitAPP" Then
-                            QuitAPP = True
-                            x = MsgBox("QuitAPP已存在", 0 + 64, "Message")
-                            Exit For
-                        End If
-                        
-                    End If
-
-                Next k
+'                For k = 0 To StepList.ListCount - 1
+'
+'                    If CommandList.List(i) = StepList.List(k) Then
+'
+'                        If StepList.List(k) = "CaseName" Then
+'                            CaseNameState = True
+'                            x = MsgBox("CaseName已存在", 0 + 64, "Message")
+'                            Exit For
+''                        ElseIf StepList.List(k) = "QuitAPP" Then
+''                            QuitAPP = True
+''                            x = MsgBox("QuitAPP已存在", 0 + 64, "Message")
+''                            Exit For
+'                        End If
+'
+'                    End If
+'
+'                Next k
             
                 For j = 0 To StepList.ListCount - 1
                 
@@ -223,7 +223,7 @@ Private Sub delete_Click()
     For i = 0 To StepList.ListCount - 1
     
         If StepList.selected(i) = True Then
-            If StepList.List(i) <> "CaseName" And StepList.List(i) <> "QuitAPP" Then
+            If StepList.List(i) <> "CaseName" And (StepList.List(i) <> "QuitAPP" Or i <> StepList.ListCount - 1) Then
                 StepList.RemoveItem (i)
                 StepList.selected(i) = False
             End If

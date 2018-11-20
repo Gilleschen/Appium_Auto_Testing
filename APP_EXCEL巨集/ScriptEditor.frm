@@ -23,25 +23,38 @@ Private Sub add_Click()
     On Error GoTo skipp
     For i = 0 To CommandList.ListCount - 1
     
-        If CommandList.selected(i) = True Then
+        If CommandList.selected(i) = True And ScriptBox.Text = "" And CaseBox.Text = "" And CheckBox1.Value = False Then
+            x = MsgBox("請先選擇腳本與案例", 0 + 64, "Message")
+            Exit For
+            
+        ElseIf CommandList.selected(i) = True And ScriptBox.Text = "" And CheckBox1.Value = False Then
+            x = MsgBox("請先選擇腳本", 0 + 64, "Message")
+            Exit For
+        
+        ElseIf CommandList.selected(i) = True And ScriptBox.Text <> "" And CaseBox.Text = "" And CheckBox1.Value = False Then
+            x = MsgBox("請先選擇案例", 0 + 64, "Message")
+            Exit For
+    
+    
+        ElseIf CommandList.selected(i) = True Then  'And ScriptBox.Text <> "" And CaseBox.Text <> ""
                 
-                For k = 0 To StepList.ListCount - 1
-                    
-                    If CommandList.List(i) = StepList.List(k) Then
-                    
-                        If StepList.List(k) = "CaseName" Then
-                            CaseNameState = True
-                            x = MsgBox("CaseName已存在", 0 + 64, "Message")
-                            Exit For
-                        ElseIf StepList.List(k) = "QuitAPP" Then
-                            QuitAPP = True
-                            x = MsgBox("QuitAPP已存在", 0 + 64, "Message")
-                            Exit For
-                        End If
-                        
-                    End If
-
-                Next k
+'                For k = 0 To StepList.ListCount - 1
+'
+'                    If CommandList.List(i) = StepList.List(k) Then
+'
+'                        If StepList.List(k) = "CaseName" Then
+'                            CaseNameState = True
+'                            x = MsgBox("CaseName已存在", 0 + 64, "Message")
+'                            Exit For
+''                        ElseIf StepList.List(k) = "QuitAPP" Then
+''                            QuitAPP = True
+''                            x = MsgBox("QuitAPP已存在", 0 + 64, "Message")
+''                            Exit For
+'                        End If
+'
+'                    End If
+'
+'                Next k
             
                 For j = 0 To StepList.ListCount - 1
                 
@@ -76,13 +89,11 @@ Private Sub add_Click()
                     Sheets("EditCase").Cells(lastrow, "A") = CommandList.List(i)
                     
                 End If
+
 skipp:
         End If
  
     Next i
-    
-    
-
     
 End Sub
 
@@ -106,6 +117,7 @@ End Sub
 
 Private Sub CaseBox_Change()
     Application.ScreenUpdating = False
+    
     j = 1
     Do
         If Sheets(ScriptBox.Text).Cells(j, "B") = CaseBox.Text Then
@@ -166,11 +178,6 @@ Private Sub CaseBox_Change()
 End Sub
 
 
-
-Private Sub CaseName_Change()
-
-End Sub
-
 Private Sub CheckBox1_Change()
 
     If CheckBox1.Value = True Then
@@ -186,6 +193,7 @@ Private Sub CheckBox1_Change()
         CaseBox.Visible = True
         CaseName.Visible = False
         CaseName.Text = ""
+        CaseBox.Text = Sheets(ScriptBox.Text).Cells(1, "B")
         Call CaseBox_Change
         
     End If
@@ -204,7 +212,7 @@ Private Sub clear_Click()
     i = 2
     Do
         Rows(i & ":" & i).Select
-        Selection.Delete Shift:=xlUp
+        Selection.delete Shift:=xlUp
         'i = i + 1
     Loop Until Sheets("EditCase").Cells(i, "A") = "QuitAPP"
 skipp:
@@ -299,7 +307,7 @@ Private Sub CreateCase_Click()
             'Delete EditCase sheet without alert message
             Application.DisplayAlerts = False
             Sheets("EditCase").Select
-            ActiveWindow.SelectedSheets.Delete
+            ActiveWindow.SelectedSheets.delete
             Application.DisplayAlerts = True
             
             x = MsgBox("Done.", 0 + 64, "Message")
@@ -334,7 +342,7 @@ Function deleteOldStep()
             Do
             
                 Rows(j).Select
-                Selection.Delete Shift:=xlUp
+                Selection.delete Shift:=xlUp
                 
             Loop Until Sheets(ScriptBox.Text).Cells(j, "A") = "" Or Sheets(ScriptBox.Text).Cells(j, "A") = "CaseName"
             Exit Do
@@ -462,14 +470,14 @@ Private Sub delete_Click()
     For i = 0 To StepList.ListCount - 1
     
         If StepList.selected(i) = True Then
-            If StepList.List(i) <> "CaseName" And StepList.List(i) <> "QuitAPP" Then
+            If StepList.List(i) <> "CaseName" And (StepList.List(i) <> "QuitAPP" Or i <> StepList.ListCount - 1) Then
                 StepList.RemoveItem (i)
                 StepList.selected(i) = False
                 
                 'processing edit case
                 Sheets("EditCase").Select
                 Rows(i + 1 & ":" & i + 1).Select
-                Selection.Delete Shift:=xlUp
+                Selection.delete Shift:=xlUp
                 Exit For
             End If
 skipp:
@@ -526,7 +534,7 @@ End Sub
 
 Private Sub ScriptBox_Change()
     CaseBox.clear
-    
+    CheckBox1.Visible = True
     If CheckBox1.Value = False Then StepList.clear
     
     j = 1
@@ -618,6 +626,7 @@ Private Sub UserForm_Activate()
     ScriptBox.clear
     CaseName.Visible = False
     CaseName.Text = ""
+    CheckBox1.Visible = False
     i = 0
     Do
         If ThisWorkbook.Sheets(i + 1).Visible = True And Right(ThisWorkbook.Sheets(i + 1).Name, 11) = "_TestScript" Then
@@ -649,7 +658,7 @@ Private Sub UserForm_QueryClose(Cancel As Integer, CloseMode As Integer)
         'Delete EditCase sheet without alert message
         Application.DisplayAlerts = False
         Sheets("EditCase").Select
-        ActiveWindow.SelectedSheets.Delete
+        ActiveWindow.SelectedSheets.delete
         Application.DisplayAlerts = True
     
     End If
