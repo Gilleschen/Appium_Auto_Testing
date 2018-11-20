@@ -9,7 +9,7 @@ Sub RunScript()
     
     CheckAPPandDeviceResult = CheckAPPandDevice()
     CheckValueResults = CheckValueResult()
-    CheckCommandResult = CheckCommand()
+    CheckCommandResult = CheckCommand_Ver2()
     CheckExpectResult2 = CheckExpectResult_Ver2()
     
     If CheckAPPandDeviceResult = True And CheckValueResults = True And CheckCommandResult = True And CheckExpectResult2 = True Then
