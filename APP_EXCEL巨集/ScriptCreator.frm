@@ -20,26 +20,9 @@ Private Sub add_Click()
     QuitAPP = False
     
     For i = 0 To CommandList.ListCount - 1
-    
+        
         If CommandList.selected(i) = True Then
                 
-'                For k = 0 To StepList.ListCount - 1
-'
-'                    If CommandList.List(i) = StepList.List(k) Then
-'
-'                        If StepList.List(k) = "CaseName" Then
-'                            CaseNameState = True
-'                            x = MsgBox("CaseName已存在", 0 + 64, "Message")
-'                            Exit For
-''                        ElseIf StepList.List(k) = "QuitAPP" Then
-''                            QuitAPP = True
-''                            x = MsgBox("QuitAPP已存在", 0 + 64, "Message")
-''                            Exit For
-'                        End If
-'
-'                    End If
-'
-'                Next k
             
                 For j = 0 To StepList.ListCount - 1
                 
@@ -49,22 +32,39 @@ Private Sub add_Click()
                     End If
     
                 Next j
-                
-                If selected = True Then
-                    If StepList.List(j) <> "CaseName" Then
-                        StepList.AddItem CommandList.List(i), j
-                        StepList.selected(j + 1) = True
-                        'Exit For
+                If ExceptionCommand(CommandList.List(i)) = False Then
+                    If selected = True Then
+                        If StepList.List(j) <> "CaseName" Then
+                            StepList.AddItem CommandList.List(i), j
+                            StepList.selected(j + 1) = True
+                            Exit For
+                        End If
+                    ElseIf selected = False Then
+                        StepList.AddItem CommandList.List(i), StepList.ListCount - 1
+                        Exit For
                     End If
-                Else
-                    StepList.AddItem CommandList.List(i), StepList.ListCount - 1
-                    'Exit For
                 End If
         End If
  
     Next i
 End Sub
+Function ExceptionCommand(cmd)
+    ' 填入不支援的command
+    exception = Array("WiFi")
+    
+    ExceptionCommand = False
+    
+    For i = LBound(exception) To UBound(exception)
+    
+        If cmd = exception(i) Then
+            ExceptionCommand = True
+            x = MsgBox("目前不支援" & exception(i) & "指令", 0 + 64, "Message")
+            Exit For
+        End If
 
+    Next i
+    
+End Function
 Private Sub APP_Click()
     CommandList.clear
     j = 2

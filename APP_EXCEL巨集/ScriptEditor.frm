@@ -38,23 +38,6 @@ Private Sub add_Click()
     
         ElseIf CommandList.selected(i) = True Then  'And ScriptBox.Text <> "" And CaseBox.Text <> ""
                 
-'                For k = 0 To StepList.ListCount - 1
-'
-'                    If CommandList.List(i) = StepList.List(k) Then
-'
-'                        If StepList.List(k) = "CaseName" Then
-'                            CaseNameState = True
-'                            x = MsgBox("CaseName已存在", 0 + 64, "Message")
-'                            Exit For
-''                        ElseIf StepList.List(k) = "QuitAPP" Then
-''                            QuitAPP = True
-''                            x = MsgBox("QuitAPP已存在", 0 + 64, "Message")
-''                            Exit For
-'                        End If
-'
-'                    End If
-'
-'                Next k
             
                 For j = 0 To StepList.ListCount - 1
                 
@@ -64,39 +47,55 @@ Private Sub add_Click()
                     End If
     
                 Next j
-                
-                If selected = True Then
-                    If StepList.List(j) <> "CaseName" Then
-                        StepList.AddItem CommandList.List(i), j
-                        StepList.selected(j + 1) = True
+                If ExceptionCommand(CommandList.List(i)) = False Then
+                    If selected = True Then
+                        If StepList.List(j) <> "CaseName" Then
+                            StepList.AddItem CommandList.List(i), j
+                            StepList.selected(j + 1) = True
+                            'processing edit case
+                            Sheets("EditCase").Select
+                            Rows(j + 1 & ":" & j + 1).Select
+                            Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
+                            Sheets("EditCase").Cells(j + 1, "A") = CommandList.List(i)
+                            
+                            
+                            'Exit For
+                        End If
+                    Else
+                        StepList.AddItem CommandList.List(i), StepList.ListCount - 1
+                        'Exit For
                         'processing edit case
                         Sheets("EditCase").Select
-                        Rows(j + 1 & ":" & j + 1).Select
+                        lastrow = Cells(1, 1).End(xlDown).row
+                        Rows(lastrow & ":" & lastrow).Select
                         Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
-                        Sheets("EditCase").Cells(j + 1, "A") = CommandList.List(i)
+                        Sheets("EditCase").Cells(lastrow, "A") = CommandList.List(i)
                         
-                        
-                        'Exit For
                     End If
-                Else
-                    StepList.AddItem CommandList.List(i), StepList.ListCount - 1
-                    'Exit For
-                    'processing edit case
-                    Sheets("EditCase").Select
-                    lastrow = Cells(1, 1).End(xlDown).row
-                    Rows(lastrow & ":" & lastrow).Select
-                    Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
-                    Sheets("EditCase").Cells(lastrow, "A") = CommandList.List(i)
-                    
                 End If
-
 skipp:
         End If
  
     Next i
     
 End Sub
+Function ExceptionCommand(cmd)
+    ' 填入不支援的command
+    exception = Array("WiFi")
+    
+    ExceptionCommand = False
+    
+    For i = LBound(exception) To UBound(exception)
+    
+        If cmd = exception(i) Then
+            ExceptionCommand = True
+            x = MsgBox("目前不支援" & exception(i) & "指令", 0 + 64, "Message")
+            Exit For
+        End If
 
+    Next i
+    
+End Function
 Private Sub APP_Click()
     CommandList.clear
     j = 2
@@ -179,7 +178,12 @@ End Sub
 
 
 Private Sub CheckBox1_Change()
-
+    
+    If CaseBox.Text <> "" Then
+        temp = CaseBox.Text
+    
+    End If
+    
     If CheckBox1.Value = True Then
         StepList.clear
         StepList.AddItem ("CaseName")
@@ -193,8 +197,8 @@ Private Sub CheckBox1_Change()
         CaseBox.Visible = True
         CaseName.Visible = False
         CaseName.Text = ""
-        CaseBox.Text = Sheets(ScriptBox.Text).Cells(1, "B")
-        Call CaseBox_Change
+        If temp <> "" Then CaseBox.Text = temp: Call CaseBox_Change     'Sheets(ScriptBox.Text).Cells(1, "B")
+        
         
     End If
 
@@ -534,24 +538,25 @@ End Sub
 
 Private Sub ScriptBox_Change()
     CaseBox.clear
-    CheckBox1.Visible = True
+    
     If CheckBox1.Value = False Then StepList.clear
     
-    j = 1
-    Do
-        If Sheets(ScriptBox.Text).Cells(j, "A") = "CaseName" Then
-        
-          CaseBox.AddItem (Sheets(ScriptBox.Text).Cells(j, "B"))
-        
-        End If
-        
-    
-    j = j + 1
-    Loop Until Sheets(ScriptBox.Text).Cells(j, "A") = ""
-        
+    If ScriptBox.Text <> "" Then
+        CheckBox1.Visible = True
+        j = 1
+        Do
+            If Sheets(ScriptBox.Text).Cells(j, "A") = "CaseName" Then
+            
+              CaseBox.AddItem (Sheets(ScriptBox.Text).Cells(j, "B"))
+            
+            End If
+        j = j + 1
+        Loop Until Sheets(ScriptBox.Text).Cells(j, "A") = ""
+    Else
+        CheckBox1.Visible = False
+    End If
         
 End Sub
-
 
 
 Private Sub SendKey_Click()
