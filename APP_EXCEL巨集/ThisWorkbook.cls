@@ -19,7 +19,7 @@ End Sub
 
 Private Sub Workbook_Open()
     Dim myNewBar As CommandBar           '宣告工具列物件
-    Dim ScriptCreator, ScriptEditor, EditExpectResult, CheckAPP, RunScript, CheckAPPandDevice As CommandBarButton '宣告工具列按鈕物件
+    Dim ScriptCreator, ScriptEditor, EditDeviceAndAPP, EditExpectResult, CheckAPP, RunScript, CheckAPPandDevice As CommandBarButton '宣告工具列按鈕物件
     'Dim ScriptCreator, ScriptEditor, CheckAPP, RunScript, CheckAPPandDevice, CheckCommand, CheckValue, CheckExpectResult As CommandBarButton '宣告工具列按鈕物件
     Set myNewBar = Application.CommandBars.add      '新增一個工具列
     On Error GoTo skipp
@@ -31,6 +31,7 @@ Private Sub Workbook_Open()
     With myNewBar
         Set RunScript = .Controls.add(msoControlButton)
         Set CheckAPPandDevice = .Controls.add(msoControlButton)
+        Set EditDeviceAndAPP = .Controls.add(msoControlButton)
 '        Set CheckCommand = .Controls.add(msoControlButton)
 '        Set CheckValue = .Controls.add(msoControlButton)
 '        Set CheckExpectResult = .Controls.add(msoControlButton)
@@ -77,6 +78,16 @@ Private Sub Workbook_Open()
             .FaceId = 1552
             .Tag = "Jhih Chen"
             .OnAction = "LaunchEditExpectResult"
+        End With
+        
+        With EditDeviceAndAPP
+            .Style = msoButtonIconAndCaption
+            .BeginGroup = True
+            .Caption = "管理UDID/PackageName"
+            .TooltipText = "編輯/新增UDID/PackageName"
+            .FaceId = 2059
+            .Tag = "Jhih Chen"
+            .OnAction = "LunchAPPandDevice"
         End With
         
         
