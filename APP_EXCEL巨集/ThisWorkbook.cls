@@ -10,7 +10,7 @@ Attribute VB_Exposed = True
 
 Private Sub Workbook_BeforeClose(Cancel As Boolean)
     On Error GoTo skipp
-    Application.CommandBars("功能說明").Delete
+    Application.CommandBars("功能說明").delete
     
     
 skipp:
@@ -19,8 +19,8 @@ End Sub
 
 Private Sub Workbook_Open()
     Dim myNewBar As CommandBar           '宣告工具列物件
-    Dim ScriptCreator, ScriptEditor, CheckAPP, RunScript, CheckAPPandDevice, CheckCommand, CheckValue, CheckExpectResult As CommandBarButton '宣告工具列按鈕物件
-
+    Dim ScriptCreator, ScriptEditor, EditExpectResult, CheckAPP, RunScript, CheckAPPandDevice As CommandBarButton '宣告工具列按鈕物件
+    'Dim ScriptCreator, ScriptEditor, CheckAPP, RunScript, CheckAPPandDevice, CheckCommand, CheckValue, CheckExpectResult As CommandBarButton '宣告工具列按鈕物件
     Set myNewBar = Application.CommandBars.add      '新增一個工具列
     On Error GoTo skipp
 
@@ -31,12 +31,13 @@ Private Sub Workbook_Open()
     With myNewBar
         Set RunScript = .Controls.add(msoControlButton)
         Set CheckAPPandDevice = .Controls.add(msoControlButton)
-        Set CheckCommand = .Controls.add(msoControlButton)
-        Set CheckValue = .Controls.add(msoControlButton)
-        Set CheckExpectResult = .Controls.add(msoControlButton)
+'        Set CheckCommand = .Controls.add(msoControlButton)
+'        Set CheckValue = .Controls.add(msoControlButton)
+'        Set CheckExpectResult = .Controls.add(msoControlButton)
         Set ScriptCreator = .Controls.add(msoControlButton)
         Set ScriptEditor = .Controls.add(msoControlButton)
         Set CheckAPP = .Controls.add(msoControlButton)
+        Set EditExpectResult = .Controls.add(msoControlButton)
         
         With ScriptCreator
             .Style = msoButtonIconAndCaption
@@ -63,9 +64,19 @@ Private Sub Workbook_Open()
             .BeginGroup = True
             .Caption = "指令檢查"
             .TooltipText = "檢查特定腳本指令"
-            .FaceId = 202
+            .FaceId = 1714
             .Tag = "Jhih Chen"
             .OnAction = "LaunchCheckAPP"
+        End With
+        
+        With EditExpectResult
+            .Style = msoButtonIconAndCaption
+            .BeginGroup = True
+            .Caption = "編輯期望字串"
+            .TooltipText = "編輯/新增期望字串"
+            .FaceId = 1552
+            .Tag = "Jhih Chen"
+            .OnAction = "LaunchEditExpectResult"
         End With
         
         
@@ -94,36 +105,36 @@ Private Sub Workbook_Open()
         
         End With
         
-        With CheckCommand
-            .Style = msoButtonIconAndCaption  ' msoCombolabel
-            .BeginGroup = True
-            .Caption = "檢查案例語法"                 '
-            .TooltipText = "檢查每Case結束後是否執行QiutAPP"
-            .FaceId = 720
-            .Tag = "Jhih Chen"
-            .OnAction = "CheckCommand_Ver2"
-        End With
-            
-        With CheckValue
-            .Style = msoButtonIconAndCaption  ' msoCombolabel
-            .BeginGroup = True
-            .Caption = "檢查案例輸入值"                 '
-            .TooltipText = "檢查所有命令及參數是否正確"
-            .FaceId = 720
-            .Tag = "Jhih Chen"
-            .OnAction = "CheckValue"
-        End With
-        
-        With CheckExpectResult
-            .Style = msoButtonIconAndCaption  ' msoCombolabel
-            .BeginGroup = True
-            .Caption = "檢查期望結果"                 '
-            .TooltipText = "確認Case之期望結果均列於ExpectResult工作表(非所有Case都要填寫ExpectResult)"
-            .FaceId = 720 '25
-            .Tag = "Jhih Chen"
-            .OnAction = "CheckExpectResult_Ver2"
-        
-        End With
+'        With CheckCommand
+'            .Style = msoButtonIconAndCaption  ' msoCombolabel
+'            .BeginGroup = True
+'            .Caption = "檢查案例語法"                 '
+'            .TooltipText = "檢查每Case結束後是否執行QiutAPP"
+'            .FaceId = 720
+'            .Tag = "Jhih Chen"
+'            .OnAction = "CheckCommand_Ver2"
+'        End With
+'
+'        With CheckValue
+'            .Style = msoButtonIconAndCaption  ' msoCombolabel
+'            .BeginGroup = True
+'            .Caption = "檢查案例輸入值"                 '
+'            .TooltipText = "檢查所有命令及參數是否正確"
+'            .FaceId = 720
+'            .Tag = "Jhih Chen"
+'            .OnAction = "CheckValue"
+'        End With
+'
+'        With CheckExpectResult
+'            .Style = msoButtonIconAndCaption  ' msoCombolabel
+'            .BeginGroup = True
+'            .Caption = "檢查期望字串"                 '
+'            .TooltipText = "確認Case之期望結果均列於ExpectResult工作表(非所有Case都要填寫ExpectResult)"
+'            .FaceId = 720 '25
+'            .Tag = "Jhih Chen"
+'            .OnAction = "CheckExpectResult_Ver2"
+'
+'        End With
         
         
         
