@@ -13,7 +13,7 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-
+    
 Private Sub Add_Click()
     Dim isSelected As Boolean
     Application.ScreenUpdating = False
@@ -38,20 +38,25 @@ Private Sub Add_Click()
             
             If isSelected = True Then
                 
-                Sheets("APP&Device_Data").Cells(i + 2, "C") = TextBox1.Text
-                Sheets("APP&Device_Data").Cells(i + 2, "D") = TextBox2.Text
-                dataList.AddItem Sheets("APP&Device_Data").Cells(i + 2, "C") & " / " & Sheets("APP&Device_Data").Cells(i + 2, "D"), i
-                dataList.RemoveItem (i + 1)
-                x = MsgBox("Done.", 0 + 64, "Message")
+                If checkDuplicate(i + 2, TextBox1.Text, TextBox2.Text, 3) = False Then
+                
+                    Sheets("APP&Device_Data").Cells(i + 2, "C") = TextBox1.Text
+                    Sheets("APP&Device_Data").Cells(i + 2, "D") = TextBox2.Text
+                    dataList.AddItem Sheets("APP&Device_Data").Cells(i + 2, "C") & " / " & Sheets("APP&Device_Data").Cells(i + 2, "D"), i
+                    dataList.RemoveItem (i + 1)
+                    x = MsgBox("Done.", 0 + 64, "Message")
+                    
+                End If
                 
             ElseIf isSelected = False Then
-            
-                lastrow = Sheets("APP&Device_Data").Cells(1, "C").End(xlDown).row
-                Sheets("APP&Device_Data").Cells(lastrow + 1, "C") = TextBox1.Text
-                Sheets("APP&Device_Data").Cells(lastrow + 1, "D") = TextBox2.Text
-                x = MsgBox("Done.", 0 + 64, "Message")
-                dataList.AddItem (Sheets("APP&Device_Data").Cells(lastrow + 1, "C") & " / " & Sheets("APP&Device_Data").Cells(lastrow + 1, "D"))
                 
+                lastRow = Sheets("APP&Device_Data").Cells(1, "C").End(xlDown).row
+                If checkDuplicate(lastRow, TextBox1.Text, TextBox2.Text, 3) = False Then
+                    Sheets("APP&Device_Data").Cells(lastRow + 1, "C") = TextBox1.Text
+                    Sheets("APP&Device_Data").Cells(lastRow + 1, "D") = TextBox2.Text
+                    x = MsgBox("Done.", 0 + 64, "Message")
+                    dataList.AddItem (Sheets("APP&Device_Data").Cells(lastRow + 1, "C") & " / " & Sheets("APP&Device_Data").Cells(lastRow + 1, "D"))
+                End If
             End If
             
         End If
@@ -76,22 +81,28 @@ Private Sub Add_Click()
             Next i
             
             If isSelected = True Then
-                
-                Sheets("APP&Device_Data").Cells(i + 2, "A") = TextBox1.Text
-                Sheets("APP&Device_Data").Cells(i + 2, "B") = TextBox2.Text
-                dataList.AddItem Sheets("APP&Device_Data").Cells(i + 2, "A") & " / " & Sheets("APP&Device_Data").Cells(i + 2, "B"), i
-                dataList.RemoveItem (i + 1)
-                x = MsgBox("Done.", 0 + 64, "Message")
-                
             
-            ElseIf isSelected = False Then
-    
-                lastrow = Sheets("APP&Device_Data").Cells(1, "A").End(xlDown).row
-                Sheets("APP&Device_Data").Cells(lastrow + 1, "A") = TextBox1.Text
-                Sheets("APP&Device_Data").Cells(lastrow + 1, "B") = TextBox2.Text
-                x = MsgBox("Done.", 0 + 64, "Message")
-                dataList.AddItem (Sheets("APP&Device_Data").Cells(lastrow + 1, "A") & " / " & Sheets("APP&Device_Data").Cells(lastrow + 1, "B"))
+                If checkDuplicate(i + 2, TextBox1.Text, TextBox2.Text, 1) = False Then
                 
+                    Sheets("APP&Device_Data").Cells(i + 2, "A") = TextBox1.Text
+                    Sheets("APP&Device_Data").Cells(i + 2, "B") = TextBox2.Text
+                    dataList.AddItem Sheets("APP&Device_Data").Cells(i + 2, "A") & " / " & Sheets("APP&Device_Data").Cells(i + 2, "B"), i
+                    dataList.RemoveItem (i + 1)
+                    x = MsgBox("Done.", 0 + 64, "Message")
+                
+                End If
+                
+            ElseIf isSelected = False Then
+                
+                lastRow = Sheets("APP&Device_Data").Cells(1, "A").End(xlDown).row
+                If checkDuplicate(lastRow, TextBox1.Text, TextBox2.Text, 1) = False Then
+                    Sheets("APP&Device_Data").Cells(lastRow + 1, "A") = TextBox1.Text
+                    Sheets("APP&Device_Data").Cells(lastRow + 1, "B") = TextBox2.Text
+                    x = MsgBox("Done.", 0 + 64, "Message")
+                    dataList.AddItem (Sheets("APP&Device_Data").Cells(lastRow + 1, "A") & " / " & Sheets("APP&Device_Data").Cells(lastRow + 1, "B"))
+                    
+                End If
+                       
             End If
     
         End If
@@ -104,7 +115,25 @@ Private Sub Add_Click()
 
     Application.ScreenUpdating = True
 End Sub
+Function checkDuplicate(lastRow, data1 As String, data2 As String, col As Integer)
+    
+    For i = 2 To lastRow
+        
+        If data1 = Sheets("APP&Device_Data").Cells(i, col) Then
+            
+            If data2 = Sheets("APP&Device_Data").Cells(i, col + 1) Then
+                checkDuplicate = True
+                Exit Function
+            Else
+                checkDuplicate = False
+                'Exit Function
+            End If
+            
+        End If
 
+    Next i
+
+End Function
 
 
 
@@ -147,8 +176,8 @@ End Sub
 
 Private Sub delete_Click()
     Application.ScreenUpdating = False
-    Dim delete As Boolean
-    delete = False
+    Dim Delete As Boolean
+    Delete = False
     
     x = MsgBox("½T©w²¾°£?", 1 + 32, "Message")
     
@@ -159,10 +188,10 @@ Private Sub delete_Click()
             Do
             
                 If dataList.selected(i) = True Then
-                    delete = True
+                    Delete = True
                     dataList.RemoveItem (i)
-                    Sheets("APP&Device_Data").Cells(i + 2, "C").delete Shift:=xlUp
-                    Sheets("APP&Device_Data").Cells(i + 2, "D").delete Shift:=xlUp
+                    Sheets("APP&Device_Data").Cells(i + 2, "C").Delete Shift:=xlUp
+                    Sheets("APP&Device_Data").Cells(i + 2, "D").Delete Shift:=xlUp
                     i = i - 1
                 End If
             
@@ -174,10 +203,10 @@ Private Sub delete_Click()
             Do
                 
                 If dataList.selected(i) = True Then
-                    delete = True
+                    Delete = True
                     dataList.RemoveItem (i)
-                    Sheets("APP&Device_Data").Cells(i + 2, "A").delete Shift:=xlUp
-                    Sheets("APP&Device_Data").Cells(i + 2, "B").delete Shift:=xlUp
+                    Sheets("APP&Device_Data").Cells(i + 2, "A").Delete Shift:=xlUp
+                    Sheets("APP&Device_Data").Cells(i + 2, "B").Delete Shift:=xlUp
                     i = i - 1
                 End If
             
@@ -188,7 +217,7 @@ Private Sub delete_Click()
     
     End If
     
-    If delete = True Then
+    If Delete = True Then
         x = MsgBox("Done.", 0 + 64, "Message")
         TextBox1.Text = ""
         TextBox2.Text = ""
