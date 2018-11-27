@@ -77,7 +77,7 @@
 
 ![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Testcase_example.PNG)
   
-7. ExpectResult工作表：針對「字串」進行比對
+7. ExpectResult工作表：針對「字串」進行比對，可透過[編輯期望字串](#ExpectResult)功能進行編輯
    
    * A欄第二列處往下填入案列名稱 (CaseName)
         
@@ -212,6 +212,8 @@
 3. 點擊Add加入腳本 (橘框)
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/commandCheck.png)
+
+<a name="ExpectResult"/>
 
 #### #11 編輯期望字串說明
 
