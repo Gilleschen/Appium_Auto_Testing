@@ -141,7 +141,7 @@
 
 針對Error之測試案例，進行log紀錄，存放於 C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
 
-<a name="TestInformations"/>
+# VBA功能使用說明
 
 #### APP、設備與腳本說明
 
