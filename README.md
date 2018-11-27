@@ -83,9 +83,9 @@
  
  ![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Result_example.PNG)
 
-#### 測試腳本語法檢查：
+#### VBA 巨集：
 
-1. 執行TestScript.xlsm增益集工具進行語法與資訊檢查，如下圖：
+1. 點擊增益集工具，如下圖 (11項功能)：
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/functions.PNG)
 
@@ -141,7 +141,7 @@
 
 針對Error之測試案例，進行log紀錄，存放於 C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
 
-# VBA 功能使用說明
+# VBA 巨集使用說明
 
 #### #6 APP、設備與腳本說明
 
