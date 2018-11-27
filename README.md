@@ -82,6 +82,22 @@
  ExpectResult範例如下圖：
  
  ![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Result_example.PNG)
+ 
+ #### Excel 測試報告
+
+1. 開啟 C:\TUTK_QA_TestTool\TestReport\TestReport.xlsm
+
+2. 根據手機UDID自動建立TestReport工作表，如下圖： (e.g. abc123ABC123_TestReport)
+
+![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Testreport_sheet_example.PNG)
+
+範例測試結果如下圖：
+
+![image](https://github.com/Gilleschen/Web_Auto_Testing/blob/master/picture/TestResult.PNG)
+
+#### Log 紀錄
+
+針對Error之測試案例，進行log紀錄，存放於 C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
 
 #### VBA 巨集：
 
@@ -124,22 +140,6 @@
         2. 存檔TestScript.xlsm
         
         3. 重新開啟TestScript.xlsm
-
-#### Excel 測試報告
-
-1. 開啟 C:\TUTK_QA_TestTool\TestReport\TestReport.xlsm
-
-2. 根據手機UDID自動建立TestReport工作表，如下圖： (e.g. abc123ABC123_TestReport)
-
-![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Testreport_sheet_example.PNG)
-
-範例測試結果如下圖：
-
-![image](https://github.com/Gilleschen/Web_Auto_Testing/blob/master/picture/TestResult.PNG)
-
-#### Log 紀錄
-
-針對Error之測試案例，進行log紀錄，存放於 C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
 
 # VBA 巨集使用說明
 
