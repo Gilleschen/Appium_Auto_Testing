@@ -13,13 +13,13 @@
 
 1. 於C:\建立 TUTK_QA_TestTool 資料夾 (C:\TUTK_QA_TestTool)
 
-2. 於 TUTK_QA_TestTool 中建立TestTool資料夾與TestReport資料夾
+2. TUTK_QA_TestTool 中建立TestTool資料夾與TestReport資料夾
 
-3. 將 TestScript.xlsm 放至TestTool資料夾 (C:\TUTK_QA_TestTool\TestTool\TestScript.xlsm)(檔名及副檔名請勿更改)
+3. TestScript.xlsm 放至TestTool 資料夾 (C:\TUTK_QA_TestTool\TestTool\TestScript.xlsm)(檔名及副檔名請勿更改)
 
-4. 開啟 TestScript.xlsm 並允許啟動巨集 (已建立APP&Device、ExpectResult及說明工作表)
+4. 開啟 TestScript.xlsm 並允許啟動巨集 (已建立APP&Device、APP&Device_Data、ExpectResult及說明工作表)
 
-5. APP&Device工作表輸入APP Packageanme、APP Activity、測試裝置UDID、測試裝置OS版本、待測試腳本(以_TestScript結尾的工作表)、測試案例名稱、Appium_Android.jar路徑及Reset APP，範例如下圖：
+5. APP&Device工作表輸入APP Packageanme、APP Activity、測試裝置UDID、測試裝置OS版號、待測試腳本(以_TestScript結尾的工作表)、測試案例名稱、Appium_Android.jar路徑、Reset APP及UIAutomator 2，請參考[APP、設備與腳本](#testInformations)，範例如下圖：
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPAndDevice_3.PNG)
 
@@ -99,7 +99,7 @@
 
 針對Error之測試案例，進行log紀錄，存放於 C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
 
-#### VBA 巨集：
+#### VBA 巨集
 
 1. 點擊增益集工具，如下圖 (11項功能)：
 
@@ -117,7 +117,7 @@
         
         5. 檢查期望字串：確認案例之期望字串是否加入ExpectResult工作表。
         
-        6. APP、設備與腳本：設定待測試的APP、UDID及腳本案例。
+        6. APP、設備與腳本：透過VBA設定待測試的APP、UDID及腳本案例，也可手動設定。
         
         7. 管理UDID/PackageName：新增常用的Package name或UDID。
         
@@ -142,6 +142,8 @@
         3. 重新開啟TestScript.xlsm
 
 # VBA 巨集使用說明
+
+<a name="testInformations"/>
 
 #### #6 APP、設備與腳本說明
 
