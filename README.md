@@ -87,19 +87,21 @@
 
 1. 執行TestScript.xlsm增益集工具進行語法與資訊檢查，如下圖：
 
-![image](https://github.com/Gilleschen/Android_invoke_excel/blob/master/picture/Gain_set.PNG)
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/functions.PNG)
 
 2. 各功能說明：
 
-        1. 執行腳本：執行指定的工作表腳本，執行腳本前請確認以下4項功能無誤
+        1. 執行腳本：執行指定的工作表腳本。
         
-        2. 檢查資訊：確認APP&Device工作表所有欄位是否填寫
+        2. 檢查資訊：確認APP&Device工作表所有欄位是否填寫。
         
-        3. 檢查案例語法：確認各案例結束後均執行QuitAPP方法
+        3. 檢查案例語法：確認各案例結束後均執行QuitAPP方法。
         
-        4. 檢查案例輸入值：確認所有命令及參數是否正確
+        4. 檢查案例輸入值：確認所有命令及參數是否正確。
         
-        5. 檢查期望結果：確認案例之期望字串是否列於ExpectResult工作表，當然非所有案列都需列ExpectResult    
+        5. 檢查期望字串：確認案例之期望字串是否列於ExpectResult工作表，當然非所有案列都需列ExpectResult。
+        
+        6. APP與設備資訊：設定待測試的APP、測試設備UDID及
         
         備註：3, 4及5功能僅檢查以_TestScript為結尾且未隱藏的工作表 
 
