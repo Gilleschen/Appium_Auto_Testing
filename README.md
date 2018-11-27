@@ -23,7 +23,7 @@
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPAndDevice_3.PNG)
 
-6. 建立測試腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (e.g. Login_TestScript)，請參考[腳本產生器](#TestInformations)，目前支援指令如下: (有區分大小寫，使用方式請參考TestScript.xlsm內說明工作表) 
+6. 建立測試腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (e.g. Login_TestScript)，請參考[腳本產生器](#scriptcreater)，目前支援指令如下: (有區分大小寫，使用方式請參考TestScript.xlsm內說明工作表) 
 
           CaseName=>測試案列名稱(各案列開始時第一個填寫項目，必填!!!)
 
@@ -101,7 +101,7 @@
         
         5. 檢查期望字串：確認案例之期望字串是否列於ExpectResult工作表。
         
-        6. [APP、設備與腳本](#TestInformations)：設定待測試的APP、測試UDID及測試案例。
+        6. APP、設備與腳本：設定待測試的APP、測試UDID及測試案例。
         
         7. 管理UDID/PackageName：將常用的APP或UDID儲存。
         
@@ -143,21 +143,25 @@
 
 <a name="TestInformations"/>
 
-#### APP、設備與腳本
+#### APP、設備與腳本說明
 
+1. 選擇Package name後，自動列出相對的Activity (藍框)
 
+2. 選擇Udid後，自動列出相對的OS版本 (綠框)
 
+3. 選擇測試腳本，自動列出該腳本下所有的測試案例名稱 (橘框)
 
+4. 設定測試前是否重置APP
 
+5. 設定是否調用UIAutomator 2 (Android 7.0以上需調用；反之，Android 7.0以下不可調用)
 
+6. 輸入Appium_Android.jar的絕對路徑
+
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/TestInformations.png)
 
 <a name="scriptcreater"/>
 
 #### 腳本產生器說明 
-
-點擊增益集中腳本產生器，如下圖：
-
-![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/ScriptCreator.png)
 
 1. 指令類型按鈕(藍框)，列出指令清單(綠框)
 
