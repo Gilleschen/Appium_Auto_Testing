@@ -6,14 +6,14 @@ Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} CheckAPP
    ClientTop       =   465
    ClientWidth     =   6345
    OleObjectBlob   =   "CheckAPP.frx":0000
-   StartUpPosition =   1  '所屬視窗中央
+   StartUpPosition =   2  '螢幕中央
 End
 Attribute VB_Name = "CheckAPP"
 Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
-Private Sub add_Click()
+Private Sub Add_Click()
     Dim ScriptCheck As Boolean
     
     For i = 0 To TotalScriptList.ListCount - 1
@@ -61,9 +61,6 @@ Private Sub cancelSelect_Click()
 End Sub
 
 
-
-
-
 Private Sub clear_Click()
     If CheckScriptList.ListCount > 0 Then
     
@@ -84,7 +81,7 @@ Private Sub CreateCase_Click()
          
             If CheckCommand.Value = True Then
             
-                x = CheckCommand_2(CheckScriptList.List(i))
+                x = CheckCommand_Ver2_2(CheckScriptList.List(i))
                 
             End If
             
@@ -129,6 +126,35 @@ Private Sub delete_Click()
         End If
 
     Next i
+End Sub
+
+
+
+
+Private Sub TotalScriptList_Change()
+    For i = 0 To TotalScriptList.ListCount - 1
+
+        If TotalScriptList.selected(i) = True Then
+
+            TotalScriptList.ControlTipText = TotalScriptList.List(i)
+
+        End If
+
+
+    Next i
+End Sub
+
+Private Sub TotalScriptList_Click()
+'    For i = 0 To TotalScriptList.ListCount - 1
+'
+'        If TotalScriptList.selected(i) = True Then
+'
+'            TotalScriptList.ControlTipText = TotalScriptList.List(i)
+'
+'        End If
+'
+'
+'    Next i
 End Sub
 
 Private Sub UserForm_Activate()
