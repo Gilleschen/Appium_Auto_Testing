@@ -169,13 +169,13 @@
 
 #### #7 管理UDID/PackageName說明
 
-1. 選擇Device UDID (綠框)，列出儲存的UDID及OS版號
+1. 選擇Device UDID後(綠框)，列出儲存的UDID及OS版號
 
-![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/EditUdid.png)
+2. 選擇APP Packagename後 (藍框)，列出儲存的Package name 及 Activity
 
-2. 選擇APP Packagename (藍框)，列出儲存的Package name 及 Activity
+3. 透過文字方塊修改或新增，點擊Add/Edit進行編輯
 
-![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/EditAPP.png)
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/EditUdidandPackagename.png)
 
 <a name="scriptcreater"/>
 
