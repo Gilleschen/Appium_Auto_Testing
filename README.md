@@ -145,15 +145,15 @@
 
 #### #6 APP、設備與腳本說明
 
-1. 選擇Package name後，自動列出相對的Activity (藍框)
+1. 選擇Package name後，自動列出對應的Activity (藍框)
 
-2. 選擇Udid後，自動列出相對的OS版本 (綠框)
+2. 選擇Udid後，自動列出對應的OS版本 (綠框)
 
-3. 選擇測試腳本，自動列出該腳本下所有的測試案例名稱 (橘框)
+3. 選擇測試腳本，自動列出該腳本下的測試案例名稱 (橘框)
 
 4. 測試前是否重置APP
 
-5. 是否調用UIAutomator 2 (Android 7.0以上需調用；反之，Android 7.0以下不可調用)
+5. 是否調用UIAutomator 2 (Android 7.0以上需調用；Android 7.0以下不可調用)
 
 6. 輸入Appium_Android.jar的絕對路徑
 
@@ -161,14 +161,13 @@
 
 #### #7 管理UDID/PackageName說明
 
-1. 選擇Device UDID (綠框)，列出保存的UDID及OS版號
+1. 選擇Device UDID (綠框)，列出儲存的UDID及OS版號
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/EditUdid.png)
 
-2. 選擇APP Packagename (藍框)，列出保存的Package name 及 Activity
+2. 選擇APP Packagename (藍框)，列出儲存的Package name 及 Activity
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/EditAPP.png)
-
 
 <a name="scriptcreater"/>
 
@@ -210,14 +209,13 @@
 
 1. 選擇案例 (綠框)
 
-2. 選擇準備編輯的字串 (藍框)
+2. 選擇待編輯的字串 (藍框)
 
-3. 修改或建立字串後 (紫框)，點擊Add/Edit String 
+3. 修改或建立字串後 (紫框)，點擊Add/Edit String 加入String list中
 
 4. 點擊Add Case可建立新案例至ExpectResult工作表
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/ExpectResultCreator.png)
-
 
 # 序列測試
 
