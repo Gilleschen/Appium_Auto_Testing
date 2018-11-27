@@ -23,6 +23,10 @@
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPAndDevice_3.PNG)
 
+5.1 APP&Device_Data工作表可輸入常用APP Packageanme、APP Activity、測試裝置UDID與測試裝置OS版號，請參考[管理UDID/PackageName](#APPandDevice)如下圖：
+
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPandDevice_Data.PNG)
+
 6. 建立測試腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (e.g. Login_TestScript)，請參考[腳本產生器](#scriptcreater)，目前支援指令如下: (有區分大小寫，使用方式請參考TestScript.xlsm內說明工作表) 
 
           CaseName=>測試案列名稱(各案列開始時第一個填寫項目，必填!!!)
@@ -160,6 +164,8 @@
 6. 輸入Appium_Android.jar的絕對路徑
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/TestInformations.png)
+
+<a name="APPandDevice"/>
 
 #### #7 管理UDID/PackageName說明
 
