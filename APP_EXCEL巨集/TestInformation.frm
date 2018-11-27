@@ -14,6 +14,18 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
+Private Sub cancelCcaseList_Click()
+    
+    For i = 0 To CaseList.ListCount - 1
+    
+        If CaseList.selected(i) = True Then
+            CaseList.selected(i) = False
+        End If
+        
+    Next i
+    
+End Sub
+
 Private Sub CommandButton1_Click()
     Application.ScreenUpdating = False
     If PackageBox.Text = "" Then
@@ -28,9 +40,9 @@ Private Sub CommandButton1_Click()
     
         x = MsgBox("請選擇Script", 0 + 16, "Message")
         
-    ElseIf checkCaseList = False Then
-        
-        x = MsgBox("請選擇Case", 0 + 16, "Message")
+'    ElseIf checkCaseList = False Then
+'
+'        x = MsgBox("請選擇Case", 0 + 16, "Message")
         
     ElseIf checkJarPath = False Then
     
@@ -118,6 +130,10 @@ End Function
 
 Private Sub CommandButton2_Click()
     Unload TestInformation
+End Sub
+
+Private Sub CommandButton3_Click()
+
 End Sub
 
 Private Sub DeviceBox_Change()
