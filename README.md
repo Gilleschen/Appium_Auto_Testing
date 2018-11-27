@@ -101,7 +101,7 @@
         
         5. 檢查期望字串：確認案例之期望字串是否列於ExpectResult工作表。
         
-        6. APP、設備與腳本：設定待測試的APP、測試UDID及測試案例。
+        6. [APP、設備與腳本](#TestInformations)：設定待測試的APP、測試UDID及測試案例。
         
         7. 管理UDID/PackageName：將常用的APP或UDID儲存。
         
@@ -140,6 +140,16 @@
 #### Log 紀錄
 
 針對Error之測試案例，進行log紀錄，存放於 C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
+
+<a name="TestInformations"/>
+
+#### APP、設備與腳本
+
+
+
+
+
+
 
 <a name="scriptcreater"/>
 
