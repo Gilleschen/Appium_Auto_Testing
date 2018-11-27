@@ -99,19 +99,19 @@
         
         4. 檢查案例輸入值：確認所有指令及參數是否正確。
         
-        5. 檢查期望字串：確認案例之期望字串是否列於ExpectResult工作表。
+        5. 檢查期望字串：確認案例之期望字串是否加入ExpectResult工作表。
         
-        6. APP、設備與腳本：設定待測試的APP、測試UDID及測試案例。
+        6. APP、設備與腳本：設定待測試的APP、UDID及腳本案例。
         
-        7. 管理UDID/PackageName：將常用的APP或UDID儲存。
+        7. 管理UDID/PackageName：新增常用的Package name或UDID。
         
-        8. 腳本產生器：透過VBA建立新腳本，也可以手動建立腳本。
+        8. 腳本產生器：透過VBA建立新腳本，也可手動建立腳本。
         
-        9. 腳本編輯器：透過VBA編輯現有的腳本，也可以手動編輯腳本。
+        9. 腳本編輯器：透過VBA編輯現有腳本，也可手動編輯腳本。
         
         10. 指令檢查：針對指定的腳本進行前述第3、4、5點的檢查。
         
-        11. 編輯期望字串：透過VBA編輯/新增期望字串，也可以手動編輯。
+        11. 編輯期望字串：透過VBA編輯/新增期望字串，也可手動編輯字串。
         
         備註：3, 4及5功能僅檢查以_TestScript為結尾且未隱藏的所有工作表 
 
@@ -205,6 +205,18 @@
 3. 點擊Add加入腳本 (橘框)
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/commandCheck.png)
+
+#### #11 編輯期望字串說明
+
+1. 選擇案例 (綠框)
+
+2. 選擇準備編輯的字串 (藍框)
+
+3. 修改或建立字串後 (紫框)，點擊Add/Edit String 
+
+4. 點擊Add Case可建立新案例至ExpectResult工作表
+
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/ExpectResultCreator.png)
 
 
 # 序列測試
