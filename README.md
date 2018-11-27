@@ -143,7 +143,7 @@
 
 # VBA 功能使用說明
 
-#### APP、設備與腳本說明
+#### #6 APP、設備與腳本說明
 
 1. 選擇Package name後，自動列出相對的Activity (藍框)
 
@@ -159,7 +159,7 @@
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/TestInformations.png)
 
-#### 管理UDID/PackageName
+#### #7 管理UDID/PackageName說明
 
 1. 選擇Device UDID (綠框)，列出保存的UDID及OS版號
 
@@ -172,7 +172,7 @@
 
 <a name="scriptcreater"/>
 
-#### 腳本產生器說明 
+#### #8 腳本產生器說明 
 
 1. 指令類型按鈕(藍框)，列出指令清單(綠框)
 
@@ -181,6 +181,31 @@
 3. 腳本清單完成後，點擊Create Case按鈕
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/ScriptCreator3.png)
+
+#### #9 腳本編輯器說明
+
+1. 選擇現有腳本 (綠框)
+
+2. 選擇腳本中案例 (藍框)
+
+3. 列出該案例中的指令 (橘框)
+
+4. 可以新增新案例至腳本中 (紫框)
+
+5. 其餘功能與腳本產生器相同
+
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/ScriptEditor.png)
+
+#### #10 指令檢查說明
+
+1. 選擇檢查的項目 (綠框)
+
+2. 選擇現有腳本 (藍框)
+
+3. 點擊Add加入腳本 (橘框)
+
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/commandCheck.png)
+
 
 # 序列測試
 
