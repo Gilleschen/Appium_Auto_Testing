@@ -144,10 +144,10 @@ End Function
 Function CheckCommand_Ver2()
     Dim CaseNameState As Boolean
     Application.ScreenUpdating = False
-    i = 0: j = 1
+    i = 0
     Do
         If Right(ThisWorkbook.Sheets(i + 1).Name, 11) = "_TestScript" And ThisWorkbook.Sheets(i + 1).Visible = True Then
-
+        j = 1
             Do
             CaseNameState = False
                 Do
