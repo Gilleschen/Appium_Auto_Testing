@@ -141,7 +141,7 @@
 
 針對Error之測試案例，進行log紀錄，存放於 C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
 
-# VBA功能使用說明
+# VBA 功能使用說明
 
 #### APP、設備與腳本說明
 
@@ -151,13 +151,24 @@
 
 3. 選擇測試腳本，自動列出該腳本下所有的測試案例名稱 (橘框)
 
-4. 設定測試前是否重置APP
+4. 測試前是否重置APP
 
-5. 設定是否調用UIAutomator 2 (Android 7.0以上需調用；反之，Android 7.0以下不可調用)
+5. 是否調用UIAutomator 2 (Android 7.0以上需調用；反之，Android 7.0以下不可調用)
 
 6. 輸入Appium_Android.jar的絕對路徑
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/TestInformations.png)
+
+#### 管理UDID/PackageName
+
+1. 選擇Device UDID (綠框)，列出保存的UDID及OS版號
+
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/EditUdid.png)
+
+2. 選擇APP Packagename (藍框)，列出保存的Package name 及 Activity
+
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/EditAPP.png)
+
 
 <a name="scriptcreater"/>
 
