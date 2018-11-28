@@ -19,25 +19,29 @@
 
 4. 開啟 TestScript.xlsm 並允許啟動巨集 (已建立APP&Device、APP&Device_Data、ExpectResult及說明工作表)
 
-5. APP&Device工作表輸入APP Packageanme、APP Activity、測試裝置UDID、測試裝置OS版號、待測試腳本(以_TestScript結尾的工作表)、測試案例名稱、Appium_Android.jar路徑、Reset APP及UIAutomator 2，請參考[APP、設備與腳本](#testInformations)，範例如下圖：
+5. APP&Device工作表：輸入APP Packageanme、APP Activity、測試裝置UDID、測試裝置OS版號、待測試腳本(以_TestScript結尾的工作表)、測試案例名稱、Appium_Android.jar路徑、Reset APP及UIAutomator 2，藉由[APP、設備與腳本](#testInformations)進行設定
+
+範例如下圖：
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPAndDevice_3.PNG)
 
-6. APP&Device_Data工作表可輸入常用APP Packageanme、APP Activity、測試裝置UDID與測試裝置OS版號，請參考[管理UDID/PackageName](#APPandDevice)如下圖：
+6. APP&Device_Data工作表：輸入常用APP Packageanme、APP Activity、測試裝置UDID與測試裝置OS版號，透過[管理UDID/PackageName](#APPandDevice)進行設定
+
+範例如下圖：
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPandDevice_Data.PNG)
 
-7. ExpectResult工作表：針對「字串」進行比對，可透過[編輯期望字串](#ExpectResult)功能進行編輯
+7. ExpectResult工作表：針對「字串」進行比對，使用[編輯期望字串](#ExpectResult)功能進行編輯
    
    * A欄第二列處往下填入案列名稱 (CaseName)
         
-   * 與案例名稱同列處輸入期望「字串」結果
+   * 與案例名稱同列處輸入「期望字串」
         
- ExpectResult範例如下圖：
+範例如下圖：
  
  ![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Result_example.PNG)
 
-8. 建立測試腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (e.g. Login_TestScript)，請參考[腳本產生器](#scriptcreater)，目前支援指令如下: (有區分大小寫，使用方式請參考TestScript.xlsm內說明工作表) 
+8. 建立測試腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (如：Login_TestScript)，請參考[腳本產生器](#scriptcreater)，目前支援指令如下：(有區分大小寫，使用方式請參考TestScript.xlsm內說明工作表) 
 
           CaseName=>測試案列名稱(各案列開始時第一個填寫項目，必填!!!)
 
