@@ -1,6 +1,6 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} TestInformation 
-   Caption         =   "APP & Device"
+   Caption         =   "Test Informations"
    ClientHeight    =   6015
    ClientLeft      =   120
    ClientTop       =   465
@@ -137,17 +137,24 @@ Private Sub CommandButton3_Click()
 End Sub
 
 Private Sub DeviceBox_Change()
+
     OSLabel.Caption = "OS Version: " & Sheets("APP&Device_Data").Cells(DeviceBox.ListIndex + 2, "D")
     
-    x = Left(Sheets("APP&Device_Data").Cells(DeviceBox.ListIndex + 2, "D"), 1)
-    If x >= 7 Then
+    y = Mid(Sheets("APP&Device_Data").Cells(DeviceBox.ListIndex + 2, "D"), 2, 1)
+    
+    If y <> "." Then
         UITrue.Value = True
-    Else
-        UIFalse.Value = True
+    ElseIf y = "." Then
+        x = Left(Sheets("APP&Device_Data").Cells(DeviceBox.ListIndex + 2, "D"), 1)
+        If x >= 7 Then
+            UITrue.Value = True
+        Else
+            UIFalse.Value = True
+        End If
+        
     End If
     
 End Sub
-
 
 Private Sub PackageBox_Change()
     ActivityLabel.Caption = "Activity: " & Sheets("APP&Device_Data").Cells(PackageBox.ListIndex + 2, "B")

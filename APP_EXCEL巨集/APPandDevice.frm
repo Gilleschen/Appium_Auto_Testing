@@ -1,7 +1,7 @@
 VERSION 5.00
 Begin {C62A69F0-16DC-11CE-9E98-00AA00574A4F} APPandDevice 
    Caption         =   "Edit Udid and Package"
-   ClientHeight    =   5580
+   ClientHeight    =   5445
    ClientLeft      =   120
    ClientTop       =   465
    ClientWidth     =   6675
@@ -176,8 +176,8 @@ End Sub
 
 Private Sub delete_Click()
     Application.ScreenUpdating = False
-    Dim Delete As Boolean
-    Delete = False
+    Dim delete As Boolean
+    delete = False
     
     x = MsgBox("½T©w²¾°£?", 1 + 32, "Message")
     
@@ -188,10 +188,10 @@ Private Sub delete_Click()
             Do
             
                 If dataList.selected(i) = True Then
-                    Delete = True
+                    delete = True
                     dataList.RemoveItem (i)
-                    Sheets("APP&Device_Data").Cells(i + 2, "C").Delete Shift:=xlUp
-                    Sheets("APP&Device_Data").Cells(i + 2, "D").Delete Shift:=xlUp
+                    Sheets("APP&Device_Data").Cells(i + 2, "C").delete Shift:=xlUp
+                    Sheets("APP&Device_Data").Cells(i + 2, "D").delete Shift:=xlUp
                     i = i - 1
                 End If
             
@@ -203,10 +203,10 @@ Private Sub delete_Click()
             Do
                 
                 If dataList.selected(i) = True Then
-                    Delete = True
+                    delete = True
                     dataList.RemoveItem (i)
-                    Sheets("APP&Device_Data").Cells(i + 2, "A").Delete Shift:=xlUp
-                    Sheets("APP&Device_Data").Cells(i + 2, "B").Delete Shift:=xlUp
+                    Sheets("APP&Device_Data").Cells(i + 2, "A").delete Shift:=xlUp
+                    Sheets("APP&Device_Data").Cells(i + 2, "B").delete Shift:=xlUp
                     i = i - 1
                 End If
             
@@ -217,7 +217,7 @@ Private Sub delete_Click()
     
     End If
     
-    If Delete = True Then
+    If delete = True Then
         x = MsgBox("Done.", 0 + 64, "Message")
         TextBox1.Text = ""
         TextBox2.Text = ""
