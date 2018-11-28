@@ -15,27 +15,37 @@
 
 #### 測試腳本建立流程
 
-1. 於C:\建立 TUTK_QA_TestTool 資料夾 (C:\TUTK_QA_TestTool)
+1. 於C:\建立TUTK_QA_TestTool資料夾 (C:\TUTK_QA_TestTool)
 
-2. TUTK_QA_TestTool 中建立TestTool資料夾與TestReport資料夾
+2. TUTK_QA_TestTool中新增TestTool資料夾與TestReport資料夾，將TestScript.xlsm移至TestTool資料夾 (C:\TUTK_QA_TestTool\TestTool\TestScript.xlsm)
 
-3. TestScript.xlsm 放至TestTool 資料夾 (C:\TUTK_QA_TestTool\TestTool\TestScript.xlsm)(檔名及副檔名請勿更改)
+3. 開啟TestScript.xlsm 並允許啟動巨集 (已建立APP&Device、APP&Device_Data、ExpectResult及說明工作表)
 
-4. 開啟 TestScript.xlsm 並允許啟動巨集 (已建立APP&Device、APP&Device_Data、ExpectResult及說明工作表)
-
-5. APP&Device工作表：輸入APP Packageanme、APP Activity、測試裝置UDID、測試裝置OS版號、待測試腳本(以_TestScript結尾的工作表)、測試案例名稱、Appium_Android.jar路徑、Reset APP及UIAutomator 2，藉由[APP、設備與腳本](#testInformations)進行設定
+4. APP&Device工作表：設定測試APP、測試裝置及測試腳本等資訊，如下清單，藉由[APP、設備與腳本](#testInformations)進行設定
+   * APP Package name與Activity
+   
+   * 測試裝置UDID與OS版號
+   
+   * 待測試腳本工作表(名稱以_TestScript為結尾)與測試案例
+   
+   * Appium_Android.jar絕對路徑
+   
+   * Reset APP及UIAutomator 2
 
 範例如下圖：
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPAndDevice_3.PNG)
 
-6. APP&Device_Data工作表：輸入常用APP Packageanme、APP Activity、測試裝置UDID與測試裝置OS版號，透過[管理UDID/PackageName](#APPandDevice)進行設定
+5. APP&Device_Data工作表：設定常用Package name、Activity、測試裝置UDID與OS版號，如下清單，透過[管理UDID/PackageName](#APPandDevice)進行設定
+   * APP Package name與Activity
+   
+   * 測試裝置UDID與OS版號
 
 範例如下圖：
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPandDevice_Data.PNG)
 
-7. ExpectResult工作表：針對「字串」進行比對，使用[編輯期望字串](#ExpectResult)功能進行編輯
+6. ExpectResult工作表：針對「字串」進行比對，使用[編輯期望字串](#ExpectResult)功能進行編輯
    
    * A欄第二列處往下填入案列名稱 (CaseName)
         
@@ -45,7 +55,7 @@
  
  ![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Result_example.PNG)
 
-8. 建立測試腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (如：Login_TestScript)，請參考[腳本產生器](#scriptcreater)，目前支援指令如下：(有區分大小寫，使用方式請參考TestScript.xlsm內說明工作表) 
+7. 建立測試腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (如：Login_TestScript)，請參考[腳本產生器](#scriptcreater)，目前支援指令如下：(有區分大小寫，使用方式請參考TestScript.xlsm內說明工作表) 
 
           CaseName=>測試案列名稱(各案列開始時第一個填寫項目，必填!!!)
 
