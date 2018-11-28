@@ -125,9 +125,9 @@
         
         5. 檢查期望字串：確認案例之期望字串是否加入ExpectResult工作表。
         
-        6. APP、設備與腳本：透過VBA設定待測試的APP、UDID及腳本案例，也可手動設定。
+        6. APP、設備與腳本：透過VBA設定待測試的APP、UDID及腳本案例，也可手動填寫。
         
-        7. 管理UDID/PackageName：新增常用的Package name或UDID。
+        7. 管理UDID/PackageName：新增常用的Package name或UDID，也可手動填寫。
         
         8. 腳本產生器：透過VBA建立新腳本，也可手動建立腳本。
         
