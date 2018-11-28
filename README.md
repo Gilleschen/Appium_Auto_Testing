@@ -153,16 +153,6 @@
         
         備註：3, 4及5功能僅檢查以_TestScript為結尾且未隱藏的所有工作表 
 
-3. 功能異常排除：針對功能無法正常運作
-
-        1. 移除增益集自訂工具列，如下圖：
-        
-      ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/troubleshooting.png)
-        
-        2. 存檔TestScript.xlsm
-        
-        3. 重新開啟TestScript.xlsm
-
 # VBA 巨集使用說明
 
 <a name="testInformations"/>
@@ -244,6 +234,17 @@
 4. 點擊Add Case可建立新案例至ExpectResult工作表
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/ExpectResultCreator.png)
+
+#### VBA 功能異常排除
+
+1. 移除增益集自訂工具列，如下圖：
+        
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/troubleshooting.png)
+        
+2. 存檔TestScript.xlsm
+        
+3. 重新開啟TestScript.xlsm
+
 
 # 序列測試
 
