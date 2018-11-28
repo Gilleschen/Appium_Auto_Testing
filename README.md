@@ -55,51 +55,51 @@
  
  ![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Result_example.PNG)
 
-7. 建立測試腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (如：Login_TestScript)，請參考[腳本產生器](#scriptcreater)，目前支援指令如下：(有區分大小寫，使用方式請參考TestScript.xlsm內說明工作表) 
+7. 建立測試腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (如：Login_TestScript)，請參考[腳本產生器](#scriptcreater)，目前支援指令如下：(區分大小寫，使用方式請參考TestScript.xlsm內說明工作表) 
 
-          CaseName=>測試案列名稱(各案列開始時第一個填寫項目，必填!!!)
+    * CaseName: 測試案列名稱(各案列開始時第一個填寫項目，必填!!!)
+    
+    * Back: 點擊行動裝置返回鍵
 
-          Back=>點擊手機返回鍵
+    * Byid_Click/ByXpath_Click: 根據id/xpath搜尋元件並點擊元件
 
-          Byid_Click/ByXpath_Click=>根據id/xpath搜尋元件並點擊元件
+    * Byid_LongPress/ByXpath_LongPress: 根據id/xpath搜尋元件並長按元件
+    
+    * Byid_VerifyText/ByXpath_VerifyText: 根據id/xpath搜尋元件並取得元件Text屬性之字串後，比對ExpectResult內期望字串
 
-          Byid_LongPress/ByXpath_LongPress=>根據id/xpath搜尋元件並長按元件
+    * Byid_SendKey/ByXpath_SendKey: 根據id/xpath搜尋元件並輸入字串
 
-          Byid_VerifyText/ByXpath_VerifyText=>根據id/xpath搜尋元件並取得元件Text屬性之字串後，比對ExpectResult內容
+    * Byid_Clear/ByXpath_Clear: 根據id/xpath搜尋元件並清除字串
 
-          Byid_SendKey/ByXpath_SendKey=>根據id/xpath搜尋元件並輸入數值或字串
+    * Byid_Wait/ByXpath_Wait: 根據id/xpath等待元件出現
 
-          Byid_Clear/ByXpath_Clear=>根據id/xpath搜尋元件並清除數值或字串
+    * Byid_invisibility/ByXpath_invisibility: 根據id/xpath搜尋元件並等待該元件消失
 
-          Byid_Wait/ByXpath_Wait=>根據id/xpath等待元件
+    * Byid_Swipe/ByXpath_Swipe: 根據id/xpath將元件A移動到元件B位置，產生滑動畫面效果
 
-          Byid_invisibility/ByXpath_invisibility=>根據id/xpath搜尋元件並等待該元件消失
+    * ByXpath_Swipe_Vertical/ByXpath_Swipe_Horizontal: 垂直滑動/水平滑動
 
-          Byid_Swipe/ByXpath_Swipe=>根據id/xpath將元件A垂直移動到元件B位置,產生垂直滑動畫面
+    * Swipe: 根據x,y座標滑動畫面
 
-          ByXpath_Swipe_Vertical/ByXpath_Swipe_Horizontal=>垂直滑動/水平滑動n次
+    * ByXpath_Swipe_FindText_Click_Android: 透過垂直/水平滑動畫面，點擊指定元件
 
-          Swipe=>根據x,y座標滑動畫面n次
+    * HideKeyboard: 關閉鍵盤
 
-          ByXpath_Swipe_FindText_Click_Android=>透過垂直/水平滑動畫面，點擊指定元件
+    * Home: 點擊行動裝置Home鍵
 
-          HideKeyboard=>關閉鍵盤
+    * LaunchAPP: 啟動APP&Device工作表指定的PackageName之Activity
 
-          Home=>點擊手機Home鍵
+    * Orientation: 切換行動裝置Landscape及Portrait模式
 
-          LaunchAPP=>啟動APP&Device工作表指定的Packageanme之Activity
+    * Power: 點擊行動裝置電源鍵
 
-          Orientation=>切換手機Landscape及Portrait模式
+    * QuitAPP: 關閉APP&Device工作表指定的PackageName
+    
+    * ResetAPP: 重置APP(清除APP暫存紀錄)並重新啟動APP
 
-          Power=>點擊手機電源鍵
+    * ScreenShot: 螢幕截圖
 
-          QuitAPP=>關閉APP&Device工作表指定的Packageanme之Activity
-
-          ResetAPP=>重置APP(清除APP暫存紀錄)並重新啟動APP
-
-          ScreenShot=>螢幕截圖
-
-          Sleep=>閒置APP n秒鐘
+    * Sleep: 閒置APP
   
 範例腳本如下圖：
 
@@ -109,7 +109,7 @@
 
 1. 開啟 C:\TUTK_QA_TestTool\TestReport\TestReport.xlsm
 
-2. 根據手機UDID自動建立TestReport工作表，如下圖： (e.g. abc123ABC123_TestReport)
+2. 根據行動裝置UDID自動建立TestReport工作表，如下圖： (e.g. abc123ABC123_TestReport)
 
 ![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Testreport_sheet_example.PNG)
 
