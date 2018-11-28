@@ -1,5 +1,5 @@
 # 使用說明
-#### 使用前設定：
+#### 使用前設定
 
 * 安裝 Appium (http://appium.io/)
 
@@ -9,7 +9,11 @@
 
 * 下載<a href="https://github.com/Gilleschen/Appium_Auto_Testing_Android/raw/master/Appium_Android.jar"> Appium_Android.jar</a>及<a href="https://github.com/Gilleschen/Appium_Auto_Testing/blob/master/TestScript.xlsm"> TestScript.xlsm</a>
 
-#### 測試腳本建立流程：
+#### Framework
+
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/Framework.png)
+
+#### 測試腳本建立流程
 
 1. 於C:\建立 TUTK_QA_TestTool 資料夾 (C:\TUTK_QA_TestTool)
 
@@ -249,7 +253,7 @@
 
 3. 啟動各組Appium Server
 
-#### 備註：
+#### 備註
 
 * Appium Client Libraries Version: java-client-6.1.0
 
