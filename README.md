@@ -168,8 +168,6 @@
 
 5. 是否調用UIAutomator 2 (Android 7.0以上需調用；Android 7.0以下不可調用)
 
-6. 輸入Appium_Android.jar的絕對路徑
-
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/TestInformations.png)
 
 <a name="APPandDevice"/>
