@@ -1,4 +1,5 @@
 Attribute VB_Name = "檢查資訊"
+
 Function CheckAPPandDevice()
     Dim sheetname As String
     Dim scriptnumber, result As Integer
@@ -21,9 +22,6 @@ Function CheckAPPandDevice()
                 
             End If
         End If
-        
-        
-    
         i = i + 1
     Loop Until Sheets("APP&Device").Cells(1, i) = ""
     
@@ -104,18 +102,18 @@ Function CheckAPPandDevice()
     i = i + 1
     Loop Until Sheets("APP&Device").Cells(i, "E") = ""
     
-    If Sheets("APP&Device").Cells(2, "G") = "" Then
-    
-        x = MsgBox("請填入Jar檔路徑" & vbNewLine & "例如：C:\Users\Desktop\檔名.jar", 0 + 16, "Error")
-        CheckAPPandDevice = False
-        Exit Function
-    ElseIf Dir(CStr(Sheets("APP&Device").Cells(2, "G"))) = "" Then
-        
-        x = MsgBox("找不到" & Sheets("APP&Device").Cells(2, "G"), 0 + 16, "Error")
-        CheckAPPandDevice = False
-        Exit Function
-        
-    End If
+'    If Sheets("APP&Device").Cells(2, "G") = "" Then
+'
+'        x = MsgBox("請填入Jar檔路徑" & vbNewLine & "例如：C:\Users\Desktop\檔名.jar", 0 + 16, "Error")
+'        CheckAPPandDevice = False
+'        Exit Function
+'    ElseIf Dir(CStr(Sheets("APP&Device").Cells(2, "G"))) = "" Then
+'
+'        x = MsgBox("找不到" & Sheets("APP&Device").Cells(2, "G"), 0 + 16, "Error")
+'        CheckAPPandDevice = False
+'        Exit Function
+'
+'    End If
     
     '確認CaseName欄位
     Sheets("APP&Device").Select
@@ -168,6 +166,30 @@ Function CheckAPPandDevice()
 
     
     '確認ReSet APP欄位
+    Sheets("APP&Device").Cells(2, "G").NumberFormatLocal = "G/通用格式"
+    If Sheets("APP&Device").Cells(2, "G") = "False" Or Sheets("APP&Device").Cells(2, "G") = "FALSE" Or Sheets("APP&Device").Cells(2, "G") = "false" Then
+        
+        Sheets("APP&Device").Cells(2, "G") = "False"
+        Sheets("APP&Device").Cells(2, "G").NumberFormatLocal = "G/通用格式"
+        Sheets("APP&Device").Cells(2, "G").Font.color = RGB(0, 0, 0)
+        CheckAPPandDevice = True
+        
+    ElseIf Sheets("APP&Device").Cells(2, "G") = "True" Or Sheets("APP&Device").Cells(2, "G") = "TRUE" Or Sheets("APP&Device").Cells(2, "G") = "true" Then
+    
+        Sheets("APP&Device").Cells(2, "G") = "True"
+        Sheets("APP&Device").Cells(2, "G").NumberFormatLocal = "G/通用格式"
+        Sheets("APP&Device").Cells(2, "G").Font.color = RGB(0, 0, 0)
+        CheckAPPandDevice = True
+    Else
+        y = MsgBox("ResetAPP欄位請輸入大寫TRUE或FALSE", 0 + 16, "Error")
+        Sheets("APP&Device").Cells(2, "G").Font.color = RGB(255, 0, 0)
+        CheckAPPandDevice = False
+        Exit Function
+        
+    End If
+    
+    
+    '確認UIAutomator 2欄位
     Sheets("APP&Device").Cells(2, "H").NumberFormatLocal = "G/通用格式"
     If Sheets("APP&Device").Cells(2, "H") = "False" Or Sheets("APP&Device").Cells(2, "H") = "FALSE" Or Sheets("APP&Device").Cells(2, "H") = "false" Then
         
@@ -183,32 +205,8 @@ Function CheckAPPandDevice()
         Sheets("APP&Device").Cells(2, "H").Font.color = RGB(0, 0, 0)
         CheckAPPandDevice = True
     Else
-        y = MsgBox("ResetAPP欄位請輸入大寫TRUE或FALSE", 0 + 16, "Error")
-        Sheets("APP&Device").Cells(2, "H").Font.color = RGB(255, 0, 0)
-        CheckAPPandDevice = False
-        Exit Function
-        
-    End If
-    
-    
-    '確認UIAutomator 2欄位
-    Sheets("APP&Device").Cells(2, "I").NumberFormatLocal = "G/通用格式"
-    If Sheets("APP&Device").Cells(2, "I") = "False" Or Sheets("APP&Device").Cells(2, "I") = "FALSE" Or Sheets("APP&Device").Cells(2, "I") = "false" Then
-        
-        Sheets("APP&Device").Cells(2, "I") = "False"
-        Sheets("APP&Device").Cells(2, "I").NumberFormatLocal = "G/通用格式"
-        Sheets("APP&Device").Cells(2, "I").Font.color = RGB(0, 0, 0)
-        CheckAPPandDevice = True
-        
-    ElseIf Sheets("APP&Device").Cells(2, "I") = "True" Or Sheets("APP&Device").Cells(2, "I") = "TRUE" Or Sheets("APP&Device").Cells(2, "I") = "true" Then
-    
-        Sheets("APP&Device").Cells(2, "I") = "True"
-        Sheets("APP&Device").Cells(2, "I").NumberFormatLocal = "G/通用格式"
-        Sheets("APP&Device").Cells(2, "I").Font.color = RGB(0, 0, 0)
-        CheckAPPandDevice = True
-    Else
         y = MsgBox("UIAutomator 2欄位請輸入大寫TRUE或FALSE", 0 + 16, "Error")
-        Sheets("APP&Device").Cells(2, "I").Font.color = RGB(255, 0, 0)
+        Sheets("APP&Device").Cells(2, "H").Font.color = RGB(255, 0, 0)
         CheckAPPandDevice = False
         Exit Function
         

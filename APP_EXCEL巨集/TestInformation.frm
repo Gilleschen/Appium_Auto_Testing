@@ -44,7 +44,7 @@ Private Sub CommandButton1_Click()
 '
 '        x = MsgBox("請選擇Case", 0 + 16, "Message")
         
-    ElseIf checkJarPath = False Then
+    'ElseIf checkJarPath = False Then
     
         'Error
     Else
@@ -71,19 +71,19 @@ Private Sub CommandButton1_Click()
         
         Next
         
-        Sheets("APP&Device").Cells(2, "G") = JarPath.Text
+        'Sheets("APP&Device").Cells(2, "G") = JarPath.Text
         
         If resetTrue.Value = True Then
-            Sheets("APP&Device").Cells(2, "H") = "TRUE"
+            Sheets("APP&Device").Cells(2, "G") = "TRUE"
         ElseIf resetFalse.Value = True Then
-            Sheets("APP&Device").Cells(2, "H") = "FALSE"
+            Sheets("APP&Device").Cells(2, "G") = "FALSE"
         End If
         
         
         If UITrue.Value = True Then
-            Sheets("APP&Device").Cells(2, "I") = "TRUE"
+            Sheets("APP&Device").Cells(2, "H") = "TRUE"
         ElseIf UIFalse.Value = True Then
-            Sheets("APP&Device").Cells(2, "I") = "FALSE"
+            Sheets("APP&Device").Cells(2, "H") = "FALSE"
         End If
         
         x = MsgBox("Done.", 0 + 64, "Message")
@@ -137,7 +137,8 @@ Private Sub CommandButton3_Click()
 End Sub
 
 Private Sub DeviceBox_Change()
-
+    UITrue.Visible = True
+    UIFalse.Visible = True
     OSLabel.Caption = "OS Version: " & Sheets("APP&Device_Data").Cells(DeviceBox.ListIndex + 2, "D")
     
     y = Mid(Sheets("APP&Device_Data").Cells(DeviceBox.ListIndex + 2, "D"), 2, 1)
@@ -172,10 +173,49 @@ Private Sub ScriptBox_Change()
     
 End Sub
 
+Private Sub UIFalse_Click()
+     y = Mid(OSLabel.Caption, 14, 1)
+    
+    If y <> "." Then
+        UITrue.Value = True
+        x = MsgBox("Android版本高於7.0需調用UIAutomator 2", 0 + 64, "Message")
+    ElseIf y = "." Then
+        x = Left(Sheets("APP&Device_Data").Cells(DeviceBox.ListIndex + 2, "D"), 1)
+        If x >= 7 Then
+            UITrue.Value = True
+            x = MsgBox("Android版本高於7.0需調用UIAutomator 2", 0 + 64, "Message")
+        Else
+            UIFalse.Value = True
+        End If
+        
+    End If
+End Sub
+
+Private Sub UITrue_Click()
+    
+    y = Mid(OSLabel.Caption, 14, 1)
+    
+    If y <> "." Then
+        UITrue.Value = True
+    ElseIf y = "." Then
+        x = Left(Sheets("APP&Device_Data").Cells(DeviceBox.ListIndex + 2, "D"), 1)
+        If x >= 7 Then
+            UITrue.Value = True
+        Else
+            UIFalse.Value = True
+            x = MsgBox("Android版本低於7.0無法調用UIAutomator 2", 0 + 64, "Message")
+        End If
+        
+    End If
+    
+End Sub
+
 Private Sub UserForm_Activate()
-            
+                
     resetFalse.Value = True
-    UIFalse.Value = True
+    UIFalse.Value = False
+    UITrue.Visible = False
+    UIFalse.Visible = False
     JarPath.Text = "C:\Users\Desktop\Appium_Android.jar"
             
     i = 2
