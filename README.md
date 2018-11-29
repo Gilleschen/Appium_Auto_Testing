@@ -27,7 +27,7 @@
    
    * 待測試腳本工作表(名稱以_TestScript為結尾)與測試案例
    
-   * 是否Reset APP及是否調用UIAutomator 2
+   * 是否Reset APP及調用UIAutomator 2
 
 範例如下圖：
 
