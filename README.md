@@ -1,4 +1,9 @@
 # 使用說明
+
+#### Framework
+
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/Framework.png)
+
 #### 使用前設定
 
 * 安裝 Appium (http://appium.io/)
@@ -7,21 +12,15 @@
 
 * 啟動 Appium Server (相關參數設定請參考<a href="http://www.automationtestinghub.com/appium-desktop-client-features/">Automation Testing Hub</a>)
 
-* 下載<a href="https://github.com/Gilleschen/Appium_Auto_Testing_Android/raw/master/Appium_Android.jar"> Appium_Android.jar</a>及<a href="https://github.com/Gilleschen/Appium_Auto_Testing/blob/master/TestScript.xlsm"> TestScript.xlsm</a>
+* 下載<a href="https://github.com/Gilleschen/Appium_Auto_Testing_Android/raw/master/Appium_Android.jar"> Appium_Android.jar</a>及<a href="https://github.com/Gilleschen/Appium_Auto_Testing/blob/master/TestScript.xlsm"> TestScript.xlsm</a>至C:\TUTK_QA_TestTool\TestTool資料夾
 
-#### Framework
-
-![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/Framework.png)
+* 建立C:\TUTK_QA_TestTool\TestReport資料夾
 
 #### 測試腳本建立流程
 
-1. 於C:\建立TUTK_QA_TestTool資料夾 (C:\TUTK_QA_TestTool)
+1. 開啟TestScript.xlsm 並允許啟動巨集 (已建立APP&Device、APP&Device_Data、ExpectResult及說明工作表)
 
-2. TUTK_QA_TestTool中新增TestTool資料夾與TestReport資料夾，將TestScript.xlsm移至TestTool資料夾 (C:\TUTK_QA_TestTool\TestTool\TestScript.xlsm)
-
-3. 開啟TestScript.xlsm 並允許啟動巨集 (已建立APP&Device、APP&Device_Data、ExpectResult及說明工作表)
-
-4. APP&Device工作表：設定測試APP、測試裝置及測試腳本等資訊，如下清單，藉由[APP、設備與腳本](#testInformations)進行設定
+2. APP&Device工作表：設定測試APP、測試裝置及測試腳本等資訊，如下清單，藉由[APP、設備與腳本](#testInformations)進行設定
    * APP Package name與Activity
    
    * 測試裝置UDID與OS版號
@@ -36,7 +35,7 @@
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPAndDevice_3.PNG)
 
-5. APP&Device_Data工作表：設定常用Package name、Activity、測試裝置UDID與OS版號，如下清單，透過[管理UDID/PackageName](#APPandDevice)進行設定
+3. APP&Device_Data工作表：設定常用Package name、Activity、測試裝置UDID與OS版號，如下清單，透過[管理UDID/PackageName](#APPandDevice)進行設定
    * APP Package name與Activity
    
    * 測試裝置UDID與OS版號
@@ -45,7 +44,7 @@
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPandDevice_Data.PNG)
 
-6. ExpectResult工作表：針對「字串」進行比對，使用[編輯期望字串](#ExpectResult)功能進行編輯
+4. ExpectResult工作表：針對「字串」進行比對，使用[編輯期望字串](#ExpectResult)功能進行編輯
    
    * A欄第二列處往下填入案列名稱 (CaseName)
         
@@ -55,7 +54,7 @@
  
  ![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Result_example.PNG)
 
-7. 建立測試腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (如：Login_TestScript)，請參考[腳本產生器](#scriptcreater)，目前支援指令如下：(區分大小寫，使用方式請參考TestScript.xlsm內說明工作表) 
+5. 建立測試腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (如：Login_TestScript)，請參考[腳本產生器](#scriptcreater)，目前支援指令如下：(區分大小寫，使用方式請參考TestScript.xlsm內說明工作表) 
 
     * CaseName: 測試案列名稱(各案列開始時第一個填寫項目，必填!!!)
     
