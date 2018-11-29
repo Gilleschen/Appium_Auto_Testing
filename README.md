@@ -126,35 +126,35 @@
 
 2. 各功能說明：
 
-        1. 執行腳本：執行指定的工作表腳本。
+* 執行腳本：執行指定的工作表腳本。
         
-        2. 檢查APP與裝置資訊：確認APP&Device工作表所有欄位是否填寫。
+* 檢查APP與裝置資訊：確認APP&Device工作表所有欄位是否填寫。
         
-        3. 檢查案例語法：確認各案例結束後均執行QuitAPP方法。
+* 檢查案例語法：確認各案例結束後均執行QuitAPP方法。
         
-        4. 檢查案例參數：確認所有指令及參數是否正確。
+* 檢查案例參數：確認所有指令及參數是否正確。
         
-        5. 檢查期望字串：確認案例之期望字串是否加入ExpectResult工作表。
+* 檢查期望字串：確認案例之期望字串是否加入ExpectResult工作表。
         
-        6. APP、設備與腳本：透過VBA設定待測試的APP、UDID及腳本案例，也可手動填寫APP&Device工作表。
+* [APP、設備與腳本](#testInformations)：透過VBA設定待測試的APP、UDID及腳本案例，也可手動填寫APP&Device工作表。
         
-        7. 管理UDID/PackageName：新增常用的Package name或UDID，也可手動填寫APP&Device_Data工作表。
+* [管理UDID/PackageName](#APPandDevice)：新增常用的Package name或UDID，也可手動填寫APP&Device_Data工作表。
         
-        8. 腳本產生器：透過VBA建立新腳本，也可手動建立工作表腳本。
+* [腳本產生器](#scriptcreater)：透過VBA建立新腳本，也可手動建立工作表腳本。
         
-        9. 腳本編輯器：透過VBA編輯現有腳本，也可手動編輯工作表腳本。
+* [腳本編輯器](#scripteditor)：透過VBA編輯現有腳本，也可手動編輯工作表腳本。
         
-        10. 腳本檢查：針對指定的腳本進行前述第3、4、5點的檢查。
+* [腳本檢查](#commandcheck)：針對指定的腳本進行前述第3、4、5點的檢查。
         
-        11. 編輯期望字串：透過VBA編輯/新增期望字串，也可手動編輯ExpectResult工作表字串。
+* [編輯期望字串](#ExpectResult)：透過VBA編輯/新增期望字串，也可手動編輯ExpectResult工作表字串。
         
-        備註：3, 4及5功能僅檢查以_TestScript為結尾且未隱藏的所有工作表 
+備註：3, 4及5功能僅檢查以_TestScript為結尾且未隱藏的所有工作表 
 
 # VBA 巨集使用說明
 
 <a name="testInformations"/>
 
-#### #6 APP、設備與腳本說明
+#### APP、設備與腳本說明
 
 1. 選擇Package name後，自動列出對應的Activity (藍框)
 
@@ -170,7 +170,7 @@
 
 <a name="APPandDevice"/>
 
-#### #7 管理UDID/PackageName說明
+#### 管理UDID/PackageName說明
 
 1. 選擇Device UDID後(綠框)，列出儲存的UDID及OS版號
 
@@ -182,7 +182,7 @@
 
 <a name="scriptcreater"/>
 
-#### #8 腳本產生器說明 
+#### 腳本產生器說明 
 
 1. 指令類型按鈕(藍框)，列出指令清單(綠框)
 
@@ -192,7 +192,9 @@
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/ScriptCreator3.png)
 
-#### #9 腳本編輯器說明
+<a name="scripteditor"/>
+
+#### 腳本編輯器說明
 
 1. 選擇現有腳本 (綠框)
 
@@ -206,7 +208,9 @@
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/ScriptEditor.png)
 
-#### #10 指令檢查說明
+<a name="commandcheck"/>
+
+#### 腳本檢查說明
 
 1. 選擇檢查的項目 (綠框)
 
@@ -218,7 +222,7 @@
 
 <a name="ExpectResult"/>
 
-#### #11 編輯期望字串說明
+#### 編輯期望字串說明
 
 1. 選擇案例 (綠框)
 
