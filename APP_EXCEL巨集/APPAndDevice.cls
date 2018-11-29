@@ -7,9 +7,6 @@ Attribute VB_GlobalNameSpace = False
 Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = True
-
-
-
 Private Sub importScriptAndCase_Click()
 
     Sheets("APP&Device").Cells(2, "E").clear
@@ -195,9 +192,6 @@ Sub loadingDeivceUdid()
     
 End Sub
 
-Private Sub ListBox3_Click()
-
-End Sub
 
 Private Sub Package_Change()
     Application.ScreenUpdating = False
@@ -206,23 +200,39 @@ Private Sub Package_Change()
 End Sub
 
 Private Sub ResetAPP_Change()
-    Sheets("APP&Device").Cells(2, "H") = ResetAPP.Text
+    Sheets("APP&Device").Cells(2, "G") = ResetAPP.Text
 End Sub
 Sub loadingPackage()
     
     Dim PackageCurrent_index As Integer
     
     PackageCurrent_index = Package.ListIndex
-    Package.clear
-    i = 2
-    Do
+    
+    If PackageCurrent_index > -1 Then
+    
+    
+        Package.clear
+        i = 2
+        Do
+    
+            Package.AddItem (Sheets("APP&Device_Data").Cells(i, "A"))
+    
+        i = i + 1
+        Loop Until Sheets("APP&Device_Data").Cells(i, "A") = ""
+    
+        Package.Text = Sheets("APP&Device_Data").Cells(PackageCurrent_index + 2, "A")
+    Else
+        Package.clear
+        i = 2
+        Do
+    
+            Package.AddItem (Sheets("APP&Device_Data").Cells(i, "A"))
+    
+        i = i + 1
+        Loop Until Sheets("APP&Device_Data").Cells(i, "A") = ""
+    
+    End If
 
-        Package.AddItem (Sheets("APP&Device_Data").Cells(i, "A"))
-
-    i = i + 1
-    Loop Until Sheets("APP&Device_Data").Cells(i, "A") = ""
-
-    Package.Text = Sheets("APP&Device_Data").Cells(PackageCurrent_index + 2, "A")
 
 End Sub
 Sub loadingDeviceUDID()
@@ -242,13 +252,13 @@ Sub loadingDeviceUDID()
 End Sub
 Sub loadingResetAPP()
 
-     If Sheets("APP&Device").Cells(2, "H") = "" Then
+     If Sheets("APP&Device").Cells(2, "G") = "" Then
         ResetAPP.clear
         ResetAPP.AddItem ("TRUE")
         ResetAPP.AddItem ("FALSE")
-        ResetAPP.Text = Sheets("APP&Device").Cells(2, "H")
+        ResetAPP.Text = Sheets("APP&Device").Cells(2, "G")
     Else
-        tmp = Sheets("APP&Device").Cells(2, "H")
+        tmp = Sheets("APP&Device").Cells(2, "G")
         ResetAPP.clear
         ResetAPP.AddItem ("TRUE")
         ResetAPP.AddItem ("FALSE")
@@ -258,13 +268,13 @@ Sub loadingResetAPP()
 End Sub
 Sub loadingUIAutomator2()
 
-     If Sheets("APP&Device").Cells(2, "I") = "" Then
+     If Sheets("APP&Device").Cells(2, "H") = "" Then
         UIAutomator2.clear
         UIAutomator2.AddItem ("TRUE")
         UIAutomator2.AddItem ("FALSE")
-        UIAutomator2.Text = Sheets("APP&Device").Cells(2, "I")
+        UIAutomator2.Text = Sheets("APP&Device").Cells(2, "H")
     Else
-        tmp = Sheets("APP&Device").Cells(2, "I")
+        tmp = Sheets("APP&Device").Cells(2, "H")
         UIAutomator2.clear
         UIAutomator2.AddItem ("TRUE")
         UIAutomator2.AddItem ("FALSE")
@@ -274,7 +284,7 @@ Sub loadingUIAutomator2()
 End Sub
 
 Private Sub UIAutomator2_Change()
-    Sheets("APP&Device").Cells(2, "I") = UIAutomator2.Text
+    Sheets("APP&Device").Cells(2, "H") = UIAutomator2.Text
 End Sub
 
 Private Sub Worksheet_Activate()
@@ -291,6 +301,7 @@ End Sub
 
 Private Sub Worksheet_Change(ByVal Target As Range)
     Application.EnableEvents = False
+    Sheets("APP&Device").Select
     If Sheets("APP&Device").Cells(2, "F") = "" Then
         
         For w = 1 To 10
