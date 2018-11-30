@@ -15,7 +15,7 @@ Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
 
-Private Sub add_Click()
+Private Sub Add_Click()
     Dim selected As Boolean
     selected = False
     CaseNameState = False
@@ -66,10 +66,10 @@ Private Sub add_Click()
                         'Exit For
                         'processing edit case
                         Sheets("EditCase").Select
-                        lastrow = Cells(1, 1).End(xlDown).row
-                        Rows(lastrow & ":" & lastrow).Select
+                        lastRow = Cells(1, 1).End(xlDown).row
+                        Rows(lastRow & ":" & lastRow).Select
                         Selection.Insert Shift:=xlDown, CopyOrigin:=xlFormatFromLeftOrAbove
-                        Sheets("EditCase").Cells(lastrow, "A") = CommandList.List(i)
+                        Sheets("EditCase").Cells(lastRow, "A") = CommandList.List(i)
                         
                     End If
                 End If
@@ -81,7 +81,7 @@ skipp:
 End Sub
 Function ExceptionCommand(cmd)
     ' 填入不支援的command
-    exception = Array("WiFi")
+    exception = Array("WiFi", "ByXpath_Swipe_FindText_Click_iOS")
     
     ExceptionCommand = False
     
