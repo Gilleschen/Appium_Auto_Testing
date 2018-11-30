@@ -68,7 +68,7 @@ Step 2. 建立腳本：新增一工作表，工作表名稱必需以_TestScript�
   
 範例腳本如下圖：
 
-![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/TestScript_example.PNG)
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/%E6%A1%88%E4%BE%8B%E8%AA%AA%E6%98%8E.png)
  
 Step 3. 設定「期望字串」：點擊ExpectResult工作表，當使用Byid_VerifyText或ByXpath_VerifyText時(如上圖範例腳本)，需在ExpectResult工作表填入期望字串，可藉由[編輯期望字串](#ExpectResult)功能進行新增。 (若測試案例不包含檢驗字串，則此步驟可省略)
    
