@@ -20,22 +20,7 @@
 
 Step 1. 開啟TestScript.xlsm 並允許啟動巨集 (已建立APP&Device、APP&Device_Data、ExpectResult及說明工作表)
 
-Step 2. APP&Device工作表：設定測試APP、測試裝置及測試腳本等資訊，可藉由[APP、設備與腳本](#testInformations)進行設定，項目如下：
-
-* APP Package name與Activity
-   
-* 測試裝置UDID與OS版本
-   
-* 待測試腳本工作表(名稱以_TestScript為結尾)與測試案例
-   
-* 測試前是否Reset APP
-
-範例如下圖：
-
-![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPAndDevice_3.PNG)
-
-
-Step3. 建立腳本：新增一工作表，工作表名稱必需以_TestScript為結尾 (如：Login_TestScript)，透過[腳本產生器](#scriptcreater)建立腳本，指令(區分大小寫)如下：(指令使用方式請參考TestScript.xlsm內說明工作表) 
+Step 2. 建立腳本：新增一工作表，工作表名稱必需以_TestScript為結尾 (如：Login_TestScript)，可透過[腳本產生器](#scriptcreater)建立腳本，指令(區分大小寫)如下：(指令使用方式請參考TestScript.xlsm內說明工作表) 
 
    * CaseName: 測試案列名稱(各案列開始時第一個填寫項目，必填!!!)
     
@@ -85,7 +70,7 @@ Step3. 建立腳本：新增一工作表，工作表名稱必需以_TestScript�
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/TestScript_example.PNG)
  
-Step 4. ExpectResult工作表：針對「字串」進行比對，使用Byid_VerifyText或ByXpath_VerifyText時(如上圖範例腳本)，需在ExpectResult工作表填入期望字串，可藉由[編輯期望字串](#ExpectResult)功能進行新增
+Step 3. 設定「期望字串」：點擊ExpectResult工作表，當使用Byid_VerifyText或ByXpath_VerifyText時(如上圖範例腳本)，需在ExpectResult工作表填入期望字串，可藉由[編輯期望字串](#ExpectResult)功能進行新增。 (若測試案例不包含檢驗字串，則此步驟可省略)
    
    * A欄第二列處往下填入案列名稱 (CaseName)
         
@@ -95,13 +80,25 @@ Step 4. ExpectResult工作表：針對「字串」進行比對，使用Byid_Veri
  
  ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/ExpectResult_example.PNG)
  
- Step 5. APP&Device_Data工作表：設定常用Package name、Activity、測試裝置UDID與OS版號，透過[管理UDID/PackageName](#APPandDevice)進行設定，如下清單：
+ Step 4. 設定測試APP、測試裝置及測試腳本等資訊：點擊APP&Device工作表，可藉由[APP、設備與腳本](#testInformations)進行設定，項目如下：
 
-   * APP Package name與Activity
+* APP Package name與Activity
    
-   * 測試裝置UDID與OS版號
+* 測試裝置UDID與OS版本
+   
+* 腳本工作表名稱與測試案例名稱 (若不指定案例，則執行所有案例)
+   
+* 測試前是否Reset APP
 
 範例如下圖：
+
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPAndDevice_3.PNG)
+ 
+Step 5. 點擊執行腳本，如下圖：
+ 
+ ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/RunScript.png)
+ 
+APP&Device_Data工作表：設定常用Package name、Activity、測試裝置UDID與OS版號，可使用[管理UDID/PackageName](#APPandDevice)進行設定，範例如下圖。
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPandDevice_Data.PNG)
  
