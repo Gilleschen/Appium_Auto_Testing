@@ -27,7 +27,7 @@
    
    * 待測試腳本工作表(名稱以_TestScript為結尾)與測試案例
    
-   * 是否Reset APP及調用UIAutomator 2
+   * 測試前是否Reset APP
 
 範例如下圖：
 
@@ -163,8 +163,6 @@
 3. 選擇測試腳本，自動列出該腳本下的測試案例名稱 (橘框)
 
 4. 測試前是否重置APP
-
-5. 是否調用UIAutomator 2 (Android 7.0以上需調用；Android 7.0以下不可調用)
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/TestInformations.png)
 
