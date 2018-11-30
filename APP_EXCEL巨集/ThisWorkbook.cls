@@ -21,7 +21,7 @@ Private Sub Workbook_Open()
     Dim myNewBar As CommandBar           '宣告工具列物件
     'Dim ScriptCreator, ScriptEditor, TestInformation, EditDeviceAndAPP, EditExpectResult, CheckAPP, RunScript, CheckAPPandDevice As CommandBarButton '宣告工具列按鈕物件
     Dim ScriptCreator, ScriptEditor, TestInformation, EditDeviceAndAPP, EditExpectResult, CheckAPP, RunScript, CheckAPPandDevice, CheckCommand, CheckValue, CheckExpectResult As CommandBarButton '宣告工具列按鈕物件
-    Set myNewBar = Application.CommandBars.add      '新增一個工具列
+    Set myNewBar = Application.CommandBars.Add      '新增一個工具列
     On Error GoTo skipp
 
     myNewBar.Name = "功能說明" '工具列命名
@@ -29,17 +29,17 @@ Private Sub Workbook_Open()
    
 
     With myNewBar
-        Set RunScript = .Controls.add(msoControlButton)
-        Set CheckAPPandDevice = .Controls.add(msoControlButton)
-        Set CheckCommand = .Controls.add(msoControlButton)
-        Set CheckValue = .Controls.add(msoControlButton)
-        Set CheckExpectResult = .Controls.add(msoControlButton)
-        Set TestInformation = .Controls.add(msoControlButton)
-        Set EditDeviceAndAPP = .Controls.add(msoControlButton)
-        Set ScriptCreator = .Controls.add(msoControlButton)
-        Set ScriptEditor = .Controls.add(msoControlButton)
-        Set CheckAPP = .Controls.add(msoControlButton)
-        Set EditExpectResult = .Controls.add(msoControlButton)
+        Set RunScript = .Controls.Add(msoControlButton)
+        Set CheckAPPandDevice = .Controls.Add(msoControlButton)
+        Set CheckCommand = .Controls.Add(msoControlButton)
+        Set CheckValue = .Controls.Add(msoControlButton)
+        Set CheckExpectResult = .Controls.Add(msoControlButton)
+        Set TestInformation = .Controls.Add(msoControlButton)
+        Set EditDeviceAndAPP = .Controls.Add(msoControlButton)
+        Set ScriptCreator = .Controls.Add(msoControlButton)
+        Set ScriptEditor = .Controls.Add(msoControlButton)
+        Set CheckAPP = .Controls.Add(msoControlButton)
+        Set EditExpectResult = .Controls.Add(msoControlButton)
         
         
         With TestInformation
@@ -97,7 +97,7 @@ Private Sub Workbook_Open()
             .Style = msoButtonIconAndCaption
             .BeginGroup = True
             .Caption = "管理UDID/PackageName"
-            .TooltipText = "編輯/新增UDID及PackageName"
+            .TooltipText = "編輯/新增常用UDID及PackageName"
             .FaceId = 2059
             .Tag = "Jhih Chen"
             .OnAction = "LunchAPPandDevice"
