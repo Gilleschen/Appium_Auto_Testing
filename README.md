@@ -249,11 +249,11 @@ Step 3. 重新開啟TestScript.xlsm
 
 Step 1. 啟動與測試裝置相同數量的Appium (例如：要測試兩支裝置，則啟動兩組Appium)
 
-Step 2. 進入Advanced欄位 (設定Server Address, Server Port)
+Step 2. 進入Advanced欄位 (設定Server Address, Server Port)：
 
-   2.1 固定Server Address = 127.0.0.1
+* 固定Server Address = 127.0.0.1
 
-   2.3 第一組Server Port設定為4723；第二組Server Port設定為4725，如下圖 (若有第三組Appium，則Server Port設定為4727(即4725+2)，每次port都+2，依此類推)
+* 第一組Server Port設定為4723；第二組Server Port設定為4725，如下圖 (若有第三組Appium，則Server Port設定為4727(即4725+2)，每次port      都+2，依此類推)
 
 第一組Server：
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing/blob/master/picture/serverone.png)
