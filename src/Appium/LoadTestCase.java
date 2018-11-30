@@ -124,7 +124,6 @@ public class LoadTestCase {
 
 		try {
 			workbook = new XSSFWorkbook(new FileInputStream("C:\\TUTK_QA_TestTool\\TestTool\\TestScript.xlsm"));
-
 			CaseList = new ArrayList<String>();
 			StepList = new ArrayList<ArrayList<String>>();
 			StepListData = new ArrayList<String>();
@@ -142,7 +141,7 @@ public class LoadTestCase {
 				}
 			}
 		} catch (Exception e) {
-			;
+			System.out.print("[Error] Fail to loading test case.");
 		}
 
 		System.out.println("´ú¸Õ¸}¥»¡G" + StepList);
@@ -174,7 +173,7 @@ public class LoadTestCase {
 			out.close();
 			workbook.close();
 		} catch (Exception e) {
-			;
+			System.out.print("[Error] Fail to saving TestReport.xlsm.");
 		}
 
 	}

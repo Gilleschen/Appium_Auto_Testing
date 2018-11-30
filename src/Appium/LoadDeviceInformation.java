@@ -11,10 +11,12 @@ public class LoadDeviceInformation {
 	public ArrayList<String> platformVersion = new ArrayList<String>();// 存放手機OS版本
 	public ArrayList<String> ScriptList = new ArrayList<String>();// 存放待執行的腳本名稱
 	public ArrayList<String> CasetList = new ArrayList<String>();// 存放指定的待側項
+	public ArrayList<Boolean> UIAutomator2List = new ArrayList<Boolean>();// 存放各裝置是否調用UIAutomator
+																			// //
+																			// 2
 	public String appPackage;// APP Packagename
 	public String appActivity;// APP Activity
-	public Boolean ResetAPP; //每次單一Case執行前，是否清除APP快取資料;是為true;否為false
-	public Boolean UIAutomator2; //是否調用UIautomator2
+	public Boolean ResetAPP; // 每次單一Case執行前，是否清除APP快取資料;是為true;否為false
 
 	public LoadDeviceInformation() {
 		XSSFWorkbook workBook;
@@ -38,11 +40,32 @@ public class LoadDeviceInformation {
 			} else {
 				ResetAPP = true;
 			}
-			
-			if (Sheet.getRow(1).getCell(8).toString() == "TRUE") {
-				UIAutomator2 = true;
-			} else {
-				UIAutomator2 = false;
+
+			int m = 1;
+			try {
+
+				do {
+					// 將OS Version轉成字元矩陣
+					char[] c = Sheet.getRow(m).getCell(3).toString().toCharArray();
+					// 判斷c[1]是否為字元.
+					if (c[1] != '.') {
+						UIAutomator2List.add(Boolean.TRUE);// True為調用UIAutomator2
+					} else if (c[1] == '.') {
+						// 取得第一個字元
+						int num = Character.getNumericValue(c[0]);
+						// 判斷是否大於7
+						if (num >= 7) {
+							UIAutomator2List.add(Boolean.TRUE);// True為調用UIAutomator2
+						} else if (num < 7) {
+							UIAutomator2List.add(Boolean.FALSE);// True為不調用UIAutomator2
+						}
+					}
+
+					m++;
+				} while (!Sheet.getRow(m).getCell(3).toString().equals(""));
+
+			} catch (Exception e) {
+				;
 			}
 
 			int j = 1;
@@ -75,7 +98,7 @@ public class LoadDeviceInformation {
 			workBook.close();
 
 		} catch (Exception e) {
-
+			System.out.print("[Error] Fail to loading devices information.");
 		}
 	}
 

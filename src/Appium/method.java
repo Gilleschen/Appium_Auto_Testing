@@ -971,7 +971,7 @@ public class method {
 			cap[i].setCapability(AndroidMobileCapabilityType.APP_ACTIVITY, TestCase.DeviceInformation.appActivity);
 			cap[i].setCapability(MobileCapabilityType.NO_RESET, TestCase.DeviceInformation.ResetAPP);// 每次單一Case執行前，是否清除APP快取資料;是為true;否為false
 			cap[i].setCapability("autoLaunch", false);
-			if (TestCase.DeviceInformation.UIAutomator2) {
+			if (TestCase.DeviceInformation.UIAutomator2List.get(i)) {
 				cap[i].setCapability(MobileCapabilityType.AUTOMATION_NAME, "uiautomator2");// 因Android
 																							// 7.0設備以上需使用UIAutomator2，才可操作UI元件
 			}
