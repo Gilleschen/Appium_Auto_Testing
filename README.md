@@ -85,9 +85,7 @@ Step3. 建立腳本：新增一工作表，工作表名稱必需以_TestScript�
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/TestScript_example.PNG)
  
-Step 4. ExpectResult工作表：針對「字串」進行比對，使用[編輯期望字串](#ExpectResult)功能進行編輯
-
-   * 當調用Byid_VerifyText/ByXpath_VerifyText需比對字串時
+Step 4. ExpectResult工作表：針對「字串」進行比對，使用Byid_VerifyText或ByXpath_VerifyText時(如上圖範例腳本)，需在ExpectResult工作表填入期望字串，可藉由[編輯期望字串](#ExpectResult)功能進行新增
    
    * A欄第二列處往下填入案列名稱 (CaseName)
         
@@ -95,7 +93,7 @@ Step 4. ExpectResult工作表：針對「字串」進行比對，使用[編輯�
         
 範例如下圖：
  
- ![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Result_example.PNG)
+ ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/ExpectResult_example.PNG)
  
  Step 5. APP&Device_Data工作表：設定常用Package name、Activity、測試裝置UDID與OS版號，透過[管理UDID/PackageName](#APPandDevice)進行設定，如下清單：
 
