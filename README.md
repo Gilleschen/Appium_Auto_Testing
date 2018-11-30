@@ -98,10 +98,6 @@ Step 5. 點擊執行腳本，如下圖：
  
  ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/RunScript.png)
  
-APP&Device_Data工作表：設定常用Package name、Activity、測試裝置UDID與OS版號，可使用[管理UDID/PackageName](#APPandDevice)進行設定，範例如下圖。
-
-![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPandDevice_Data.PNG)
- 
  #### Excel 測試報告
 
 1. 開啟 C:\TUTK_QA_TestTool\TestReport\TestReport.xlsm
@@ -170,13 +166,17 @@ APP&Device_Data工作表：設定常用Package name、Activity、測試裝置UDI
 
 #### 管理UDID/PackageName說明
 
-1. 選擇Device UDID後(綠框)，列出儲存的UDID及OS版號
+1. 選擇Device UDID後(綠框)，列出常用的UDID及OS版號
 
 2. 選擇APP Packagename後 (藍框)，列出儲存的Package name 及 Activity
 
 3. 透過文字方塊修改或新增，點擊Add/Edit進行編輯
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/EditUdidandPackagename.png)
+
+備註：常用的Package name、Activity、測試裝置UDID與OS版本儲存於APP&Device_Data工作表如下圖。
+
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPandDevice_Data.PNG)
 
 <a name="scriptcreater"/>
 
