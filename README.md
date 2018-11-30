@@ -16,33 +16,78 @@
 
 * 建立C:\TUTK_QA_TestTool\TestReport資料夾
 
-#### 測試腳本建立流程
+#### 腳本建立流程
 
-1. 開啟TestScript.xlsm 並允許啟動巨集 (已建立APP&Device、APP&Device_Data、ExpectResult及說明工作表)
+Step 1. 開啟TestScript.xlsm 並允許啟動巨集 (已建立APP&Device、APP&Device_Data、ExpectResult及說明工作表)
 
-2. APP&Device工作表：設定測試APP、測試裝置及測試腳本等資訊，如下清單，藉由[APP、設備與腳本](#testInformations)進行設定
-   * APP Package name與Activity
+Step 2. APP&Device工作表：設定測試APP、測試裝置及測試腳本等資訊，可藉由[APP、設備與腳本](#testInformations)進行設定，項目如下：
+
+* APP Package name與Activity
    
-   * 測試裝置UDID與OS版號
+* 測試裝置UDID與OS版本
    
-   * 待測試腳本工作表(名稱以_TestScript為結尾)與測試案例
+* 待測試腳本工作表(名稱以_TestScript為結尾)與測試案例
    
-   * 測試前是否Reset APP
+* 測試前是否Reset APP
 
 範例如下圖：
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPAndDevice_3.PNG)
 
-3. APP&Device_Data工作表：設定常用Package name、Activity、測試裝置UDID與OS版號，如下清單，透過[管理UDID/PackageName](#APPandDevice)進行設定
-   * APP Package name與Activity
-   
-   * 測試裝置UDID與OS版號
 
-範例如下圖：
+Step3. 建立腳本：新增一工作表，工作表名稱必需以_TestScript為結尾 (如：Login_TestScript)，透過[腳本產生器](#scriptcreater)建立腳本，指令(區分大小寫)如下：(指令使用方式請參考TestScript.xlsm內說明工作表) 
 
-![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPandDevice_Data.PNG)
+   * CaseName: 測試案列名稱(各案列開始時第一個填寫項目，必填!!!)
+    
+   * Back: 點擊行動裝置返回鍵
 
-4. ExpectResult工作表：針對「字串」進行比對，使用[編輯期望字串](#ExpectResult)功能進行編輯
+   * Byid_Click/ByXpath_Click: 根據id/xpath搜尋元件並點擊元件
+
+   * Byid_LongPress/ByXpath_LongPress: 根據id/xpath搜尋元件並長按元件
+    
+   * Byid_VerifyText/ByXpath_VerifyText: 根據id/xpath搜尋元件並取得元件Text屬性之字串後，比對ExpectResult內期望字串
+
+   * Byid_SendKey/ByXpath_SendKey: 根據id/xpath搜尋元件並輸入字串
+
+   * Byid_Clear/ByXpath_Clear: 根據id/xpath搜尋元件並清除字串
+
+   * Byid_Wait/ByXpath_Wait: 根據id/xpath等待元件出現
+
+   * Byid_invisibility/ByXpath_invisibility: 根據id/xpath搜尋元件並等待該元件消失
+
+   * Byid_Swipe/ByXpath_Swipe: 根據id/xpath將元件A移動到元件B位置，產生滑動畫面效果
+
+   * ByXpath_Swipe_Vertical/ByXpath_Swipe_Horizontal: 垂直滑動/水平滑動
+
+   * Swipe: 根據x,y座標滑動畫面
+
+   * ByXpath_Swipe_FindText_Click_Android: 透過垂直/水平滑動畫面，點擊指定元件
+
+   * HideKeyboard: 關閉鍵盤
+
+   * Home: 點擊行動裝置Home鍵
+
+   * LaunchAPP: 啟動APP&Device工作表指定的PackageName之Activity
+
+   * Orientation: 切換行動裝置Landscape及Portrait模式
+
+   * Power: 點擊行動裝置電源鍵
+
+   * QuitAPP: 關閉APP&Device工作表指定的PackageName
+    
+   * ResetAPP: 重置APP(清除APP暫存紀錄)並重新啟動APP
+
+   * ScreenShot: 螢幕截圖
+
+   * Sleep: 閒置APP
+  
+範例腳本如下圖：
+
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/TestScript_example.PNG)
+ 
+Step 4. ExpectResult工作表：針對「字串」進行比對，使用[編輯期望字串](#ExpectResult)功能進行編輯
+
+   * 當調用Byid_VerifyText/ByXpath_VerifyText需比對字串時
    
    * A欄第二列處往下填入案列名稱 (CaseName)
         
@@ -51,56 +96,16 @@
 範例如下圖：
  
  ![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Result_example.PNG)
+ 
+ Step 5. APP&Device_Data工作表：設定常用Package name、Activity、測試裝置UDID與OS版號，透過[管理UDID/PackageName](#APPandDevice)進行設定，如下清單：
 
-5. 建立測試腳本：新增一工作表，工作表名稱須以_TestScript為結尾 (如：Login_TestScript)，請參考[腳本產生器](#scriptcreater)，目前支援指令如下：(區分大小寫，使用方式請參考TestScript.xlsm內說明工作表) 
+   * APP Package name與Activity
+   
+   * 測試裝置UDID與OS版號
 
-    * CaseName: 測試案列名稱(各案列開始時第一個填寫項目，必填!!!)
-    
-    * Back: 點擊行動裝置返回鍵
+範例如下圖：
 
-    * Byid_Click/ByXpath_Click: 根據id/xpath搜尋元件並點擊元件
-
-    * Byid_LongPress/ByXpath_LongPress: 根據id/xpath搜尋元件並長按元件
-    
-    * Byid_VerifyText/ByXpath_VerifyText: 根據id/xpath搜尋元件並取得元件Text屬性之字串後，比對ExpectResult內期望字串
-
-    * Byid_SendKey/ByXpath_SendKey: 根據id/xpath搜尋元件並輸入字串
-
-    * Byid_Clear/ByXpath_Clear: 根據id/xpath搜尋元件並清除字串
-
-    * Byid_Wait/ByXpath_Wait: 根據id/xpath等待元件出現
-
-    * Byid_invisibility/ByXpath_invisibility: 根據id/xpath搜尋元件並等待該元件消失
-
-    * Byid_Swipe/ByXpath_Swipe: 根據id/xpath將元件A移動到元件B位置，產生滑動畫面效果
-
-    * ByXpath_Swipe_Vertical/ByXpath_Swipe_Horizontal: 垂直滑動/水平滑動
-
-    * Swipe: 根據x,y座標滑動畫面
-
-    * ByXpath_Swipe_FindText_Click_Android: 透過垂直/水平滑動畫面，點擊指定元件
-
-    * HideKeyboard: 關閉鍵盤
-
-    * Home: 點擊行動裝置Home鍵
-
-    * LaunchAPP: 啟動APP&Device工作表指定的PackageName之Activity
-
-    * Orientation: 切換行動裝置Landscape及Portrait模式
-
-    * Power: 點擊行動裝置電源鍵
-
-    * QuitAPP: 關閉APP&Device工作表指定的PackageName
-    
-    * ResetAPP: 重置APP(清除APP暫存紀錄)並重新啟動APP
-
-    * ScreenShot: 螢幕截圖
-
-    * Sleep: 閒置APP
-  
-範例腳本如下圖：
-
-![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Testcase_example.PNG)
+![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPandDevice_Data.PNG)
  
  #### Excel 測試報告
 
