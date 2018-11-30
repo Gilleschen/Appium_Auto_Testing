@@ -266,45 +266,7 @@ Sub loadingResetAPP()
     End If
 
 End Sub
-Sub loadingUIAutomator2()
 
-     If Sheets("APP&Device").Cells(2, "H") = "" Then
-        UIAutomator2.clear
-        UIAutomator2.AddItem ("TRUE")
-        UIAutomator2.AddItem ("FALSE")
-        UIAutomator2.Text = Sheets("APP&Device").Cells(2, "H")
-    Else
-        tmp = Sheets("APP&Device").Cells(2, "H")
-        UIAutomator2.clear
-        UIAutomator2.AddItem ("TRUE")
-        UIAutomator2.AddItem ("FALSE")
-        UIAutomator2.Text = tmp
-    End If
-
-End Sub
-
-Private Sub UIAutomator2_Change()
-    Application.ScreenUpdating = False
-    OSVersion = Mid(Sheets("APP&Device").Cells(2, "D"), 2, 1)
-    
-    If OSVersion <> "." And UIAutomator2.Text = "FALSE" Then
-    
-        x = MsgBox("Android版本高於7.0需調用UIAutomator 2", 0 + 64, "Message")
-        UIAutomator2.Text = "TRUE"
-        
-    ElseIf OSVersion = "." Then
-        x = Left(Sheets("APP&Device").Cells(2, "D"), 1)
-        If x >= 7 And UIAutomator2.Text = "FALSE" Then
-            x = MsgBox("Android版本高於7.0需調用UIAutomator 2", 0 + 64, "Message")
-            UIAutomator2.Text = "TRUE"
-        ElseIf x < 7 And UIAutomator2.Text = "TRUE" Then
-            x = MsgBox("Android版本低於7.0無法調用UIAutomator 2", 0 + 64, "Message")
-            UIAutomator2.Text = "FALSE"
-        End If
-        
-    End If
-    Sheets("APP&Device").Cells(2, "H") = UIAutomator2.Text
-End Sub
 
 Private Sub Worksheet_Activate()
     'Sheets("APP&Device").Cells(2, "B").Clear
@@ -314,8 +276,7 @@ Private Sub Worksheet_Activate()
     Call loadingDeivceUdid
     Call loadingTestScript
     Call loadingResetAPP
-    Call loadingUIAutomator2
-    
+
 End Sub
 
 Private Sub Worksheet_Change(ByVal Target As Range)
@@ -328,31 +289,12 @@ Private Sub Worksheet_Change(ByVal Target As Range)
         Next w
         
     End If
-    
-    Call checkUIAutomator2
+    Call reSetResetAPP
     Application.EnableEvents = True
     
 End Sub
 
-Sub checkUIAutomator2()
-    Application.ScreenUpdating = False
-    OSVersion = Mid(Sheets("APP&Device").Cells(2, "D"), 2, 1)
-    
-    If OSVersion <> "." And UIAutomator2.Text = "FALSE" Then
-    
-        'x = MsgBox("Android版本高於7.0需調用UIAutomator 2", 0 + 64, "Message")
-        UIAutomator2.Text = "TRUE"
-        
-    ElseIf OSVersion = "." Then
-        x = Left(Sheets("APP&Device").Cells(2, "D"), 1)
-        If x >= 7 And UIAutomator2.Text = "FALSE" Then
-            'x = MsgBox("Android版本高於7.0需調用UIAutomator 2", 0 + 64, "Message")
-            UIAutomator2.Text = "TRUE"
-        ElseIf x < 7 And UIAutomator2.Text = "TRUE" Then
-            'x = MsgBox("Android版本低於7.0無法調用UIAutomator 2", 0 + 64, "Message")
-            UIAutomator2.Text = "FALSE"
-        End If
-        
-    End If
-    Sheets("APP&Device").Cells(2, "H") = UIAutomator2.Text
+Sub reSetResetAPP()
+    ResetAPP.Text = Sheets("APP&Device").Cells(2, "G")
 End Sub
+

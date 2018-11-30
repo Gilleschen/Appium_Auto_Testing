@@ -14,6 +14,7 @@ Attribute VB_Creatable = False
 Attribute VB_PredeclaredId = True
 Attribute VB_Exposed = False
 
+
 Private Sub cancelCcaseList_Click()
     
     For i = 0 To CaseList.ListCount - 1
@@ -80,11 +81,11 @@ Private Sub CommandButton1_Click()
         End If
         
         
-        If UITrue.Value = True Then
-            Sheets("APP&Device").Cells(2, "H") = "TRUE"
-        ElseIf UIFalse.Value = True Then
-            Sheets("APP&Device").Cells(2, "H") = "FALSE"
-        End If
+'        If UITrue.Value = True Then
+'            Sheets("APP&Device").Cells(2, "H") = "TRUE"
+'        ElseIf UIFalse.Value = True Then
+'            Sheets("APP&Device").Cells(2, "H") = "FALSE"
+'        End If
         
         x = MsgBox("Done.", 0 + 64, "Message")
     End If
@@ -132,28 +133,25 @@ Private Sub CommandButton2_Click()
     Unload TestInformation
 End Sub
 
-Private Sub CommandButton3_Click()
-
-End Sub
 
 Private Sub DeviceBox_Change()
     UITrue.Visible = True
     UIFalse.Visible = True
     OSLabel.Caption = "OS Version: " & Sheets("APP&Device_Data").Cells(DeviceBox.ListIndex + 2, "D")
     
-    y = Mid(Sheets("APP&Device_Data").Cells(DeviceBox.ListIndex + 2, "D"), 2, 1)
-    
-    If y <> "." Then
-        UITrue.Value = True
-    ElseIf y = "." Then
-        x = Left(Sheets("APP&Device_Data").Cells(DeviceBox.ListIndex + 2, "D"), 1)
-        If x >= 7 Then
-            UITrue.Value = True
-        Else
-            UIFalse.Value = True
-        End If
-        
-    End If
+'    y = Mid(Sheets("APP&Device_Data").Cells(DeviceBox.ListIndex + 2, "D"), 2, 1)
+'
+'    If y <> "." Then
+'        UITrue.Value = True
+'    ElseIf y = "." Then
+'        x = Left(Sheets("APP&Device_Data").Cells(DeviceBox.ListIndex + 2, "D"), 1)
+'        If x >= 7 Then
+'            UITrue.Value = True
+'        Else
+'            UIFalse.Value = True
+'        End If
+'
+'    End If
     
 End Sub
 
@@ -174,7 +172,7 @@ Private Sub ScriptBox_Change()
 End Sub
 
 Private Sub UIFalse_Click()
-     y = Mid(OSLabel.Caption, 14, 1)
+    y = Mid(OSLabel.Caption, 14, 1)
     
     If y <> "." Then
         UITrue.Value = True

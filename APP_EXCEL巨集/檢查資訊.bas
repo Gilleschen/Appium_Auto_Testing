@@ -190,27 +190,27 @@ Function CheckAPPandDevice()
     
     
     '確認UIAutomator 2欄位
-    Sheets("APP&Device").Cells(2, "H").NumberFormatLocal = "G/通用格式"
-    If Sheets("APP&Device").Cells(2, "H") = "False" Or Sheets("APP&Device").Cells(2, "H") = "FALSE" Or Sheets("APP&Device").Cells(2, "H") = "false" Then
-        
-        Sheets("APP&Device").Cells(2, "H") = "False"
-        Sheets("APP&Device").Cells(2, "H").NumberFormatLocal = "G/通用格式"
-        Sheets("APP&Device").Cells(2, "H").Font.color = RGB(0, 0, 0)
-        CheckAPPandDevice = True
-        
-    ElseIf Sheets("APP&Device").Cells(2, "H") = "True" Or Sheets("APP&Device").Cells(2, "H") = "TRUE" Or Sheets("APP&Device").Cells(2, "H") = "true" Then
-    
-        Sheets("APP&Device").Cells(2, "H") = "True"
-        Sheets("APP&Device").Cells(2, "H").NumberFormatLocal = "G/通用格式"
-        Sheets("APP&Device").Cells(2, "H").Font.color = RGB(0, 0, 0)
-        CheckAPPandDevice = True
-    Else
-        y = MsgBox("UIAutomator 2欄位請輸入大寫TRUE或FALSE", 0 + 16, "Error")
-        Sheets("APP&Device").Cells(2, "H").Font.color = RGB(255, 0, 0)
-        CheckAPPandDevice = False
-        Exit Function
-        
-    End If
+'    Sheets("APP&Device").Cells(2, "H").NumberFormatLocal = "G/通用格式"
+'    If Sheets("APP&Device").Cells(2, "H") = "False" Or Sheets("APP&Device").Cells(2, "H") = "FALSE" Or Sheets("APP&Device").Cells(2, "H") = "false" Then
+'
+'        Sheets("APP&Device").Cells(2, "H") = "False"
+'        Sheets("APP&Device").Cells(2, "H").NumberFormatLocal = "G/通用格式"
+'        Sheets("APP&Device").Cells(2, "H").Font.color = RGB(0, 0, 0)
+'        CheckAPPandDevice = True
+'
+'    ElseIf Sheets("APP&Device").Cells(2, "H") = "True" Or Sheets("APP&Device").Cells(2, "H") = "TRUE" Or Sheets("APP&Device").Cells(2, "H") = "true" Then
+'
+'        Sheets("APP&Device").Cells(2, "H") = "True"
+'        Sheets("APP&Device").Cells(2, "H").NumberFormatLocal = "G/通用格式"
+'        Sheets("APP&Device").Cells(2, "H").Font.color = RGB(0, 0, 0)
+'        CheckAPPandDevice = True
+'    Else
+'        y = MsgBox("UIAutomator 2欄位請輸入大寫TRUE或FALSE", 0 + 16, "Error")
+'        Sheets("APP&Device").Cells(2, "H").Font.color = RGB(255, 0, 0)
+'        CheckAPPandDevice = False
+'        Exit Function
+'
+'    End If
     
     Application.EnableEvents = True
 End Function
