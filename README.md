@@ -100,9 +100,9 @@ Step 5. 點擊執行腳本，如下圖：
  
  #### Excel 測試報告
 
-1. 開啟 C:\TUTK_QA_TestTool\TestReport\TestReport.xlsm
+Step 1. 開啟 C:\TUTK_QA_TestTool\TestReport\TestReport.xlsm
 
-2. 根據行動裝置UDID自動建立TestReport工作表，如下圖： (e.g. abc123ABC123_TestReport)
+Step 2. 根據行動裝置UDID自動建立TestReport工作表，如下圖： (e.g. abc123ABC123_TestReport)
 
 ![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Testreport_sheet_example.PNG)
 
@@ -122,7 +122,7 @@ Step 5. 點擊執行腳本，如下圖：
 
 2. 各功能說明：
 
-* 執行腳本：執行指定的工作表腳本。
+* 執行腳本：開始測試。
         
 * 檢查APP與裝置資訊：確認APP&Device工作表所有欄位是否填寫。
         
@@ -130,7 +130,7 @@ Step 5. 點擊執行腳本，如下圖：
         
 * 檢查案例參數：確認所有指令及參數是否正確。
         
-* 檢查期望字串：確認案例之期望字串是否加入ExpectResult工作表。
+* 檢查期望字串：確認期望字串是否填入ExpectResult工作表。
         
 * [APP、設備與腳本](#testInformations)：透過VBA設定待測試的APP、UDID及腳本案例，也可手動填寫APP&Device工作表。
         
@@ -140,11 +140,9 @@ Step 5. 點擊執行腳本，如下圖：
         
 * [腳本編輯器](#scripteditor)：透過VBA編輯現有腳本，也可手動編輯工作表腳本。
         
-* [腳本檢查](#commandcheck)：針對指定的腳本進行前述第3、4、5點的檢查。
+* [腳本檢查](#commandcheck)：針對指定的腳本進行指令與參數檢查。
         
 * [編輯期望字串](#ExpectResult)：透過VBA編輯/新增期望字串，也可手動編輯ExpectResult工作表字串。
-        
-備註：3, 4及5功能僅檢查以_TestScript為結尾且未隱藏的所有工作表 
 
 # VBA 巨集使用說明
 
