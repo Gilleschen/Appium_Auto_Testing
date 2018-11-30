@@ -156,7 +156,7 @@ Step 2. 選擇Udid後，自動列出對應的OS版本 (綠框)
 
 Step 3. 選擇測試腳本，自動列出該腳本下的測試案例名稱 (橘框)
 
-Step 4. 測試前是否重置APP
+Step 4. 設定測試前是否重置APP
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/TestInformations.png)
 
@@ -168,7 +168,7 @@ Step 1. 選擇Device UDID後(綠框)，列出常用的UDID及OS版號
 
 Step 2. 選擇APP Packagename後 (藍框)，列出儲存的Package name 及 Activity
 
-Step 3. 透過文字方塊修改或新增，點擊Add/Edit進行編輯
+Step 3. 編輯文字方塊，點擊Add/Edit進行編輯
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/EditUdidandPackagename.png)
 
@@ -180,9 +180,9 @@ Step 3. 透過文字方塊修改或新增，點擊Add/Edit進行編輯
 
 #### 腳本產生器說明 
 
-Step 1. 指令類型按鈕(藍框)，列出指令清單(綠框)
+Step 1. 點擊指令類型按鈕(藍框)，列出指令清單(綠框)
 
-Step 2. 點選指令清單中的指令(綠框)後，透過Add按鈕加入右側的腳本清單(紫框)
+Step 2. 點選指令清單中的指令(綠框)後，點擊Add按鈕加入右側的腳本清單(紫框)
 
 Step 3. 腳本完成後，點擊Create Case按鈕
 
@@ -192,15 +192,17 @@ Step 3. 腳本完成後，點擊Create Case按鈕
 
 #### 腳本編輯器說明
 
-Step 1. 選擇現有腳本 (綠框)
+Step 1. 選擇腳本 (綠框)
 
-Step 2. 選擇腳本中案例 (藍框)
+Step 2. 選擇腳本中案例 (藍框)，列出該案例中的指令 (橘框)
 
-Step 3. 列出該案例中的指令 (橘框)
+Step 3. 點擊指令類型按鈕
 
-Step 4. 可以新增新案例至腳本中 (紫框)
+Step 4. 選擇指令，點擊Add/Up/Down/Delete進行編輯
 
-Step 5. 其餘功能與腳本產生器相同
+Step 5. 腳本編輯完成後，點擊Edit Case按鈕
+
+備註：若想新增新案例，可勾選New Case (紫框)。
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/ScriptEditor.png)
 
@@ -210,9 +212,11 @@ Step 5. 其餘功能與腳本產生器相同
 
 Step 1. 選擇檢查的項目 (綠框)
 
-Step 2. 選擇現有腳本 (藍框)
+Step 2. 選擇腳本 (藍框)
 
 Step 3. 點擊Add加入腳本 (橘框)
+
+Step 4. 點擊Start
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/commandCheck.png)
 
@@ -222,11 +226,11 @@ Step 3. 點擊Add加入腳本 (橘框)
 
 Step 1. 選擇案例 (綠框)
 
-Step 2. 選擇待編輯的字串 (藍框)
+Step 2. 選擇字串 (藍框)
 
 Step 3. 修改或建立字串後 (紫框)，點擊Add/Edit String 加入String list中
 
-Step 4. 點擊Add Case可建立新案例至ExpectResult工作表
+備註：點擊Add Case可建立新案例至ExpectResult工作表。
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/ExpectResultCreator.png)
 
