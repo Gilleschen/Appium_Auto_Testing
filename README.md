@@ -264,7 +264,7 @@ Step 2. 進入Advanced欄位 (設定Server Address, Server Port)：
 第二組Server：
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing/blob/master/picture/servertwo.png)
 
-Step 3. 點擊S
+Step 3. 點擊Start Server
 
 #### 備註
 
