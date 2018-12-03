@@ -106,7 +106,7 @@ Step 2. 點擊行動裝置UDID之TestReport工作表，如下圖： (e.g. abc123
 
 ![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Testreport_sheet_example.PNG)
 
-範例測試結果如下圖：
+測試報告如下圖：
 
 ![image](https://github.com/Gilleschen/Web_Auto_Testing/blob/master/picture/TestResult.PNG)
 
