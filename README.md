@@ -116,7 +116,7 @@ Step 2. 點擊行動裝置UDID之TestReport工作表，如下圖： (e.g. abc123
 
 #### VBA 巨集
 
-1. 點擊增益集工具，如下圖 (11項功能)：
+1. 點擊增益集，如下圖 (11項功能)：
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/functions.PNG)
 
