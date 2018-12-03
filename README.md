@@ -248,7 +248,7 @@ Step 3. 重新開啟TestScript.xlsm
 
 <a name="Appium"/>
 
-# 序列測試
+# 啟動Appium Server
 
 Step 1. 啟動與測試裝置相同數量的Appium (例如：要測試兩支裝置，則啟動兩組Appium)
 
@@ -264,7 +264,7 @@ Step 2. 進入Advanced欄位 (設定Server Address, Server Port)：
 第二組Server：
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing/blob/master/picture/servertwo.png)
 
-Step 3. 啟動各組Appium Server
+Step 3. 點擊S
 
 #### 備註
 
