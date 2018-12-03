@@ -102,7 +102,7 @@ Step 5. 點擊執行腳本，如下圖：
 
 Step 1. 開啟 C:\TUTK_QA_TestTool\TestReport\TestReport.xlsm
 
-Step 2. 根據行動裝置UDID自動建立TestReport工作表，如下圖： (e.g. abc123ABC123_TestReport)
+Step 2. 點擊行動裝置UDID之TestReport工作表，如下圖： (e.g. abc123ABC123_TestReport)
 
 ![image](https://github.com/Gilleschen/APP_Vsaas_2.0_Android_invoke_excel_Result_try_catch/blob/master/picture/Testreport_sheet_example.PNG)
 
