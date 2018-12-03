@@ -93,8 +93,10 @@ Step 3. 設定「期望字串」：點擊ExpectResult工作表，當使用Byid_V
 範例如下圖：
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPAndDevice_3.PNG)
+
+Step 5. [啟動Appium Server](#Appium)
  
-Step 5. 點擊執行腳本，如下圖：
+Step 6. 點擊執行腳本，如下圖：
  
  ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/RunScript.png)
  
@@ -244,6 +246,7 @@ Step 2. 存檔TestScript.xlsm
         
 Step 3. 重新開啟TestScript.xlsm
 
+<a name="Appium"/>
 
 # 序列測試
 
