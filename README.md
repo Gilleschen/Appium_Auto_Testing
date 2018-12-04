@@ -22,7 +22,7 @@ Step 1. 開啟TestScript.xlsm 並允許啟動巨集 (已建立APP&Device、APP&D
 
 Step 2. 建立腳本：新增一工作表，工作表名稱必需以_TestScript為結尾 (如：Login_TestScript)，可透過[腳本產生器](#scriptcreater)建立腳本，指令(區分大小寫)如下：(指令使用方式請參考TestScript.xlsm內說明工作表) 
 
-   * CaseName: 測試案列名稱(各案列開始時第一個填寫項目，必填!!!)
+   * CaseName: 測試案列名稱(各案列第一個填寫項目，必填!!!)
     
    * Back: 點擊行動裝置返回鍵
 
