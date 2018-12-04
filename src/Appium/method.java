@@ -861,7 +861,9 @@ public class method {
 		for (int j = 0; j < driver.size(); j++) {
 			if (driver.get(j) != null) {
 				try {
-					System.out.println("[info] Executing:|End Session|Server Port:" + (port - 2 - (j * 2)) + "|");
+					System.out.println("[info] Executing:|End Session with "
+							+ TestCase.DeviceInformation.deviceName.get(j).toString() + "|Server Port:"
+							+ (port - 2 - (j * 2)) + "|");
 					driver.get(j).quit();
 				} catch (Exception e) {
 					ErrorCheck("EndAppiumSession", j);
@@ -961,7 +963,8 @@ public class method {
 		}
 
 		for (int i = 0; i < TestCase.DeviceInformation.deviceName.size(); i++) {
-			System.out.println("DEVICE_NAME:" + TestCase.DeviceInformation.deviceName.get(i).toString());
+			// System.out.println("Device Name:" +
+			// TestCase.DeviceInformation.deviceName.get(i).toString());
 			cap[i].setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, device_timeout);
 			cap[i].setCapability(MobileCapabilityType.DEVICE_NAME, TestCase.DeviceInformation.deviceName.get(i));
 			cap[i].setCapability(MobileCapabilityType.UDID, TestCase.DeviceInformation.deviceName.get(i));
@@ -980,7 +983,8 @@ public class method {
 
 			try {
 
-				System.out.println("[info] Executing:|Create New Session|Server Port:" + port + "|");
+				System.out.println("[info] Executing:|Create New Session with "
+						+ TestCase.DeviceInformation.deviceName.get(i).toString() + "|Server Port:" + port + "|");
 				Androiddriver = new AndroidDriver<>(new URL("http://127.0.0.1:" + port + "/wd/hub"), cap[i]);
 				driverBK.add(Androiddriver);
 				driver.add(Androiddriver);

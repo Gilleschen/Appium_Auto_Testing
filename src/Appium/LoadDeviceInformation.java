@@ -35,7 +35,7 @@ public class LoadDeviceInformation {
 			appPackage = Sheet.getRow(1).getCell(0).toString();// hard code
 			appActivity = Sheet.getRow(1).getCell(1).toString();// hard code
 
-			if (Sheet.getRow(1).getCell(7).toString() == "TRUE") {
+			if (Sheet.getRow(1).getCell(6).toString() == "TRUE") {
 				ResetAPP = false;
 			} else {
 				ResetAPP = true;
@@ -78,16 +78,18 @@ public class LoadDeviceInformation {
 			} catch (Exception e) {
 				;
 			}
-
-			int k = 1;
-			try {
-				do {
-					ScriptList.add(Sheet.getRow(k).getCell(4).toString());// 準備要Run的腳本
-					k++;
-				} while (!Sheet.getRow(k).getCell(4).toString().equals(""));
-			} catch (Exception e) {
-				;
-			}
+			
+			ScriptList.add(Sheet.getRow(1).getCell(4).toString());// 準備要Run的腳本
+			
+//			int k = 1;
+//			try {
+//				do {
+//					ScriptList.add(Sheet.getRow(k).getCell(4).toString());// 準備要Run的腳本
+//					k++;
+//				} while (!Sheet.getRow(k).getCell(4).toString().equals(""));
+//			} catch (Exception e) {
+//				;
+//			}
 
 			System.out.println("測試設備(UDID/Android Version)");
 

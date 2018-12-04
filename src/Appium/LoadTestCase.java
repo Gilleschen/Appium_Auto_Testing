@@ -178,7 +178,4 @@ public class LoadTestCase {
 
 	}
 
-	// public static void main(String[] args) {
-	// LoadTestCase d = new LoadTestCase();
-	// }
 }
