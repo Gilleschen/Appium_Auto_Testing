@@ -272,7 +272,7 @@ Step 3. 點擊Start Server
 
 * Selenium Client Version: 3.14.0
 
-* Excel欄位若輸入純數字(e.g. 8888)，請轉換為文字格式，皆於數字前面加入單引號 (e.g. '8888)或執行增益集的檢查案例輸入值功能
+* Excel欄位若輸入純數字(e.g. 8888)，請轉換為文字格式，皆於數字前面加入單引號 (e.g. '8888)或執行增益集的檢查案例參數功能
 
 * 固定Server Address = 127.0.0.1, 預設Server Port = 4723
 
