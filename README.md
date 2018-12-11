@@ -26,45 +26,45 @@ Step 2. 建立腳本：新增一工作表，工作表名稱必需以_TestScript�
     
    * Back: 點擊行動裝置返回鍵
 
-   * Byid_Click/ByXpath_Click: 根據id/xpath搜尋元件並點擊元件
+   * Byid_Click/ByXpath_Click：根據id/xpath搜尋元件並點擊元件
 
-   * Byid_LongPress/ByXpath_LongPress: 根據id/xpath搜尋元件並長按元件
+   * Byid_LongPress/ByXpath_LongPress：根據id/xpath搜尋元件並長按元件
     
-   * Byid_VerifyText/ByXpath_VerifyText: 根據id/xpath搜尋元件並取得元件Text屬性之字串後，比對ExpectResult內期望字串
+   * Byid_VerifyText/ByXpath_VerifyText：根據id/xpath搜尋元件並取得元件Text屬性之字串後，比對ExpectResult內期望字串
 
-   * Byid_SendKey/ByXpath_SendKey: 根據id/xpath搜尋元件並輸入字串
+   * Byid_SendKey/ByXpath_SendKey：根據id/xpath搜尋元件並輸入字串
 
-   * Byid_Clear/ByXpath_Clear: 根據id/xpath搜尋元件並清除字串
+   * Byid_Clear/ByXpath_Clear：根據id/xpath搜尋元件並清除字串
 
-   * Byid_Wait/ByXpath_Wait: 根據id/xpath等待元件出現
+   * Byid_Wait/ByXpath_Wait：根據id/xpath等待元件出現
 
-   * Byid_invisibility/ByXpath_invisibility: 根據id/xpath搜尋元件並等待該元件消失
+   * Byid_invisibility/ByXpath_invisibility：根據id/xpath搜尋元件並等待該元件消失
 
-   * Byid_Swipe/ByXpath_Swipe: 根據id/xpath將元件A移動到元件B位置，產生滑動畫面效果
+   * Byid_Swipe/ByXpath_Swipe：根據id/xpath將元件A移動到元件B位置，產生滑動畫面效果
 
-   * ByXpath_Swipe_Vertical/ByXpath_Swipe_Horizontal: 垂直滑動/水平滑動
+   * ByXpath_Swipe_Vertical/ByXpath_Swipe_Horizontal：垂直滑動/水平滑動
 
-   * Swipe: 根據x,y座標滑動畫面
+   * Swipe：根據x,y座標滑動畫面
 
-   * ByXpath_Swipe_FindText_Click_Android: 透過垂直/水平滑動畫面，點擊指定元件
+   * ByXpath_Swipe_FindText_Click_Android：透過垂直/水平滑動畫面，點擊指定元件
 
-   * HideKeyboard: 關閉鍵盤
+   * HideKeyboard：關閉鍵盤
 
-   * Home: 點擊行動裝置Home鍵
+   * Home：點擊行動裝置Home鍵
 
-   * LaunchAPP: 啟動APP&Device工作表指定的PackageName之Activity
+   * LaunchAPP：啟動APP&Device工作表指定的PackageName之Activity
 
-   * Orientation: 切換行動裝置Landscape及Portrait模式
+   * Orientation：切換行動裝置Landscape及Portrait模式
 
-   * Power: 點擊行動裝置電源鍵
+   * Power：點擊行動裝置電源鍵
 
-   * QuitAPP: 關閉APP&Device工作表指定的PackageName
+   * QuitAPP：關閉APP&Device工作表指定的PackageName
     
-   * ResetAPP: 重置APP(清除APP暫存紀錄)並重新啟動APP
+   * ResetAPP：重置APP(清除APP暫存紀錄)並重新啟動APP
 
-   * ScreenShot: 螢幕截圖
+   * ScreenShot：螢幕截圖
 
-   * Sleep: 閒置APP
+   * Sleep：閒置APP
   
 範例腳本如下圖：
 
