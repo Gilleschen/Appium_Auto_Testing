@@ -118,9 +118,9 @@ Step 2. 點擊行動裝置UDID之TestReport工作表，如下圖： (e.g. abc123
 
 ![image](https://github.com/Gilleschen/Web_Auto_Testing/blob/master/picture/TestResult.PNG)
 
-#### Log 紀錄
+#### Logs 紀錄
 
-針對Error之測試案例，進行log紀錄，存放於 C:\TUTK_QA_TestTool\TestReport\\[APP Packagename]\\[Case Name]\\[Device UDID]\\log
+針對Error之案例，進行Logs紀錄，存放於 C:\TUTK_QA_TestTool\TestReport\\[Package Name]\\[Case Name]\\[Device UDID]\\Logs
 
 #### VBA 巨集
 
