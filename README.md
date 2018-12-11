@@ -72,9 +72,9 @@ Step 2. 建立腳本：新增一工作表，工作表名稱必需以_TestScript�
  
 Step 3. 設定「期望字串」：點擊ExpectResult工作表，當使用Byid_VerifyText或ByXpath_VerifyText時(如上圖範例#7)，需在ExpectResult工作表填入期望字串，可藉由[編輯期望字串](#ExpectResult)功能進行新增。 (若測試案例不包含檢驗字串，則此步驟可省略)
    
-   * A欄第二列處往下填入案列名稱 (CaseName)
+   * Case Name：填入案列名稱
         
-   * 與案例名稱同列處輸入「期望字串」
+   * Expect：輸入「期望字串」
         
 範例如下圖：
  
@@ -82,13 +82,19 @@ Step 3. 設定「期望字串」：點擊ExpectResult工作表，當使用Byid_V
  
  Step 4. 設定測試APP、測試裝置及測試腳本等資訊：點擊APP&Device工作表，可藉由[APP、設備與腳本](#testInformations)進行設定，項目如下：
 
-* APP Package name與Activity
+* Package Name：輸入APP的Package Name
+
+* Activity：輸入準備啟動之Activity
    
-* 測試裝置UDID與OS版本
+* Device UDID：輸入裝置UDID
+
+* OS Version：輸入裝置OS版本
    
-* 腳本工作表名稱與測試案例名稱 (若不指定案例，則執行所有案例)
+* Script Name：輸入腳本工作表名稱
+
+* Case Name：輸入測試案例名稱 (若不指定案例，則執行所有案例)
    
-* 測試前是否Reset APP
+* Reset APP：測試前是否清除APP暫存資料
 
 範例如下圖：
 
