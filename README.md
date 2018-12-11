@@ -270,7 +270,7 @@ Step 3. 點擊Start Server
 
 * Appium Client Libraries Version: java-client-6.1.0
 
-* Selenium Client Version: 3.14.0
+* Selenium Client Version: 3.141.59
 
 * Excel欄位若輸入純數字(e.g. 8888)，請轉換為文字格式，皆於數字前面加入單引號 (e.g. '8888)或執行增益集的檢查案例參數功能
 
