@@ -20,12 +20,36 @@
 
 Step 1. 開啟TestScript.xlsm 並允許啟動巨集 (已建立APP&Device、APP&Device_Data、ExpectResult、CommandCode及說明工作表)
 
-Step 2. 建立腳本：新增一工作表，工作表名稱必需以_TestScript為結尾 (如：Login_TestScript)，可透過[腳本產生器](#scriptcreater)建立腳本，指令(區分大小寫)如下：(指令使用方式請參考TestScript.xlsm內說明工作表) 
+Step 2. 建立腳本：新增一工作表，工作表名稱必需以_TestScript為結尾 (如：Login_TestScript)，可透過[腳本產生器](#scriptcreater)建立腳本，指令如下：(指令說明請參考TestScript.xlsm內說明工作表) 
 
-   * CaseName: 測試案列名稱(各案列第一個填寫項目，必填!!!)
+   * CaseName：測試案列名稱
+   
+   * LaunchAPP：啟動APP
+   
+   * QuitAPP：關閉APP
+
+   * Home：點擊Home鍵
+   
+   * Back：點擊返回鍵
+   
+   * Power：點擊電源鍵
+   
+   * Recent：點擊Recent按鈕 (顯示最近使用過APP)
+
+   * Orientation：切換Landscape及Portrait模式
     
-   * Back: 點擊行動裝置返回鍵
+   * ResetAPP：清除APP暫存資料
+   
+   * HideKeyboard：關閉鍵盤
+   
+   * WiFi：啟動/關閉WiFi
 
+   * ScreenShot：螢幕截圖
+   
+   * Swipe：根據x,y座標滑動畫面
+
+   * Sleep：閒置APP
+   
    * Byid_Click/ByXpath_Click：根據id/xpath搜尋元件並點擊元件
 
    * Byid_LongPress/ByXpath_LongPress：根據id/xpath搜尋元件並長按元件
@@ -44,27 +68,7 @@ Step 2. 建立腳本：新增一工作表，工作表名稱必需以_TestScript�
 
    * ByXpath_Swipe_Vertical/ByXpath_Swipe_Horizontal：垂直滑動/水平滑動
 
-   * Swipe：根據x,y座標滑動畫面
-
    * ByXpath_Swipe_FindText_Click_Android：透過垂直/水平滑動畫面，點擊指定元件
-
-   * HideKeyboard：關閉鍵盤
-
-   * Home：點擊行動裝置Home鍵
-
-   * LaunchAPP：啟動APP&Device工作表指定的PackageName之Activity
-
-   * Orientation：切換行動裝置Landscape及Portrait模式
-
-   * Power：點擊行動裝置電源鍵
-
-   * QuitAPP：關閉APP&Device工作表指定的PackageName
-    
-   * ResetAPP：重置APP(清除APP暫存紀錄)並重新啟動APP
-
-   * ScreenShot：螢幕截圖
-
-   * Sleep：閒置APP
   
 範例腳本如下圖：
 
