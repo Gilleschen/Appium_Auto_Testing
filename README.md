@@ -110,7 +110,7 @@ Step 6. 點擊執行腳本，如下圖：
  
  ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/RunScript.png)
  
- #### 範例影片
+ #### 腳本測試影片
  [![Demo CountPages alpha](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/Demo.gif)](https://drive.google.com/file/d/1lYZPAVA6GJhgcJeV9DsjRFWq0z5eeYqQ/view?usp=sharing)
  
  
