@@ -113,7 +113,6 @@ Step 6. 點擊執行腳本，如下圖：
  #### 腳本測試影片
  [![Demo CountPages alpha](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/Demo.gif)](https://drive.google.com/file/d/1lYZPAVA6GJhgcJeV9DsjRFWq0z5eeYqQ/view?usp=sharing)
  
- 
  #### Excel 測試報告
 
 Step 1. 開啟 C:\TUTK_QA_TestTool\TestReport\TestReport.xlsm
