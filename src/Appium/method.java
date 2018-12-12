@@ -447,9 +447,6 @@ public class method {
 
 	public static void logcat(String FilePath, int DeviceNum) throws IOException {
 		// 收集log
-		// System.out.println(
-		// "[info] Executing:|Saving device log...|" +
-		// TestCase.DeviceInformation.deviceName.get(DeviceNum) + "|");
 		DateFormat df = new SimpleDateFormat("yyyy_MM_dd_HH-mm-ss");
 		Date today = Calendar.getInstance().getTime();
 		String reportDate = df.format(today);
@@ -489,7 +486,7 @@ public class method {
 		// C:\TUTK_QA_TestTool\TestReport\appPackage\CaseName\DeviceUdid\log\
 		String filePath = "C:\\TUTK_QA_TestTool\\TestReport\\" + TestCase.DeviceInformation.appPackage.toString() + "\\"
 				+ TestCase.CaseList.get(CurrentCase).toString() + "\\" + TestCase.DeviceInformation.deviceName.get(i)
-				+ "\\log\\";
+				+ "\\Logs\\";
 		File file = new File(filePath);
 		if (!file.exists()) {
 			file.mkdirs();
@@ -540,7 +537,7 @@ public class method {
 					ErrorCheck(appElemnt, i);
 				}
 
-				if (element[i].equals("ERROR")) {
+				if (element[i] == null) {
 					ErrorResult[i] = true;
 
 				} else {
@@ -575,13 +572,9 @@ public class method {
 							.getText();
 				} catch (Exception e) {
 					ErrorCheck(appElemnt, i);
-					// System.err.println("[Error] Can't find " + appElemnt);
-					// element[i] = "ERROR";// 找不到該物件，回傳Error
-					// driver.set(i, null);
-					// CurrentErrorDevice++;// 統計設出錯的設備數
 				}
 
-				if (element[i].equals("ERROR")) {
+				if (element[i] == null) {
 					ErrorResult[i] = true;
 
 				} else {
@@ -1473,7 +1466,6 @@ public class method {
 
 							case "RIGHT":// 畫面向右捲動(觀看畫面左方內容)
 								if (targetElementP.x + targetElementS.width < ScrollBarP.x) {// 若搜尋元件的最大x座標小於卷軸x座標，表示搜尋元件全部UI被卷軸遮住
-
 									t.press(PointOption.point(ScrollBarP.x + errorX, targetElementP.y))
 											.waitAction(WaitOptions.waitOptions(ofSeconds(1))).moveTo(PointOption
 													.point(ScrollBarP.x + ScrollBarS.width - errorX, targetElementP.y))
