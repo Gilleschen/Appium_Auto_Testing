@@ -102,7 +102,7 @@ Step 3. 設定「期望字串」：點擊ExpectResult工作表，當使用Byid_V
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPAndDevice_3.PNG)
 
-Step 5. [啟動Appium Server](#Appium) (參數設定請參考<a href="http://www.automationtestinghub.com/appium-desktop-client-features/">Automation Testing Hub</a>)
+Step 5. [啟動Appium Server](#Appium) (請參考<a href="http://www.automationtestinghub.com/appium-desktop-client-features/">Automation Testing Hub</a>)
  
 Step 6. 點擊執行腳本，如下圖：
  
