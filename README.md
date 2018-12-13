@@ -10,8 +10,6 @@
 
 * 環境設定 (請參考<a href="http://www.qa-knowhow.com/?p=2363">Appium手機自動化測試從頭學 –Windows/Android環境安裝篇</a>)
 
-* 啟動 Appium Server (相關參數設定請參考<a href="http://www.automationtestinghub.com/appium-desktop-client-features/">Automation Testing Hub</a>)
-
 * 下載<a href="https://github.com/Gilleschen/Appium_Auto_Testing_Android/raw/master/Appium_Android.jar"> Appium_Android.jar</a>及<a href="https://github.com/Gilleschen/Appium_Auto_Testing/blob/master/TestScript.xlsm"> TestScript.xlsm</a>至C:\TUTK_QA_TestTool\TestTool資料夾
 
 * 建立C:\TUTK_QA_TestTool\TestReport資料夾
@@ -104,7 +102,7 @@ Step 3. 設定「期望字串」：點擊ExpectResult工作表，當使用Byid_V
 
 ![image](https://github.com/Gilleschen/Appium_Auto_Testing_Android/blob/master/picture/APPAndDevice_3.PNG)
 
-Step 5. [啟動Appium Server](#Appium)
+Step 5. [啟動Appium Server](#Appium) (參數設定請參考<a href="http://www.automationtestinghub.com/appium-desktop-client-features/">Automation Testing Hub</a>)
  
 Step 6. 點擊執行腳本，如下圖：
  
